@@ -1,0 +1,1804 @@
+
+	\part[Estadística Inferencial]{Estadística Inferencial\\[7ex]\makebox[0pt]{\includegraphics[width=1\textwidth]{imagenes/part3.png}}}
+
+
+
+\chapter{Distribuciones muestrales. Estimación}
+
+
+
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (6.5,.1);
+	\fill [left color=teal!50, right color=green!50] (6.5,0) rectangle (11.5,.1);
+	\end{tikzpicture}
+
+
+\section{Introducción}
+
+
+La estadística inferencial es la parte de la estadística que comprende los métodos y procedimientos que por medio de la inducción determina propiedades de una población estadística, a partir de una parte de esta, de una \emph{muestra}. Su objetivo es obtener conclusiones útiles para hacer deducciones sobre una totalidad, \emph{población}, basándose en la información numérica de la muestra. 
+
+Se dedica a la generación de los modelos, inferencias y predicciones asociadas a los fenómenos en cuestión teniendo en cuenta la aleatoriedad de las observaciones. Se usa para modelar patrones en los datos y extraer inferencias acerca de la población bajo estudio. 
+
+\vspace{4mm}Método de la inferencia estadística:
+
+\begin{itemize}
+\item \textbf{Planteamiento del problema}: un problema de inferencia estadística suele iniciarse con una fijación de objetivos o algunas preguntas del tipo:
+?`Cuál será la media de esta población respecto a tal característica?
+?`Se parecen estas dos poblaciones?
+?`Hay alguna relación entre...?
+
+En el planteamiento se definen con precisión la población, la característica a estudiar, las variables, etc.
+\item \textbf{Elaboración de un modelo}: en caso de establecer un modelo teórico, se replantea el procedimiento y se llega a una conclusión lógica. Los posibles modelos son distribuciones de probabilidad.
+\item \textbf{Extracción de la muestra}: se usa alguna técnica de muestreo o un diseño experimental para obtener información de una pequeña parte de la población. \emph{Teoría del muestreo.}
+\item \textbf{Tratamiento de los datos}: en esta fase se eliminan posibles errores, se depura la muestra, se tabulan los datos y se calculan los valores que serán necesarios en pasos posteriores, como la media muestral, la varianza muestral.
+
+Los métodos de esta etapa están definidos por la estadística descriptiva (Tema \ref{estad-descrip}) .
+
+\item \textbf{Estimación de los parámetros}: con determinadas técnicas se realiza una predicción sobre cuáles podrían ser los parámetros de la población.
+\item \textbf{Contraste de hipótesis}: los contrastes de hipótesis son técnicas que permiten simplificar el modelo matemático bajo análisis. Frecuentemente el contraste de hipótesis recurre al uso de estadísticos muestrales.
+\item \textbf{Conclusiones}: se critica el modelo y se hace un balance. Las conclusiones obtenidas en este punto pueden servir para tomar decisiones o hacer predicciones.
+
+El estudio puede comenzar de nuevo a partir de este momento, en un proceso cíclico que permite conocer cada vez mejor la población y características de estudio.
+\end{itemize}
+
+
+\vspace{1cm} %***********************
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{imagenes/imagenes05/T05IM01.png}
+	\end{figure}
+
+\vspace{1cm} %***********************	
+
+\begin{destacado}
+En este tema, y el siguiente, se nos van a plantear las tres situaciones que mostramos en los siguientes ejemplos:
+
+\vspace{2mm} Situación 1.	Las alturas de los alumnos de una facultad tiene media de $\mu=175$ cm y desviación típica $\sigma=5$. ?`Cuál es la probabilidad de que la estatura media de uno de los grupos de 30 alumnos de esa facultad esté entre 174 y 176 cm?
+
+$$ \mu = 175 \ \longrightarrow \ P[ \ \bar x \in (174,176) \ ]$$
+
+\vspace{2mm} Situación 2. La estatura media de un grupo de alumnos de la facultad es de $\bar x=175$ cm. ?`Cuál es la probabilidad de que la altura media de todos los alumnos de la facultad esté entre 174 y 176 cm?
+
+$$ \bar x = 175 \ \longrightarrow \ P[ \ \mu \in (174,176) \ ]$$
+
+\vspace{2mm} Situación 3. Aseguramos que la media de las alturas de los alumnos de la facultad es $\mu=175$ cm, para comprobarlo escogemos una muestra formada por 30 alumnos y calculamos su media que resulta ser de $\bar x=176.3$ cm. ?`Es razonable admitir la hipótesis de que $\mu=175$ cm?
+
+
+
+\vspace{5mm} $\triangleright \ $ En la situación 1, a partir de la población podemos deducir el comportamiento de un a muestra.
+
+\vspace{2mm} $\triangleright \ $ En la situación 2, a partir de una muestra pretendemos inferir el valor de un parámetro de la población.
+
+\vspace{2mm} $\triangleright \ $ En la situación 3, pretendemos contrastar una hipótesis acerca de la población a partir de la información obtenida de una muestra (tema 6).
+
+
+
+	
+\end{destacado}
+
+\section{Intervalos característicos}
+
+\subsection{Intervalos característicos en N(0,1)}
+
+\vspace{4mm} %**********************************
+\begin{definition}
+	
+En una $N(\mu,\sigma)$,  llamamos \textbf{intervalo característico} de probabilidad  $\boldsymbol{p}$   a un intervalo centrado en la media  $(\mu -k,\mu +k)$ ,   de modo que 
+
+$$\boldsymbol{ P \left[ \ X\in (\mu -k,\mu +k) \ \right] = P(\ \mu-k<x<\mu+k \ )=p }$$
+
+$\boldsymbol{ p}$ es el llamado \textbf{nivel de confianza} y se denota como $\boldsymbol{ p=1-\alpha}$, siendo $\alpha$ la \textbf{significación o riesgo}. $k$ es el \textbf{valor crítico} del intervalo y se le suele llamar $k=\boldsymbol{z_{\alpha}/2}$. A la amplitud del intervalo se le llama ``margen de error''. Su mitad, la semiamplitud del intervalo, es el ``error máximo admisible''.
+\end{definition}
+
+\vspace{4mm} %**********************************
+\begin{example}
+.	
+\begin{multicols}{2}
+En una N(0,1), calcula el intervalo característico con un nivel de confianza del 90\% 
+
+\vspace{4mm} (con una significación del 
+
+10\%$=\alpha=1-p=1-0.9$)	
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{imagenes/imagenes05/T05IM02.png}
+	\end{figure}
+\end{multicols}
+
+Una confianza del 90\% o una significación del 10\% supone unas colas en la distribución, a derecha e izquierda de la normal del 5\%. Buscamos pues: $p(-k<z<k)=90\% \longrightarrow  p(x<k)=95 	\to $, mirando las tablas al revés, $k=z_{\alpha/2}=1.645\%$ y el intervalo solicitado es $\ (-1.645,1.645)$ .
+
+\end{example}
+
+\vspace{4mm} %**********************************
+\begin{theorem}
+. Los principales valores críticos en una normal $N(0,1)$ son \textcolor{gris}{(convendría memorizarlos por su frecuente uso)}	.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{\textbf{Principales valores críticos N(0,1)}} \\ \hline
+\textbf{$\boldsymbol{p=1-\alpha}$} & \textbf{$\boldsymbol{\alpha/2}$} & \textbf{$\boldsymbol{z_{\alpha/2}}$} \\
+\textbf{nivel de confianza} & \textbf{significación} & \textbf{valor crítico} \\ \hline
+\textbf{0.90 $\  \  \  (90\%)$} & \textbf{0.050} & \textbf{1.645} \\
+\textbf{0.95 $\  \  \  (95\%)$} & \textbf{0.025} & \textbf{1.960} \\
+\textbf{0.99 $\  \  \  (99\%)$} & \textbf{0.005} & \textbf{2.575} \\ \hline
+\end{tabular}
+\end{table}
+\end{theorem}
+
+\vspace{4mm} %**********************************
+\begin{proof}
+	
+\begin{ejemplo}
+\begin{ejre}
+En una N(0,1) calcula los intervalos característicos con un nivel de confianza del 95\% y del 99\%. \textcolor{gris}{(demostración del teorema anterior)}
+	
+\rule{150pt}{0.1pt}
+
+------ $\ p=95\% \to \alpha=1-p=5\% \to \alpha/2=0.025$
+
+$p(-k<z<k)=95\% \to p(z<k)=97.5\%=0.9750 \ \to \ k=1.96:\quad (-1.96,1.96)$
+
+------ $\ p=99\% \to \alpha=1-p=1\% \to \alpha/2=0.005$
+
+$p(-k<z<k)=99\% \to p(z<k)=99.5\%=0.9950 \ \to \ k=2.575:\quad (-2.575,2.575)$
+
+\end{ejre}	
+\end{ejemplo}
+
+\end{proof}   
+
+\begin{ejemplo}
+\begin{ejre}
+	Calcula el valor crítico ($k=z_{\alpha/2}$) 	para una significación $\alpha=0.002$
+
+\rule{150pt}{0.1pt}
+
+$\alpha=0.002 \ \to \ \alpha/2=0.001 \ \to \ p(z<k)=0.999 \ \Rightarrow \ k=3.09$
+
+El intervalo característico sería $\ (-3.09,3.09)$
+\end{ejre}	
+\end{ejemplo}
+
+\vspace{4mm} %**********************************
+\subsection{Intervalos característicos en una $N(\mu,\sigma)$}
+
+
+\vspace{4mm} %**********************************
+\begin{definition}
+.		$X \leadsto N(\mu,\sigma)$, queremos encontrar un intervalo centrado en la media, $(\mu-k,\mu+k)$, de modo que 
+
+$$P(X\in(\mu-k,\mu+k)=P(\mu-k<x<\mu+k)=p=1-\alpha\ ,$$
+
+\vspace{2mm}  es decir, en el que esté el $p\%=(1-\alpha)\%$ de la población.
+Este el el llamado \textbf{intervalo característico}.
+
+\vspace{3mm} Tipificando la variable, $Z=\dfrac{X-\mu}{\sigma}$, en la $N(0,1)$, el intervalo característico correspondiente a un nivel de confianza $p=1-\alpha$ es $(-z_{\alpha/2},z_{\alpha/2})$, ahora, en $N(\mu,\sigma)$:
+
+\vspace{2mm} \hspace{1cm} $-z_{\alpha/2}<z<z_{\alpha/2} \quad \to \quad -z_{\alpha/2}<\dfrac{X-\mu}{\sigma}<z_{\alpha/2} \to $
+
+\vspace{2mm} \hspace{1cm} $\to z_{\alpha/2}\cdot \sigma < X-\mu < z_{\alpha/2}\cdot \sigma \quad \to \quad  \mu-z_{\alpha/}<X<\mu+z_{\alpha/2}$
+
+\vspace{3mm} El intervalo característico es: $\quad \boxed{ \ \boldsymbol{ (\ \mu-z_{\alpha/2}\cdot \sigma\ , \ \mu+z_{\alpha/2}\cdot \sigma\ \ )  } \ }$
+
+\end{definition}
+
+\vspace{4mm} %**********************************
+\begin{example}
+.	En una $N(175,10)$, calcula el intervalo característico para un nivel de confianza del 95\%.
+
+\rule{150pt}{0.1pt}
+
+$p=95\% \to \alpha=5\% \to \alpha/2=2.5\%=0.0025$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{imagenes/imagenes05/T05IM03.png}
+	\end{figure}
+
+$ p(175-k<x<175+k)=95\% \ \to \ p(x<175+k)=97.5\%$
+
+Tipificando:  $\ p(x<175+k)=p\left( \dfrac{175+k\ -\ k}{10} \right) = p\left( \dfrac{k}{10} \right) =97.5\%=0-9750$
+
+Leyendo las tablas al revés: $\ \dfrac{k}{10}=1.96 \ \to \ k=19.6$
+
+El intervalo característico buscado es: $\ (175-19.6,175+19.6)\ = \ (155.4,194.6)$
+
+\rule{150pt}{0.1pt}
+
+\textbf{Mucho más rápido}, si hemos aprendido (memorizado) los valores críticos más usuales (90\%, 95\% y 99\%), tenemos $z_{\alpha/2}\ (95\%)\ =1.96$ y el intervalo buscado (intervalo de confianza al 95\%) es:
+
+ 
+$(\mu-z_{\alpha/2}\cdot \sigma\ , \ \mu+z_{\alpha/2}\cdot \sigma )=
+(175\pm 1.96\cdot 10) = (155.4,194.6)$
+	
+\end{example}
+
+\vspace{4mm}%*******************************
+\begin{ejemplo}
+\begin{ejre}
+Calcula el intervalo de confianza al 99\% en una $N(20,3)$	
+
+\rule{150pt}{0.1pt}
+
+Para $p=99\% \ \to \ z_{\alpha/2}=2.575 \to $
+
+$(\mu-z_{\alpha/2}\cdot \sigma\ , \ \mu+z_{\alpha/2}\cdot \sigma )=
+(20\pm 2.575\cdot 3) = (12.275,27.725)$
+\end{ejre}	
+\end{ejemplo}
+
+\vspace{4mm}%********************************
+\section{Estimación de las medias muestrales. Teorema central del límite}
+
+\vspace{4mm}%********************************
+\begin{theorem}
+.	Dada una población de media $\mu$ y desviación típica $\sigma$, no necesariamente `normal', tomamos todas las muestras de tamaño $n$ y calculamos su media, $\overline X$. 
+
+\vspace{2mm} \textcolor{gris}{Para cada muestra que extraigamos, calculamos su media $\bar x_i$. Considerándolas todas, tendremos una distribución de medias muestrales $X:\ \bar x_1, \bar x_2,\cdots, \bar x_i,\cdots , \bar x_j, \cdots$. Su media es $\overline X$.}
+
+\vspace{2mm} El \textbf{teorema central del límite} asegura que esta distribución de medias muestrales es tal que:
+
+
+
+\vspace{2mm} \hspace{1cm} --- Tiene la misma media que la población, $\overline X=\mu$.
+
+\vspace{2mm} \hspace{1cm} ---  Su desvición típica depende del tamaño de las muestras, es $s_{X}=\dfrac{\sigma}{\sqrt{n}}$, disminuye al aumentar $n$.
+
+\vspace{2mm} \hspace{1cm} ---  Si, o bien la población de partida es normal o bien el tamaño de las muestras en $n>30$, la distribución de las medias muestrales en normal: $\ \overline{X} \leadsto N\left( \ \mu \ , \ \dfrac{\sigma}{\sqrt{n}} \ \right)	$.
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\textwidth]{imagenes/imagenes05/T05IM04.png}
+	\end{figure}
+
+\end{theorem}
+
+\begin{comment}
+
+\vspace{4mm}%********************************
+\begin{example}
+.	Consideremos la distribución uniforme (no normal) formada por todos los números naturales del 1 al 7. Nuestra población es: $\ \{1,2,3,4,5,6,7\}$. Es sencillo comprobar que la media de esta población es $\mu=4$ y su desviación típica $\sigma=2$
+
+Extraemos todas las muestras posibles formadas por tres elementos $n=3<30$
+
+\vspace{2mm} La distribución de partida no es normal y el tamaño de las muestras (n=3) no es mayor a 30 por lo que no podemos asegurar que la distribución de todas las muestras de tamaño 3 que podamos obtener de la población vaya a ser una distribución normal.
+
+\vspace{2mm} De una población de 7 individuos, muestras (subconjuntos) de tamaño 3 tenemos: $\ \mqty(7\\3)=35=k$ muestras.
+
+\vspace{4mm} \emph{Distribución de las muestras.}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lllllllllllllll}
+$\{ \ $ & 1,2,3 & ; & 1,2,4 & ; & 1,2,5 & ; & 1,2,6 & ; & 1,2,7 & ; & 1,3,4 & ; & 1,3,5 &  \\
+ & 1,3,6 & ; & 1,3,7 & ; & 1,4,5 & ; & 1,4,6 & ; & 1,4,7 & ; & 1,5,6 & ; & 1,5,7 &  \\
+ & 1,6,7 & ; & 2,3,4 & ; & 2,3,5 & ; & 2,3,6 & ; & 2,3,7 & ; & 2,4,5 & ; & 2,4,6 &  \\
+ & 2,4,7 & ; & 2,5,6 & ; & 2,5,7 & ; & 2,6,7 & ; & 3,4,5 & ; & 3,4,6 & ; & 3,4,7 &  \\
+ & 3,5,6 & ; & 3,5,7 & ; & 3,6,7 & ; & 4,5,6 & ; & 4,5,7 & ; & 4,6,7 & ; & 5,6,7 & $\} \ $
+\end{tabular}
+\end{table}
+
+Sacando la media de cada una de estas 35 muestras obtenemos la \emph{Distribución de las medias muestrales}:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lllllllllllllll}
+$ \{ \ $ & 2,00 & ; & 2,33 & ; & 2,67 & ; & 3,00 & ; & 3,33 & ; & 2,67 & ; & 3,00 &  \\
+ & 3,33 & ; & 3,67 & ; & 3,33 & ; & 3,67 & ; & 4,00 & ; & 4,00 & ; & 4,33 &  \\
+ & 4,67 & ; & 3,00 & ; & 3,33 & ; & 3,67 & ; & 4,00 & ; & 3,67 & ; & 4,00 &  \\
+ & 4,33 & ; & 4,33 & ; & 4,67 & ; & 5,00 & ; & 4,00 & ; & 4,33 & ; & 4,67 &  \\
+ & 4,67 & ; & 5,00 & ; & 5,33 & ; & 5,00 & ; & 5,33 & ; & 5,67 & ; & 6,00 & $\ \}$
+\end{tabular}
+\end{table}
+
+Puede comprobarse que la media de esta distribución (distribución de las de las medias muestrales) es $\overline{X}=2 =\mu$, que coincide con la media poblacional.
+
+\end{example}
+\end{comment}
+
+
+
+\vspace{4mm}%***********************************
+
+\begin{myalertblock}{$\sigma$ desconocida}
+	Si $\sigma$ (desviación típica poblacional) es desconocida pero $n\ge 30$, se toma como desviación típica de la población la ``cuasi-desviación típica muestral'':
+
+$$ \sigma_{n-1} \ = \ \sqrt{\dfrac{n}{n-1}}\ s_n$$
+
+siendo $s_n$ la desviación típica muestral.	
+
+\vspace{4mm} \textcolor{gris}{\begin{footnotesize} $s_{n-1}=\sqrt{\dfrac{\displaystyle  \sum_{i=1}^n\ (x_i-\bar x)^2}{n-1}}$ es la cuasidesviación típica muestral ($s^2_{n-1}$ es la cuasivarianza muestral). \end{footnotesize}}
+
+\vspace{2mm}  $s_{n-1}$ es un estimador de la varianza poblacional $\sigma_N$ (realmente lo es de la cuasivarianza, $\sigma_{N-1}$, pero prácticamente coinciden para $N>>1$). Al dividir por $n-1$ en vez de por $n$ la cuasivarianza aumenta, es mayor que la varianza. Se trata, pues, de hacer una \emph{sobreestimación} para la desviación típica poblacional para compensar el error de haber tomado una muestra.
+\end{myalertblock}
+
+Por tanto, la distribución de las medias muestrales, es una distribución de tipo ``normal'', siempre que la población de procedencia lo sea, o incluso si no lo es, siempre que el tamaño de las muestras sea 30 o mayor.
+
+\vspace{2mm} La desviación típica de la distribución de medias, $\sigma/\sqrt{n}$, mide el grado de variabilidad de las medias muestrales. Cuanto menor sea, más ajustadas a la media de la población serán las medias que obtengamos de una muestra. De su propia definición, es fácil darse cuenta de que cuanto mayor es el tamaño de la muestra, menor es este grado de variabilidad, y por tanto más similar a la media de la población será la media obtenida de la muestra. Es decir, cuanto mayor es el valor de n, mejor es la aproximación ``normal''.
+
+\vspace{4mm}%********************************
+\begin{theorem}
+. \textbf{Consecuencias del teorema central del límite:}
+
+% ni `theorem` ni `example' admiten itemize o enumerate
+
+\vspace{4mm}  $\blacktriangleright \ $ \textbf{Control de las medias muestrales} 
+
+\vspace{2mm} Si $N\leadsto N\left( \mu, \sigma \right)$, \emph{podemos calcular la probabilidad de que una media determinada esté en un intervalo concreto.}
+
+\vspace{4mm} $\blacktriangleright\ $ \textbf{ Control de la suma de individuos de una muestra}
+
+\vspace{2mm}  $\overline{X}=\displaystyle \dfrac{\sum_{i=1}^n  x_i}{n} \ \longrightarrow \ \sum_{i=1]}^n x_i=n\cdot \overline{X}$ y tendremos que
+
+$\displaystyle si \ N\leadsto N\left( \mu, \sigma \right) \ \longrightarrow \ 
+\sum_{i=1}^n x_i \leadsto N \left( n\mu, n\dfrac{\sigma}{\sqrt{n}} \right) \sim N(n\mu,\sigma \sqrt{n})$
+
+\emph{Podremos calcular la probabilidad de que la suma de todos los elementos de la muestra esté en un determinado intervalo.}
+
+\vspace{4mm}  $\blacktriangleright \ $ \textbf{Inferir la media de la población a partir de la muestra}
+
+\vspace{2mm}  \emph{A partir de una muestra concreta podremos sacar conclusiones válidas para la población} (\textcolor{gris}{esto lo veremos más adelante, en el apartado intervalo de confianza para la media')}.
+	
+\end{theorem}
+
+\vspace{4mm}%********************************
+\begin{example}
+. 	Una compañía aérea sabe que el equipaje de sus pasajeros tiene como media 25 kg, con una desviación típica de 6 kg. Si uno de sus aviones transporta a 50 pasajeros, el peso medio de los equipajes de dicho grupo estará en la distribución muestral de medias:
+
+\vspace{2mm} $ \text{Población:} \quad N(25,6) \quad \longrightarrow \quad \text{Muestra-avión:} \quad N \left( 26, \dfrac{6}{\sqrt{50}} \right) = N(25,0.84) $
+
+\vspace{2mm} La probabilidad de que el peso medio para estos pasajeros sea superior a 26 kg sería:
+
+\vspace{2mm} $ p(\overline{X}>26)=p\left( z>\dfrac{26-25}{0.84} \right) = p(z<1.18)=0.1190=11.90\%$
+\end{example}
+
+\vspace{4mm}%********************************
+\begin{example}
+.	Si una población sigue una distribución N (5; 0.5) y elegimos todas las muestras de tamaño 100.
+
+ \vspace{2mm} ?`Cuál es el valor de la suma de los elementos de la muestra?
+ ?`A qué valor se aproxima la desviación típica?
+
+
+\rule{150pt}{0.1pt}
+
+La distribución de las sumas de los elementos de las muestras, como $n=100>30$ y según el TCL (teorema central del límite), seguirá una distribución normal:
+
+$\sum x_i \in N(n\mu , \sigma \sqrt{n}) \ = \ N(5 \cdot 100 \ , \  0.5 \cdot \sqrt{100}) \ = \ N(500,50)$
+\end{example}
+
+\begin{ejemplo}
+\begin{ejre}
+El peso, en Kg, de los soldados de un cuartel sigue una N(69,8). Las guardias diarias se organizan mediante grupos de 12 soldados elegidos, cada día, al azar de entre los soldados del cuartel.
+
+\begin{adjustwidth}{10pt}{}
+a) Calcula la probabilidad de que la media de los pesos de los soldados de una determinada guardia sea mayor de 75 Kg.
+
+b) Encuentra el intervalo característico de la media de los pesos de la guardia para una probabilidad del 95\%.
+
+c) Calcula la probabilidad de que la suma de los pesos de los soldados de la guardia sea menor de 750Kg.
+
+d) ?`Cuál es la probabilidad de que un soldado de la guardia, elegido al azar, pese más de 75 kg?
+\end{adjustwidth}
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} 
+
+Por el th. Central del límite, como la población es normal , las medias de los pesos de los soldados, así como la suma de ellos, de una guardia (muestra tamaño 12) también será normal:
+
+$\displaystyle \overline X \leadsto (N(69,8/\sqrt{12})=N(69,2.31);\qquad  
+\sum X_i \leadsto N(12\cdot 69, 8 \cdot  \sqrt{12})=N(828,27.71)$
+
+--- $a)\ \ \overline{X} \leadsto N(69,2.31) \ \to \ p(\overline{X}>75)
+= P\left( \dfrac{75-69}{2.31} \right) = p(zZ2.60)=$
+
+$=1-\Phi(2.60)=0.0047$
+
+--- $b)\ \ p=95\% \to z_{\alpha/2}=1.96 \longrightarrow 69\pm 1.96\cdot 2.31 \ \to \ (64.47,73.53)$
+
+--- $c)\ \ \displaystyle \sum X_i \leadsto N(828,27.71) \ \to \ p \left( \sum x_i <750 \right)= p\left( \dfrac{650-828}{27.71} \right) = $
+
+$=p(z<-2.81)=p(z>2.81)=1-\Phi(2.81)=0.0025 $
+
+\begin{destacado}
+\textbf{Un soldado de la guardia (12 soldados elegidos al azar), elegido al azar,,  $\boldsymbol{x_i}$ , es realmente un soldado del cuartel elegido al azar, un elemento de la población}: \end{destacado}
+
+$d)\ \ N(69,8) \to p(x_i>75) = p\left( \dfrac{75-69}{8} \right) = p(z>0.75)=1-\Phi(0.75)=0.2266$
+
+\end{ejre}	
+\end{ejemplo}
+
+
+
+\subsection{Estimación por intervalos: intervalos de confianza para la muestra}
+
+
+\begin{definition}
+.	Con el th. Central del límite hemos visto que, conocidos $\mu$ y $\sigma$ de una población, podemos calcular la probabilidad de que la media de una muestra extraída de la población (o de la suma de todos sus elementos) esté en un determinado intervalo. Para que esto sea posible necesitamos que, o bien la población de partida sea Normal, o bien que el tamaño de la muestra sea $n\ge 30$.
+
+	Nuestra pregunta ahora es la contraria: tenemos una población de $\mu$  desconocida, pero de la que sí sabemos su $\sigma$ y tenemos una muestra de tamaño $n$, en las condiciones de que la población sea normal o $n\ge 30$,  Se puede demostrar que $\mu\approx \bar x$  y que $\sigma \approx s_{n-1}$ .  A esto se le llama \textbf{estimación puntual}.
+\end{definition}
+
+
+\vspace{4mm}%******************************
+\rule{200pt}{0.1pt}
+
+ACLARACIÓN CALCULADORA ESTADÍSTICA: Introducidos los valores de nuestra distribución $n;\ x_i,\ n_i$, con una calculadora, p.e., obtenemos los valores:  $\bar x, \ s_n, \ s_{n-1}$.  Pues bien:
+
+--- Si los datos pertenecen a la población: $\mu=\bar x$    y  $\sigma=s_n$
+  
+--- pero, si los datos pertenecen a una muestra:  $\mu \approx \bar x$  y  $\sigma \approx s_{n-1}$ 
+
+La calculadora proporciona la \emph{desviación típica} $s_n$   y \emph{cuasidesviación típica}  $s_{n-1}$ (varianza y cuasivarianza):
+
+$ \displaystyle s_n=\sqrt{\dfrac{\sum (x_i-\bar x)^2}{n}}; \quad s_{n-1}=\sqrt{\dfrac{\sum (x_i-\bar x)^2}{n-1}} \quad \to \quad s_{n-1}=\sqrt{\dfrac{n-1}{n}}\ s_n$
+
+$S^2_{n-1}$ es un estimador insesgado de $\sigma^2_{N-1}$ y no de $\sigma^2_{N}$, pero no hay que preocuparse demasiado. a efectos prácticos es casi lo mismo cuando la población es grande. Para estimar la varianza  de una población grande usaremos la cuasivarianza muestral.
+
+\vspace{-4mm}%***********************
+\begin{flushright}
+\rule{200pt}{0.1pt}	
+\end{flushright}
+
+
+
+El conocimiento de unos valores aproximados $\mu$ y de $\sigma$  nos dice poco, para mayor precisión usaremos la  \textbf{estimación por intervalos de confianza} para determinar estos parámetros.
+
+\vspace{4mm}%******************************
+\begin{definition}
+.		\textbf{Estimación por intervalos.}
+
+\vspace{2mm} De una población desconocida, extraemos una muestra de tamaño $\boldsymbol{n}$ y calculamos $\bar x, \ s_n,\ s_{n-1} $.
+
+\vspace{2mm} Con un nivel de confianza del $100 \ \boldsymbol{p} \ \%=100(1-\alpha)\%$, la media poblacional estará en el intervalo:
+
+$$\boldsymbol{ 
+\mu \ \in \ \left( \ 
+\bar x - z_{\alpha/2} \cdot \dfrac{s_{n-1}}{\sqrt{n}} 
+\ , \ 
+\bar x + z_{\alpha/2} \cdot \dfrac{s_{n-1}}{\sqrt{n}} \ \right) 
+} $$
+\end{definition}
+
+\vspace{2mm} Cuanto mayor sea el tamaño de la muestra (a mayor $n$), más eficacia de la estimación ya que el intervalo será más pequeño (margen de error menor) y mayor será el nivel de confianza ($\alpha$ menor).
+
+\vspace{2mm} Tamaño de la muestra ($n$), longitud del intervalo (margen de error) y nivel de confianza ($p=1-\alpha$) son tres variables relacionadas. Fijadas dos de ellos, podemos determinar la tercera.
+
+
+\vspace{4mm}%******************************
+\begin{definition}
+.		\textbf{Intervalo de confianza para la muestra.}
+
+\vspace{2mm}  Tenemos una población con $\sigma$ conocida, pero de la cual desconocemos $\mu$. Deseamos encontrar un intervalo con un nivel de confianza $\boldsymbol{p}=1-\alpha$ para la media $\mu$. Tomamos una muestra de $n$ elementos y media $\bar x$:
+
+\vspace{2mm} Al  $100 \ \boldsymbol{p} \ \%=100(1-\alpha)\%$ de confianza, la media poblacional $\mu$ tendrá un valor comprendido en el intervalo:
+
+$$\boldsymbol{
+\mu \ \in \ \left( \ 
+\bar x - z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} 
+\ , \ 
+\bar x + z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} \ \right) 
+}$$
+
+\vspace{3mm} \textit{Si de la población desconocemos $\sigma$, tomamos $s_{n-1}$ de la muestra.}
+\end{definition}
+
+
+
+\vspace{4mm} %***********************************
+\begin{example}
+.	Para estimar la media de las alturas de los alumnos de una universidad se talla, al azar, a 300 de ellos obteniendo una media de 173 cm y una cuasidesviación típica de 12.3 cm.
+
+\vspace{2mm}--- Da una estimación puntual de la media y desviación típica de las alturas de los alumnos de la universidad.
+
+\vspace{2mm}--- Determina un intervalo para la media de los alumnos de la universidad con una significación del 5\%. 	
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} $n=300; \quad \bar x=173 \ \mathrm{cm};\quad s_{n-1}=12.3\ \mathrm{cm}$
+
+\vspace{2mm} --- La estimación puntual para la media es $\mu=\bar x=173 \ \mathrm{cm}$ y para la desviación típica $\sigma=s_{n-1}=12.3 \  \mathrm{cm}$
+
+\vspace{2mm} --- Intervalo de confianza con significación $\alpha=5\%=1-p;\ p=95\%$, el valor característico es $z_{\alpha/2}=1.96$. 
+
+\vspace{2mm} Como desconocemos la desviación típica de la población, tomaremos como desviación típica poblacional la cuasidesviación típica muestral: $\sigma=s_{n-1}=13.2$
+
+\vspace{2mm} $\mu \ : \ 
+\bar x \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} \ =\ 
+173\pm 1.96\cdot \dfrac{12.3}{\sqrt{300}}=173\pm 1.4$
+
+\vspace{2mm} El intervalo pedido es $\ \mu \in (171.6,174.4)$
+\end{example}
+
+\vspace{4mm} %***********************************
+\vspace{2mm} \begin{example}
+ .	En esta misma universidad se sabe que la desviación típica de los pesos de sus alumnos es de 13 kg. Para estimar su media se ha tallado a 100 de  ellos obteniendo una media de 66.5 kg.
+ 
+\vspace{2mm} --- Determina un intervalo de confianza del 99\% para la media de los pesos de los alumnos de la universidad.
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} $n=100;\quad \bar x=66.5 \ \mathrm{kg};\quad \sigma=13$
+
+\vspace{2mm} Intervalo de confianza con significación $p=99\% \ \alpha=1\%=1-p$, el valor característico es $z_{\alpha/2}=2.575$. 
+
+\vspace{2mm} $\mu \ : \ 
+\bar x \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} \ =\ 
+66.5\pm 2.575\cdot \dfrac{13}{\sqrt{100}}=66.5\pm 3.35$
+
+\vspace{2mm} El intervalo pedido es $\ \mu \in (63.15, 69.85)$
+\end{example}
+
+\vspace{1cm} %***********************************
+\begin{ejemplo}
+\begin{ejre}
+Para determinar la nota media del examen de matemáticas de los alumnos de segundo de bachillerato de España en un determinado año, se toma una muestra de 500 de ellos obteniéndose que la nota media de éstos es de 5.43. Determinar un intervalo de confianza al 90\%	de la nota media de matemáticas de todos los alumnos de España sabiendo que:
+
+a) la cuasivarianza de la nota de los 500 alumnos muestreados es 4.28.
+
+b) la desviación típica en el examen de matemáticas de todos los alumnos de España, en esta convocatoria, es 2.23.
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} $n=500;\quad \bar x =5.43; \quad p=90\% \ \to \ z_{\alpha/2}=1.645$
+
+\vspace{2mm} $a)\ \ \sigma=s_{n-1}=\sqrt{4.28}=2.07;\qquad b)\ \ \sigma=2.23$
+
+\vspace{2mm} --- $a)\ \ \mu \ : \ 
+\bar x \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} \ =\ 
+5.43\pm 1.645\cdot \dfrac{2.07}{\sqrt{100}}=5.43\pm 0.34$
+
+\vspace{2mm} El intervalo pedido es $\ \mu \in (5.09 , 5,77)$
+
+\vspace{2mm}  --- $b)\ \ \mu \ : \ 
+\bar x \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} \ =\ 
+5.43\pm 1.645\cdot \dfrac{2.23}{\sqrt{100}}=5.43\pm 0.37$
+
+\vspace{2mm} El intervalo pedido es $\ \mu \in ( 5.06 , 5.80)$
+
+\vspace{2mm}
+
+\end{ejre}
+\end{ejemplo}
+\vspace{0.5mm} %*****************************
+\begin{myalertblock}{Distribución muestral de la diferencia de muestras}
+\vspace{2mm} Supongamos dos poblaciones que sigan distribuciones normales $ \ N(\mu_x,\sigma_x) \ $ y $N \ (\mu_y,\sigma_y) \ $ de las que tomamos nuestras de tamaños $n_x$ y $n_y$, respectivamente (si los tamaños son mayores a 30, no hace falta exigir que las distribuciones sean normales), en estas condiciones:
+	
+\vspace{2mm} La \textbf{distribución muestral de la diferencia de medias} sigue una distribución normal de media $\ \mu_x - \mu_y \ $ y de desviación típica $ \ \sqrt{\dfrac {\sigma_x^2}{n_x} +\dfrac {\sigma_y^2}{n_y}}   \ $, es decir:
+	
+$$  \ N(\mu_x,\sigma_x)  \to n_x;\    N \ (\mu_y,\sigma_y) \to n_y \ \rightarrow \ \bar x - \bar y \in N\left( \ \mu_x-\mu_y \ , \ \sqrt{\dfrac {\sigma_x^2}{n_x} +\dfrac {\sigma_y^2}{n_y}} \ \right) $$
+	
+\vspace{2mm} La variable tipificada viene dada por la expresión:
+	
+\vspace{2mm} $$ z=\dfrac{(\bar x-\bar y)-(\mu_x-\mu_y)}{ \sqrt{\dfrac {\sigma_x^2}{n_x} +\dfrac {\sigma_y^2}{n_y}} } $$
+
+\begin{example}
+.	El responsable de la sede central de una empresa afirma que las edades de sus empleados siguen una distribución normal con una media de 41 años y una desviación típica de 5 años. Por otro lado, el responsable de una sede de las sucursales de dicha empresa en otro país, ha determinado que sus empleados también tienen edades que se ajustan a una distribución normal con una media de 39 años y desviación típica de 3 años. 
+
+\vspace{2mm} Con el fin de hacer un estudio comparativo se seleccionan muestras de 40 personas de cada sede de la empresa. 
+
+\vspace{2mm} a)    Determina la distribución para la diferencia de las medias muestrales. 
+
+\vspace{2mm} b)    ?`Cuál es la probabilidad de que los empleados de la sede central tengan una media de edad de al menos 3 años mayor que los de la sucursal extranjera?	
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} --- a) $\bar x - \bar y \in N\left( \ \mu_x-\mu_y \ , \ \sqrt{\dfrac {\sigma_x^2}{n_x} +\dfrac {\sigma_y^2}{n_y}} \ \right) \ =\ N(41-39, \sqrt{(5^2/40)+(3^3/40)})=N(2.00,0.92)$
+
+\vspace{2mm} --- b) $p(\bar x - \bar y \ge 3)=p(z<(3-2)/0.92)=p(z>1.09)=1-\Phi(1.09)=0.1379$
+
+\end{example}
+
+\begin{ejemplo}
+\begin{ejre}
+Para estudiar la influencia del tabaco en el peso de los recién nacidos se realiza un estudio en un hospital en que se consideran dos grupos de 300 futuras madres no fumadoras y 220 fumadoras. En el grupo de mujeres no fumadoras los recién nacidos presentan una media de pesos de 3.6 kg con una desviación típica de 0.5, en el grupo de las fumadoras la media de pesos es de 3.2 kg con desviación típica de 0.8 kg.
+
+\vspace{2mm} a) Determinar, con un nivel de confianza del 95\%, como influye que la madre sea fumadora en el peso de su hijo al nacer.
+
+\vspace{2mm} b) Determina el error máximo admisible cometido en la estimación anterior.
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} $\bar x=3.6 \ \mathrm{kg};\ \sigma_x=0.5;\ n_x=300; \qquad 
+\bar y=3.2 \ \mathrm{kg};\ \sigma_x=0.8;\ n_x=220$
+
+\vspace{2mm} $\bar x \in N(3.6,0.5);\ \ \bar y \in N(3.2,0.8)\ \Rightarrow$ 
+
+\vspace{2mm} $\qquad \qquad  \bar x - \bar y \in N( \ (3.6-3.2) \ , \ \sqrt{(0.5^2/300) + (0.8^2/220)} \ ) = N(0.400,0.061)$
+
+\vspace{2mm} $1-\alpha=95\% \ \to \ z_{\alpha/2}=1.96$
+
+\vspace{2mm} $IC(95\%):\quad (\bar x - \bar y) \pm \sqrt{\dfrac {\sigma_x^2}{n_x} +\dfrac {\sigma_y^2}{n_y}} \to 0.4 \pm 1.96 \cdot 0.061=0.4\pm 0.124 $
+
+\vspace{2mm} $IC(95\%):\quad (0.276,0.524)$
+
+\vspace{2mm} Con un nivel de confianza del 95\% el peso de un bebe de madre no fumadora supera en 276 g, como mínimo, y 524 g como máximo al de una madre fumadora.
+
+\vspace{2mm} El error máximo admisible es la mitad de la amplitud del intervalo (ya lo tenemos calculado:
+
+\vspace{2mm} $E=z_{\alpha/2} \cdot \sqrt{\dfrac {\sigma_x^2}{n_x} +\dfrac {\sigma_y^2}{n_y}} =0.124 $ g.
+\end{ejre}
+	
+\end{ejemplo}
+
+\end{myalertblock}
+
+
+
+\vspace{1cm} %***********************************
+\subsection{Relación entre nivel de confianza, error admisible y tamaño de la muestra}
+
+\vspace{4mm} %******************************
+\begin{definition}
+.	Llamaremos \textbf{error admisible} a la mitad del margen de error (longitud del intervalo de confianza).
+
+\vspace{2mm} Al $\ 100\ p\% \ = \ 100\ (1-\alpha)\% \ \longrightarrow \ 
+\mu \ \in \ \left( \ 
+\bar x - z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} 
+\ , \ 
+\bar x + z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} \ \right) $
+
+\vspace{2mm} El margen de error es $\ 2\  z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}}$, por lo que el \emph{error admisible es:}
+
+$$\boldsymbol{
+E\ = \ z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} \ \longrightarrow \ 
+n=\left( \dfrac{z_{\alpha/2} \cdot \sigma}{E} \right)^2
+}$$
+
+\vspace{2mm} --- Al aumentar el nivel de confianza, $\ p\uparrow \ \Rightarrow \  n \uparrow$
+
+\vspace{2mm} --- Al disminuir el error admisible, $\ E \downarrow \ \Rightarrow  \ n \uparrow$
+
+\end{definition}
+
+\vspace{4mm} %**********************************
+\begin{example}
+.	La desviación típica de las alturas de los alumnos de una determinada universidad es de  $\sigma=6.17$. ?`Qué tamaño ha de tener la muestra a extraer para estimar la media de las alturas con un error menor de $0.5$ cm y un nivel de confianza del 95\%?	
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm}
+$E=z_{\alpha/2}\cdot \dfrac {\sigma}{\sqrt{n}} = 1.96\cdot \dfrac{6.17}{\sqrt{n}}<0.5 \to \left( 1.96\cdot \dfrac{6.17}{0.5} \right)^2 < \left( \sqrt{n} \right)^2 \to n> 584.982 \to n=585$ alumnos.
+\end{example}
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejre}
+?`Cuál es el error máximo admisible que cometemos al dar como intervalo de confianza (1.63,1.93)?	
+
+\rule{150pt}{0.1pt}
+\vspace{2mm}
+
+El error máximo admisible es la mitad de la amplitud del intervalo (margen de error), así que:
+$\ \ E=\dfrac{1.93-1.63}{2}=0.15$
+\end{ejre}	
+\end{ejemplo}
+
+\subsection{Ejercicios de estimación de las medias muestrales}
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	En una $N(60,5)$, determina los intervalos característicos al 75\%, al 95\% y al 99.8\%.
+\end{ejer}
+\end{ejemplo}
+	\begin{multicols}{2}
+	$p=75\% \to \alpha=25\%$
+	
+	$p(-k<z<j)=0.75 \to p(z<z_{\alpha/2})=0.875 \to z_{\alpha/2}=1.15$
+	
+	Intervalo característico al 75\%, IC(75\%): 
+	
+	$\mu \pm z_{\alpha/2}\cdot \sigma \ \to \ 60\pm 1.15 \cdot 5 \ \Rightarrow \ (54.25,65.75)$
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{imagenes/imagenes05/T05IM08.png}
+	\end{figure}
+	\end{multicols}
+Para $p=95\% \to z_{\alpha/2}=1.96 \to IC(95\%): 60\pm 1.96\cdot 5 \Rightarrow (50,2,69.8)$
+
+\vspace{2mm} Para $p=99.8\% \to \alpha=0.2\% \to z_{\alpha/2}:\ p(z<z_{\alpha/2})=0.999 \to z_{\alpha/2}=3.09$
+
+\vspace{2mm} $IC(99.8\%):\ 60\pm 3.09\cdot 5 \Rightarrow (44.55,75.45)$
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	 Los parámetros de una variable son: $\mu = 25,\  \sigma = 3$. Nos disponemos a extraer una muestra de $n = 100$ individuos.
+	 
+a) Halla el intervalo característico para las medias muestrales con un nivel de confianza del 95\%.
+
+b ) Para esa muestra, calcula $p(24<x<26)$.
+
+c) Realiza el mismo resultado para la población, suponiendo que es normal.
+\end{ejer}
+\end{ejemplo}
+$\mu=25;\ \sigma=3 \to n=100: \ \ 	\bar x \in N \left( 25, \dfrac{3}{\sqrt{100}} \right) = N(25,0.3)$
+
+--- a) $IC(95\%):\ \ \bar x\pm z_{\alpha/2}\cdot \sigma / \sqrt{n} =25\pm 1.96\cdot 0.3 \Rightarrow (19.12,30.88)$
+
+--- b) $N(25,0.3):\ p(24<\bar x<26)=p\left( \dfrac{24-25}{0.3}<z<\dfrac{26-25}{0.3} \right) =p(-3.33<z<3.33)=\Phi(3.33)-\Phi(.3.33)=\Phi(3.33)-[1-\Phi(3.33)]=2\Phi(3.33)-1=2(0.99955)-1=0.9991$
+
+--- c) Suponemos la población normal: 
+
+$N(25,3) \to  p(24<\bar x<26)=p\left( \dfrac{24-25}{3}<z<\dfrac{26-25}{3} \right) =p(-0.33<z<0.33)=2\Phi(0.33)-1=0.2586$
+
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	De una variable estadística, conocemos la desviación típica, $\sigma = 7.5$, pero desconocemos la media, $\mu$. Para estimarla, extraemos una muestra de tamaño $n = 80$ cuya media obtenemos: $\bar x = 35$. Estima la media de la población mediante un intervalo de confianza del 99\%.
+	
+	?`Cuál es el margen de error cometido? ?`Cuál el error admisible?
+	
+	Si queremos reducir el error admisible a la mitad manteniendo la misma significación, ?`cual debe ser el tamaño de la muestra?
+\end{ejer}	
+\end{ejemplo}
+$\sigma=7.5;\ \mu=? \to n=80:\ \bar x=35 \to p=99\%; \quad p=99\% \to \alpha=1\% \to z_{\alpha/2}=2.576$
+
+$IC(99\%),\ \sigma \text{conocida } \quad \mu \in \bar x\pm z_{\alpha/2} \cdot \sigma / \sqrt{n} \to \mu \in \ 35\pm 2.576\cdot 7.5 / \sqrt{80} \Rightarrow (32.84,37.16)$
+
+Margen de error cometido:  $37.16-32.84=4.32$; Error admisible: $4.32/2=2.16$
+
+Reducción del error admisible a la mitad aumentando el tamaño de la muestra:
+
+$E=2.16/2=1.08; \ p=99\% \to z_{\alpha/2}=2.576 \to E=z_{\alpha/2}\cdot \dfrac{\sigma}{\sqrt{n}} $
+
+$1.08=2.576\cdot \dfrac{7.5}{\sqrt{n}} \ \to \ n \ge  \sqrt{\dfrac{2.576\cdot 7.5}{1.08}}=320.0123 \to n=321$
+
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	Sabemos que la desviación típica de las notas de matemáticas las pruebas EBAU de  los alumnos de la comunidad valenciana es 2.3. Queremos estimar la nota media de los alumnos de un instituto con un error menor a 1 punto. Para ello, tomamos una muestra de 10 alumnos del centro, seleccionados al azar, que se han presentado a la EBAU.
+?`Con qué nivel de confianza podremos realizar la estimación?
+\end{ejer}
+\end{ejemplo}
+
+$\sigma=2.3; \quad \bar x= ?;\quad E=1 \text{ punto};\quad n=10$
+
+$E=z_{\alpha/2}\cdot\dfrac{\sigma}{\sqrt{n}} \to z_{\alpha/2}=\dfrac{ E\ \sqrt{n} }{\sigma} =\dfrac{1\cdot \sqrt{10}}{2.3}=1.375$
+
+$p(z<1.375)=0.9154 \to \alpha/2=1-0.9154=0.0846 \to \alpha=2\cdot 0.0846=0.1692 \to p=1-\alpha=1-0.1692=0.8308$
+
+El nivel de confianza es del 83\% (aproximadamente).
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	En una distribución N (25, 8), tomamos muestras de tamaño 64.
+
+a) ?`Cuál es la distribución de las medias de las muestras?
+
+b) ?`Cuál es la probabilidad de extraer una muestra cuya media esté comprendida entre 24 y 26?
+\end{ejer}	
+\end{ejemplo}
+--- a) $N(25,8)\to n=64>30 \to \bar x \in N(25,8/\sqrt{64})=N(25,1)$
+
+--- b) $p(24<\bar x<26)=p \left( \dfrac{24-25}{1}<z<\dfrac{26-25}{1} \right) =p(-1<z<1)=\Phi(1)-\Phi(-1)=\Phi(1)-[1-\Phi(1)]=2\Phi(1)-1=2(0.8413)-1=0.6826$
+
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	Se sabe que el cociente intelectual de los alumnos de una universidad se distribuye según una ley normal de media 100 y varianza 729.
+
+a) Halla la probabilidad de que una muestra de 81 alumnos tenga un cociente intelectual medio inferior a 109.
+
+b) Halla la probabilidad de que una muestra de 36 alumnos tenga un cociente intelectual medio superior a 109.
+\end{ejer}	
+\end{ejemplo}
+$\sigma^2=729;\ \sigma=27;\quad  \mu \in N(100,27) \to n=81>30 \to \bar x \in N(100,27/\sqrt{81})=N(27,3)$
+
+--- a) $p/\bar x<109)=p(z<(109-100)/3)=p(z<3)=0.99875$
+
+--- b) $n=36 \to \bar x \in N(100,27/\sqrt{36})=N(27,1.8)$
+
+$p(\bar x<109)=p(z<(109-100)/1.8)=p(z<0.5)=0.6915$
+
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	En una muestra de 50 jóvenes, encontramos que la dedicación media diaria de ocio es de 400 minutos y su desviación típica de 63 minutos. Calcula el intervalo de confianza de la media de la población al 95\% de nivel de confianza.
+\end{ejer}	
+\end{ejemplo}
+$n=50;\ \ \bar x=400;\ \ s=63 \quad IC(95\%) $ para $\mu$:
+
+$IC(95\%)\to z_{\alpha/2}=1.96 \to \mu \in 400\pm 1.96 \cdot \dfrac{63}{\sqrt{50}} \Rightarrow \mu \in 3491
+(382.54,417.46)$
+
+
+
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	Las notas en un cierto examen se distribuyen normal con media $\mu = 5.3$ y desviación típica $\sigma = 2.4$. Halla la probabilidad de que un estudiante tomado al azar tenga una nota:
+	
+a) Superior a 7.
+
+b) Inferior a 5.
+
+c) Comprendida entre 5 y 7.
+
+Tomamos al azar 16 estudiantes. Halla la probabilidad de que la media de sus notas:
+
+d) Sea superior a 7.
+
+e) Sea inferior a 5.
+
+f) Esté comprendida entre 5 y 7.
+
+g) La suma de sus notas sea mayor que 100.
+
+h) Halla k para que el intervalo (5.3 -- k; 5.3 + k) contenga al 95\% de las notas.
+
+i) Halla b para que el intervalo (5.3 -- b; 5.3 + b) contenga al 95\% de las notas medias de las muestras de 16 individuos.
+\end{ejer}	
+\end{ejemplo}
+
+$N(5.3,2.4)$
+
+\vspace{2mm} --- a) $\ p(x>9)=p(z>(7-5.3)/2.4)=p(z>0.71)=1-\Phi(0.71)=0.2388$
+
+\vspace{2mm} --- b) $\ \ p(x<5)=p(x<(5-5.3)/2.4)=p(<<-0.13)=p(z>0.13)=1-\Phi(0.13)=0.4483$
+
+\vspace{2mm} --- c) $\ \ p(5<x<7)=p(-0.13<z<0.71)=p(z<0.71)-p(<z-0.13)=p(z<0.71)-p(z>0.13)=p(z<0.71)-[1-p(z<0.13)]=	\Phi(0.71)+\Phi(0.13)-1=0.3129$
+
+\vspace{2mm} $n=16 \ \to \ N(5.3,2.4/\sqrt{16})=N(5.3,0.6)$
+
+\vspace{2mm} --- d) $\ \ p(\bar x>7)=p(z>(7-5.3)(0.6)=p(z>2.83)=1-	Phi(2.83)=0.0023$
+
+\vspace{2mm} --- e) $\ \ p(\bar x<5)=p(z<(5.5.3)/0.6)=p(z<-0.5)=1-	Phi(0.5)=0.3085$
+
+\vspace{2mm} --- f) $\ \ p(5<\bar x<7)=p(-0.5<z<2.83)=\Phi(2.83)+\Phi(0.5)-1=0.6892$
+
+\vspace{2mm}  $\sum x_i \in N(16\cdot 5.3, 2.4	\cdot \sqrt{16})=N(84.8,9.6)$
+
+\vspace{2mm} --- g) $\ \ p \left( \displaystyle \sum_{i=1}^{16} x_i >100 \right)=p(z>(100-84.8)/9.6)=p(z>1.58)=1-\Phi(1.58)=0.0571$
+
+\vspace{2mm} --- h) $\ \ (5.3-k,5.3+k) \supset 95\% \ N(5.3,2.4) \ : \ \ k=z_{\alpha/2}\cdot \sigma=1.96\cdot 2.4;\ k=4.704$
+
+\vspace{2mm} --- i) $\ \ \  (5.3-b,5.3+b) \supset 95\% \ N(5.3,0.6) \ : \ \ \ b=z_{\alpha/2}\cdot \sigma=1.96\cdot 0.3;\ k=1.176$
+
+
+
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	El peso de los paquetes recibidos en un almacén se distribuye normal con media 300 kg y desviación típica 50 kg. ?Cuál es la probabilidad de que 25 de los paquetes, elegidos al azar, excedan el límite de carga del montacargas donde se van a meter, que es de 8200 kg?
+\end{ejer}	
+\end{ejemplo}
+
+$N(300,50) ;\ \ n=25\ : \qquad \sum x_i \in N(300\cdot 25, 50\cdot \sqrt{25})=N(7500,250)$
+
+\vspace{2mm} $p(\sum x_i>8200)=p(z>(8200-7500)/250)=p(z>2.8)=1-\Phi(2.8)=0.0026$
+
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	Se supone que el peso medio de las sandías de cierta variedad sigue una distribución normal con $\mu = 6$ kg y $\sigma = 1$ kg. Si empaquetamos las sandías en cajas de 8 unidades:
+
+a) Halla la probabilidad de que la media de los pesos de las sandías de una caja sea menor que 5.5 kg.
+
+b) Calcula la probabilidad de que entre las 8 sandías de una de las cajas pesen más de 50 kg.
+\end{ejer}	
+\end{ejemplo}
+
+$N(6,1);\ \ n=8 \ \to \ \bar x \in N(6,1/\sqrt{8})=N(1,0.35);\quad \sum x_i \in N(6\cdot 8, 1\cdot \sqrt{8})=N(48,2.83)$
+
+\vspace{2mm} --- a) $	\ p(\bar x<5.5)=p(z<(5.5-6)/0.35)=p(z<-1.43)=1-\Phi(1.43)=0.0764$
+
+\vspace{2mm} --- b) $ \ p(\sum x_i>50)=p(z>(50-48)/2.83)=p(z>0.71)=1-\Phi(0.71)=0.2389$
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	Se ha tomado una muestra aleatoria de 100 individuos a los que se ha medido el nivel de glucosa en sangre, obteniéndose una media muestral de 110 mg/cm$^3$. Se sabe que la desviación típica de la población es de 20 mg/cm$^3$.
+
+a) Obtén un intervalo de confianza, al 90\%, para el nivel de glucosa en sangre en la población.
+
+b) ?`Cuál es el error máximo que se ha cometido?
+\end{ejer}	
+\end{ejemplo}
+
+$n=100;\quad \bar x=110;\quad \sigma=20$
+
+\vspace{2mm} $\mu \in N(110,20/\sqrt{100})=N(110,2)$
+
+\vspace{2mm} --- a) $\ p=90\% \to \alpha=10\% \to p(z<z_{\alpha/2})=0.95 \to z_{\alpha/2}=1.96$
+
+\vspace{2mm} $IC(90\%): \ \ 110 \pm 1.96\cdot \dfrac{20}{\sqrt{100}}=110\pm 3.92:\quad \mu \in (106.08,113,92)$
+
+\vspace{2mm} --- b) Error máximo cometido: $\ E=\dfrac{113.92-106.8}{2}=3.92$
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	
+El peso, en kg, de los jóvenes entre 16 y 20 años de una cierta ciudad es una variable aleatoria, x, que sigue una distribución normal con $\sigma = 5$.
+
+Si se desea que la media de la muestra no difiera en más de 1 kg de la media de la población, con probabilidad 0.95, ?`cuántos jóvenes se deberían tomar en la muestra?
+\end{ejer}	
+\end{ejemplo}
+
+$\sigma=5;\ \quad n=25 \ : \qquad \bar x \in N(\mu,5/\sqrt{25})=N(\mu,1)$
+
+\vspace{2mm} $E>1; \quad p=95\% \to z_{\alpha/2}=1.96 \quad \to \quad n?$
+
+\vspace{2mm} $E=z_{\alpha/2}\dfrac \sigma {\sqrt{n}} =1.95\cdot 5{\sqrt{n}}<1 \quad \to \quad 9.8<\sqrt{n} \ \Rightarrow \ n>96.04$
+
+\vspace{2mm} Se deberían tomar 97 jóvenes en la muestra.
+
+\section{Estimación de la proporción}
+
+\begin{definition}
+.	Supongamos que estamos interesados en conocer si los individuos de una población poseen o no una determinada característica. Habrá una proporción de individuos, $\boldsymbol{p}$, de la población que sí la tengan y otra, $\boldsymbol{q=1-p}$, de que no na tengan.	
+
+\vspace{2mm} Tomamos muestras $M_i$, de tamaño $\boldsymbol{n}$, que sometidas a este estudio resultarán ser $B(n,p_i)$. Evidentemente, por témino medio tendremos $n\cdot p_i$ individuos que sí tienen la característica buscada (éxitos). La proporción de ellos será $\frac{n\ p_i}{n}=p_i$, proporción de los individuos de la muestra $M_i$ que tienen la característica buscada.
+
+\vspace{2mm} De las $k$ muestras extraídas de la población tendremos las proporciones $\{p_1, p_2, \cdots , p_k\}$ que formarán la \textbf{distribución de las proporciones muestrales} o distribución muestral de la proporción, de valor esperado o media $\boldsymbol {\widehat p }$
+\end{definition}
+
+\begin{theorem}
+.	\textbf{Distribución de las proporciones muestrales}: $\ \ \{p_1, p_2, \cdots , p_k\}$, todas de tamaño $n$, extraídas de una población en que la proporción en $p$
+
+\begin{itemize}
+\item La media $\boldsymbol{\widehat p}$ de la distribución de las muestras de la proporción coincide con la proporción $\boldsymbol{p}$ de la población.
+\item La desviación típica de las medias de las proporciones es $\dfrac{\sqrt{npq}}{n}=\boldsymbol{\sqrt{\dfrac{pq}{n}}}$
+\item Si $n\ge 30$ y también $np\ge 5 \ \wedge \ nq\ge 5$ , $\ B \approx N\ $, y la distribución de las proporciones muestrales es normal:
+
+$$\boldsymbol{\widehat p \ = \ N\left( p, \sqrt{\dfrac{pq}{n}} \right) } $$
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.95\textwidth]{imagenes/imagenes05/T05IM09.png}
+	\end{figure}
+
+\end{theorem}
+
+\vspace{4mm}
+\begin{destacado}
+	Si en algún caso, la proporción de la población es desconocida, la aproximaremos por $\widehat p$ (media de la distribución de las proporciones muestrales), siempre que $n\ge 100$.
+\end{destacado}
+
+\vspace{4mm}
+\begin{example}
+.	Una vacuna inmuniza al 85\% de los que la reciben. Si se toma una muestra de 30 personas, ?`cuál es la distribución de sus medias muestrales?  ?`Y si se toman 1000?
+
+\vspace{2mm} Se estudia un grupo de 1000 vacunados	comprobando que 873 de ellos son inmunes a la enfermedad. Escribe los valores de $p$ y de $\widehat p$.
+
+\vspace{2mm} Calcula la probabilidad de que de los 1000 vacunados haya menos de 800 inmunes. Más de 860. Entre 840 y 860.
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} $p=0.85 \to q=0.15;\quad n=30:\quad \widehat p=p=0.85;\ \ \sigma_{\widehat p}=\sqrt{\dfrac{0.85\cdot 0.15}{30}}=0.065 $
+
+\vspace{2mm} $n=30 \ \to \ \widehat p \in N(0.85,0.065)$
+
+\vspace{2mm} Es decir, las proporciones de tamaño 30 que vayamos encontrándose distribuirán normalmente con media 0.85 y desviación típica 0.065
+
+\vspace{2mm} $n=100 \ \to \ \widehat p \in N(0.85,\sqrt{0.85\cdot 0.15 / 1000})=N(0.85,0.011)$
+
+\vspace{2mm} $873$ de $1000$ da $\ \ \widehat p=0.873;\qquad p=0.85$
+
+\vspace{2mm} $n=100:\ N(0.85,0.011) \ \to \ p(\hat p <840/1000)=p(z<(0.84-0.85)/0.011)=p(z<-0.91)=p(z>0.91)=1-\Phi(0.91)=0.1814$
+
+\vspace{2mm} $p(\widehat p>860/1000)=p(z>(0.86-0.85)/0.011)=p(z>0.91)=1-\Phi(0.91)=0.1814$
+
+\vspace{2mm} $p(840/1000<\widehat p <860/1000)=p(-0.91<z<0.91)=2\Phi(0.91)-1=0.6372$
+
+\end{example}
+
+
+\begin{ejemplo}
+\begin{ejre}
+El 10\% de los paquetes de arroz de una determinada marca contiene menos arroz de lo indicado. Analizamos 400 de estos paquetes, ?`cuál es la distribución de las proporciones de envases con menos peso del indicado?
+
+\vspace{2mm} Calcula la probabilidad de que en las bolsas  analizadas haya más de 50 con peso inferior al indicado.
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} $p=0.1;\ q=0.9;\ n=40>30 \ \to \ \widehat p \in N(0.1,\sqrt{0.1\cdot 0.9/400})=N(0.1,0.015)$
+
+\vspace{2mm} $p(\widehat p>50/400)=p(\widehat p>0.125)=p(z>(0.125-0.1)/0.015)=p(z>1,67)=1-\Phi(1.67)=0.0475$
+
+\vspace{2mm} Hay una probabilidad del 4.75\% de que en la muestra de 500 paquetes haya más de 50 con peso menor del indicado.
+	
+\end{ejre}	
+\end{ejemplo}
+
+
+\subsection{Intervalo de confianza para una proporción}
+
+\begin{theorem}
+.	Para estimar  la proporción poblacional $\boldsymbol{p}$, se extrae una muestra de tamaño  $n$  y se obtiene  $\widehat p$ .   
+
+\vspace{2mm} El intervalo de confianza para   $p$  con un nivel de confianza del $100(1-\alpha)\%$  es:  	
+
+$$\boldsymbol{ \widehat p \pm z_{\alpha/2}\cdot \sqrt{{\dfrac{\hat p(1-\hat p)}{n}}} }$$
+
+
+$$ IC(\alpha):\quad p\in  \left( \  \widehat p - z_{\alpha/2}\cdot \sqrt{{\dfrac{\hat p(1-\hat p)}{n}}} \ , \   \widehat p + z_{\alpha/2}\cdot \sqrt{{\dfrac{\hat p(1-\hat p)}{n}} } \  \right) $$
+
+$$\text{El error admisible es}:\quad E\ = \ z_{\alpha/2}\cdot \sqrt{{\dfrac{\hat p(1-\hat p)}{n}}} $$
+\end{theorem}
+
+\vspace{4mm}
+\begin{example}
+.	De una muestra de 300 personas mayores de 18 años en una gran ciudad, se encontró que 104 de ellas leían algún periódico regularmente. Hallar, con un nivel de confianza del 95\%, un intervalo para estimar la proporción de lectores de periódicos de esa ciudad entre los mayores de 18 años.
+
+\vspace{2mm}A la vista de los resultados del problema anterior, si se desea conseguir una cota del error de 0.01, con el mismo nivel de confianza del 95\%, ?`a cuántos individuos debe tener la muestra?	
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} $n=300;\quad \hat p=104/300=0.347;\quad 95\%:\ \ z_{\alpha/2}=1.96$
+
+\vspace{2mm} $p\in  0.347 \ \pm \ 1.96\sqrt{(0.347\cdot(1-0.347)/300}  \ = \ 0.347\ \pm \ 0.027$
+
+\vspace{2mm} $IC(95\%):\ (0.340,0.374)$
+
+\vspace{2mm} $E=\ z_{\alpha/2}\cdot \sqrt{{\dfrac{\hat p(1-\hat p)}{n}}}=
+1.96\cdot \sqrt{0.347(1-0.347)/n} < 0.01 \to n>1.96^2\cdot 0.347\cdot (1-0.347)/0.01^2= 8710.6 \to n=8711$
+
+\end{example}
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejre}
+	Se lanza una moneda 200 veces obteniéndose 113 caras. Da una estimación de la probabilidad de obtener cara con un nivel de confianza del 90\%.
+	
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} La proporción de caras en los 200 lanzamientos es $\hat p=113/200=0.565$
+
+\vspace{2mm} Al $90\%,\ z_{\alpha/2}=1.645 \to p\in N(0.565,\sqrt{0.565\cdot 0.435/200})=N(0.565,0.035)$
+
+\vspace{2mm} $p \in \hat p \pm z_{\alpha/2}\cdot \sqrt{pq/n} = 0.565\pm 1.645\cdot 0.035=0.565\pm 0.058$
+
+\vspace{2mm} $IC(90\%):\ \ (0.507,0.623)$
+
+\vspace{2mm} \textcolor{gris}{Es decir, entre $0.507\cdot 200 \text{ y } 0.623\cdot 0200$, entre 101 y 125 caras se obtendrán, en los 200 lanzamientos, con un nivel de confianza del 90\%}
+\end{ejre}
+\end{ejemplo}
+
+
+\vspace{4mm}
+\subsection{Ejercicios de estimación de las proporciones}
+
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	?`De qué tamaño habría que elegir una muestra para estimar la proporción de ciudadanos a los que les gusta el fútbol con un nivel de confianza del 95\% y un error inferior a 0.05, si en una muestra de 25 ciudadanos 15 de ellos respondieron que les gustaba el fútbol? 
+\end{ejer}	
+\end{ejemplo}
+
+Para $n=25 \to \hat p=15/25=0.6; \ \hat q=1-\hat p=0.4$.
+
+\vspace{2mm} Al $\ 95\% \to \alpha=5\%  \ \to \ z_{\alpha/2}=1.96$, deseamos $E<0.05 \quad \to \quad \ n \ ?$
+
+\vspace{2mm} $z_{\alpha/2} \  \sqrt{\dfrac{\hat p \  \hat q}{n}} < E\qquad $ \textcolor{gris}{$ ( \hat p > 0, \ \hat q > 0,\ n>0) $}
+
+
+\vspace{2mm} $n\ >\ \dfrac{z^2_{\alpha/2} \ \hat p \ \hat q}{E^2} = \dfrac {1.96^2 \cdot 0.6 \cdot 0.4}{0.05^5}=368.7936 \quad \to \quad n\ge 369$ ciudadanos.
+
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	Para saber qué proporción de alumnos de la ESO practican deportes se selecciona una muestra de 100 alumnos, de ellos contestan afirmativamente 75. ?`Cuál es el intervalo de confianza para la proporción de los alumnos deportistas, con un nivel de confianza del 95%? 
+\end{ejer}	
+\end{ejemplo}
+
+\vspace{2mm} $\hat p=75/100=0.75,\ \ q=1-p=0.25;\ \ n=100$
+
+\vspace{2mm} Para $1-\alpha=95\% \to \alpha=5\%:\quad P(z<z_{\alpha/2})=1-\frac \alpha 2 =1-0.025=0.975\ $ Leyendo en las tablas de la normal al revés, $\ z_{\alpha/2}=1.96$.
+
+\vspace{2mm} \footnotesize{\textcolor{gris}{Hemos repetido el cálculo de $z_{\alpha/2}$ para recordar conocimientos del tema anterior}}\normalsize{.}
+
+\vspace{2mm} $IC(95\%):\ \ \widehat p \pm z_{\alpha/2}\ \sqrt{\dfrac{\hat p \ \hat q}{n}}=0.75 \pm 1.96 \ \sqrt{\dfrac{0.75\cdot 0.25}{100}}=0.75\pm 0.08$
+
+\vspace{2mm} El intervalo de confianza al 95\% de los alumnos de la ESO que hacen deporte es $\ (0.67,0.83)$
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	En una encuesta hecha a un total de 100 votantes elegidos al azar en su ciudad, se indica que el 55\% volvería a votar por el alcalde actual.
+a) Calcular un intervalo de confianza al 99\% y otro al 99.73\% para la proporción de votantes favorables al alcalde actual.
+b)?`Cuáles deben ser los tamaños muestrales en el sondeo para tener, con los mismos niveles de confianza, la certeza de que el alcalde actual salga reelegido por mayoría absoluta, en el caso de arrojar la encuesta los mismos resultados? 
+
+c) ?`Qué efecto que tendría sobre el intervalo de confianza el aumento, o la disminución, del nivel de confianza? 
+\end{ejer}	
+\end{ejemplo}
+
+\vspace{2mm} ------ a) Calculemos, previamente, el valor de $z_{\alpha/2}$ para un nivel de confianza del $1-\alpha=0.9973 \to \alpha=0.027$, por ello, $\ p(z<z_{\alpha/2})=1-\frac {0.027}2=0.99865$. Leyendo las tablas de la normal típica al revés, obtenemos $z_{\alpha/2}=3.00$
+
+\vspace{2mm} Es sabido que para $1-\alpha=99\% \ \to \ z_{\alpha/2}=2.575$
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} $IC(\alpha):\ \widehat p \pm z_{\alpha/2}\ \sqrt{ \dfrac{\hat p\ \hat q}{n}}; \ \quad \widehat p=0.55;\ \ n=100$
+
+\vspace{2mm}  $IC(99\%):\ 0.55  \pm 2.575 \ \sqrt{ \dfrac{0.55 \cdot 0.45}{100}} = 0.55\pm 2.575\cdot 0.0497=0.55\pm 0.128$
+
+\vspace{2mm} $IC(99.73\%):\ 0.55  \pm 3 \ \sqrt{ \dfrac{0.55 \cdot 0.45}{100}} = 0.55\pm 3\cdot 0.0497=0.55\pm 0.149$
+
+\vspace{2mm} Al $99\%:\ \ (0.422,0,678 ) \ $ y al $\ 99.73\% \ \ (0.401,0.699)$
+
+\vspace{2mm} ------ b) La mayoría absoluta la obtendrá si el error es menor de 5\%, ya que $\widehat p=55\%$. Con un error mayor el alcalde podría perder la mayoría absoluta (0.55-E<0.50 si E>0.05).
+
+\vspace{2mm} $z_{\alpha/2} \  \sqrt{\dfrac{\hat p \  \hat q}{n}} < E \quad  \to  n\ >\ \dfrac{z^2_{\alpha/2} \ \hat p \ \hat q}{E^2}$
+
+\vspace{2mm} $n(99\%)>\dfrac{2.575^2\cdot 0.55\cdot 0.45}{0.05^2}=656.4\ \to \ n\ge 657$
+
+\vspace{2mm} $n(99.73\%)>\dfrac{3^2\cdot 0.55\cdot 0.45}{0.05^2}=891 \ \to \ n\ge 892$
+
+\vspace{2mm} ------ c) Al aumentar el nivel de confianza, aumenta la amplitud del intervalo. es decir, cuanta más precisión se quiera tener en la estimación, mayor será el error máximo admisible.
+
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	En un saco mezclamos bolas blancas y bolas negras poniendo 14 blancas por cada bola negra. Extraemos una muestra de 100 bolas.
+ a)  ?`Cuál es la probabilidad de que la proporción de bolas negras esté entre 0.05 y 0.1? 
+b)  Halla un intervalo para el 99\% de las proporciones de las muestras de tamaño 100. 
+\end{ejer}	
+\end{ejemplo}
+
+\vspace{2mm} --- a) Proporción bolas negras: $\ \widehat p=1/15;\quad \widehat q=14/15;\ \ n=100 \quad \widehat p \in N(0.067,0.025) $
+
+\vspace{2mm} $p(0.050< \widehat p < 0.100)=p(-0.68<z<1.32)=\Phi(1.32)+\Phi(0.68)-1=0.6583$
+
+\vspace{2mm} --- b) $IC(99\%),\ z_{\alpha/2}=2.575:\quad 0.067\pm 2.575\cdot 0.025 \quad \to \quad (0.03,0.131)$
+
+
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	La probabilidad de que un recién nacido sea chica es 0.515. Si han nacido 184 bebés, ?`cuál es la probabilidad de que haya 100 o más chicas? Halla el intervalo característico correspondiente al 95\% para la proporción de chicas en muestras de 184 recién nacidos. 
+\end{ejer}	
+\end{ejemplo}
+
+\vspace{2mm} Proporción de chicas: $p=0.515$; muestra: $n=184 \to \widehat p \in N(0.515,\sqrt{0.515\cdot (1-0.515)/184})=N(0.515,0.037)$
+
+\vspace{2mm} La proporción de 100 chicas entre 184 bebés es 100/184=0.534
+
+\vspace{2mm} $p(\hat p>0.534)=p[z>(0.534-0.515)/0.037]=p(z>0.51)=1-\Phi(0.51)=0.3050$
+
+\vspace{2mm} $IC(95\%) \to z_{\alpha/2}=1-96 \:\ \  \to \ 0.515\pm 1.96 \cdot 0.037 =0.515 \pm 0.072$
+
+\vspace{2mm} El intervalo pedido es: $\ (443,587)$
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} Una forma \textbf{más precisa} de resolver este y otros problemas es: número de chicas en 184 bebés es una $B(184,0.515) \to p(x>100)$ son muchos cálculos.
+
+\vspace{2mm} Estamos en condiciones de aproximar por la normal:
+
+\vspace{2mm} $B(184,0.515) \approx B(184\cdot 0.515, \sqrt{194\cdot 0.515 \cdot (1.0.515)})=N(94.76,6.78)$
+
+\vspace{2mm} Ahora viene la \textbf{precisión}, al pasar de la binomial a la normal hemos de hacer la \emph{corrección por continuidad}.
+
+\vspace{2mm} $p(x\ge 100)=p(x'>99.5)=p(z>(99.5-94.76)/6.78)=p(z>0.70)=1-\Phi(0.70)=0.2420$
+
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	Se desea estimar la proporción, p, de individuos zurdos de una ciudad a través del porcentaje observado en una muestra aleatoria de individuos, de tamaño n.
+ a) Si el porcentaje de zurdos en la muestra es igual al 30\%, calcula el valor de n para que, con un nivel de confianza del 95\%, el error cometido en la estimación sea inferior al 3\%. 
+b) Si el tamaño de la muestra es de 100 personas, y el porcentaje de zurdos en la muestra es del 35\%, determina, usando un nivel de significación del 1\%, el correspondiente intervalo de confianza para la proporción de zurdos en la población. 
+\end{ejer}	
+\end{ejemplo}
+
+\vspace{2mm} --- a) $\ \ p \ \leftarrow \ n,\ \ \hat p=0.3;\ \hat q=0.7\ \ 1-\alpha=95\% \to z_{\alpha/2}=1.96 $
+
+\vspace{2mm} $E=z_{\alpha/2}\cdot \sqrt{\dfrac{\hat p \ \hat q}{n}} \ \to \  n=\dfrac{z_{\alpha/2}^2\ \hat p \ \hat q}{E^2}$
+
+\vspace{2mm} $E<0.03 \to \ n>\dfrac{1.06^2\cdot 0.3\cdot 0.7}{0.03^2}=896.37$
+
+\vspace{2mm} La muestra ha de ser de al menos $\ n = \ $ 897 individuos.
+
+\vspace{2mm} --- b) $\ n=100; \hat p =0.35 \ (\hat q =0.65)\ \alpha=1\% \to 1-\alpha=99\% \to z_{\alpha/2}=2.575 \ \Rightarrow IC$
+
+\vspace{2mm} $p\in \hat p \pm z_{\alpha/2}\cdot \sqrt{\dfrac{\hat p \ \hat q}{n}} = 0.35 \pm 2.75 \cdot \sqrt{0.35\cdot 0.65/100}=0.35 \pm  0.12$
+
+\vspace{2mm} $IC(99\%)\ : \quad  (23,47)$
+
+
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	En una muestra de 100 noticias en la web de una facultad, se observan que aparecen 6 con faltas de ortografía. 
+
+a) Estima la proporción real de noticias con faltas, con un nivel de con- fianza del 99\%. 
+b) ?`Cuál es el error máximo cometido al hacer la estimación anterior? 
+c) ?`De qué tamaño tendríamos que coger la muestra, con un nivel de confianza del 99\%, para obtener un error inferior a 0.05? 
+\end{ejer}	
+\end{ejemplo}
+
+\vspace{2mm} --- a) $\ n=100;\ \hat p=6/100=0.06; \ \hat q=0.94 ; \quad \text{ al } 99\%,\ z_{\alpha/2}=2.575$
+
+\vspace{2mm} $p\in \hat p \pm z_{\alpha/2}\cdot \sqrt{\dfrac{\hat p \ \hat q}{n}} =0.06-2.575\cdot \sqrt{0.06\cdot 0.94/100}$
+
+\vspace{2mm} $IC(99\%)\ : \quad (0.00, 0.12)$ 
+
+\vspace{2mm} --- b) $\ E=z_{\alpha/2}\cdot \sqrt{\hat p \ \hat q /n}=2.575\cdot  \sqrt{0.06\cdot 0.94/100}=0.06$
+
+\vspace{2mm} --- c) En las misma condiciones, para $\ E<0.05$:
+
+\vspace{2mm} $E=z_{\alpha/2}\cdot \sqrt{\dfrac{\hat p \ \hat q}{n}} \ \to \  n=\dfrac{z_{\alpha/2}^2\ \hat p \ \hat q}{E^2}$
+
+\vspace{2mm} $E<0.05 \to \ n>\dfrac{2.575^2\cdot 0.06\cdot 0.94}{0.05^2}=149.58$  
+
+\vspace{2mm} Para un error inferior al 5\% hay que muestrear 150 noticias.
+
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	Un estudio realizado por una compañía de seguros de automóviles establece que una de cada cinco personas accidentadas es mujer. Si se contabilizan, por término medio, 169 accidentes cada fin de semana: 
+
+a) ?`Cuál es la probabilidad de que, en un fin de semana, la proporción de mujeres accidentadas supere el 25\%?  
+
+b) ?`Cuál es la probabilidad de que, en un fin de semana, la proporción de hombres accidentados supere el 85\%? 
+
+c) ?`Cuál es, por término medio, el número esperado de hombres accidentados cada fin de semana? 
+\end{ejer}	
+\end{ejemplo}
+
+\vspace{2mm} --- a) $\ n=169;\ \hat p=1/5=0.2;\ \hat q=0.8 \to p\in N(p,\sqrt{pq/n})=N(0.20,0.03)$
+
+\vspace{2mm} $p(p>0.25)=p(z>(0.25-0.20)/0.03)=p(z>1.67)=1-\Phi(1.67)=1.0.0525=4.75\%$
+
+\vspace{2mm} --- b) `hombres accidentados'=(`mujeres accidentadas')' $ \to N(0.80,0.03)$ 
+
+\vspace{2mm} $p(p>0.85)=p(z>(0.85-0.80)/0.03)=p(z>1.67)=1-\Phi(1.67)=1.0.0525=4.75\%$
+
+\vspace{2mm} Número de hombres accidentados cada semana: $\ p \cdot n=0.8\cdot 169 =132.5$, aproximadamente 133 hombres accidentados semanalmente.
+
+\vspace{2mm} 
+
+\vspace{2mm} 
+
+\vspace{2mm} 
+
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	A partir de una muestra de tamaño 400, se estima la proporción de individuos que leen el periódico en una gran ciudad. Se obtiene una cota de error de 0,0392 con un nivel de confianza del 95\%. 
+Calcula la proporción, $\hat p$, obtenida en la muestra. 
+\end{ejer}	
+\end{ejemplo}
+
+\vspace{2mm} $E=z_{\alpha/2}\cdot \sqrt{\dfrac{\hat p \ (1-\hat p)}{n}} \ ; \qquad E=0.0392;\ \ n=400;\ \ 1-\alpha=95\% \to z_{\alpha/2}=1.96$
+
+\vspace{2mm} $E^2=z_{\alpha/2}^2 \cdot \dfrac{\hat p \ \hat q}{n} \ \to \ \hat p \ (1-\hat p)=\dfrac {E^2}{z_{\alpha/2}^2}\cdot n =\dfrac{0.0392^2}{1.96^2}\cdot 400=0.16$ 
+
+\vspace{2mm} $\hat p -\hat p^2=0.16 \to \hat p^2-\hat p +0.16=0 \to \begin{cases}
+ \ p=0.8 \\ \ p=0.2	
+ \end{cases}$
+
+
+\vspace{2mm} Como no tenemos más información, ambos resultados son válidos.
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	Con una muestra de 500 individuos, se ha estimado, con un nivel de confianza del 90\%, que la estatura media de los trabajadores de una cierta fábrica está entre 174.3 cm y 175.1 cm.
+	
+\vspace{2mm} a) Si la desviación típica de la población es desconocida, averigua la media, $\bar x$, y la desviación típica, $s_x$, de la muestra.
+
+\vspace{2mm} b) ?`Cuál sería el intervalo si la muestra fuera de tamaño la cuarta parte y se mantuviese el nivel de confianza?
+\end{ejer}
+	
+\end{ejemplo}
+
+\vspace{2mm} --- a) La media muestral será el punto medio del intervalo de confianza: $\bar x=(174.3+175.1)/2=174.7$ cm.
+
+\vspace{2mm} La mitad del amplitud del intervalo es el error máximo admisible: $E=(175.1-174.3)/2=0.4=z_{\alpha/2}\cdot \dfrac{s_x}{\sqrt{n}}=1.96\cdot \dfrac{s_x}{\sqrt{500}} \to s_x=5.4$
+
+\vspace{2mm} --- b) Si $n=500/4=125$ trabajadores, entonces $E=z_{\alpha/2}\cdot \dfrac{s_x}{\sqrt{n}}=1.96\cdot \dfrac{5.44}{\sqrt{125}}=0.8$
+
+\vspace{2mm} El intervalo de confianza sería $174.7\pm 0.8 \to (173.9,175.5)$
+
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	Supongamos que, a partir de una muestra aleatoria de tamaño 25, se ha calculado el intervalo de confianza para la media de una población normal, obteniéndose una amplitud de 4. Si el tamaño de la muestra hubiera sido 100, permaneciendo invariables todos los demás valores que intervienen en el cálculo, ?cuál habría sido la amplitud del intervalo?
+\end{ejer}
+	
+\end{ejemplo}
+
+\vspace{2mm} $E=4;\ n=25 \to \text{ si } n=100 \to E=z_{\alpha/2}\cdot \dfrac{\sigma}{\sqrt{n}}=z_{\alpha/2}\cdot \dfrac{\sigma}{\sqrt{100}}=z_{\alpha/2}\cdot \dfrac{\sigma}{\sqrt{4 \cdot 25}}=\dfrac {1} {\sqrt{4}} \left( \cdot z_{\alpha/2} \cdot  \dfrac{\sigma}{\sqrt{25}} \right) = \dfrac 1 2 \cdot (\ 4\ ) =2$
+
+\vspace{5mm} %****************************
+\begin{ejemplo}
+\begin{ejer}
+	a) Un fabricante de medicamentos afirma que cierta medicina cura una enfermedad de la sangre en el 80\% de los casos. Los inspectores de sanidad utilizan el medicamento en una muestra de 100 pacientes y deciden aceptar dicha afirmación si se curan 75 o más. Si lo que afirma el fabricante es realmente cierto, ?`cuál es la probabilidad de que los inspectores rechacen dicha afirmación?
+	
+\vspace{2mm} b) Supongamos que en la muestra se curan 60 individuos. Determina, con una confianza del 95\%, cuál es el error máximo cometido al estimar que el porcentaje de efectividad del medicamento es del 60\%.
+\end{ejer}
+	
+\end{ejemplo}
+
+\vspace{2mm} --- a) $p=0.8 \to q=0.2; \ n=100 \ \to \ \widehat p \in N \left( p, \sqrt{\dfrac{\hat p \ \hat q}{n}} \right) = N(0.8,\sqrt{0.8\cdot 0.2/100})=N(0.80,0.04)$
+
+\vspace{2mm} $p(\hat p <75\%)=p(z<(0.75-0.8)/0.04)=p(z<-1.25)=p(z>1.25)=1-\Phi(1.25)=0.1056$
+
+\vspace{2mm} --- b) si $\hat p=0.6 \to \hat q=0.4;\quad \text{ al } 95\%:\ \ z_{\alpha/2}=1.96$
+
+\vspace{2mm} $E=z_{\alpha/2}\cdot \sqrt{\dfrac{\hat p \ \hat q}{n}}=1.96\cdot \sqrt{0.6\cdot 0.4/100}=0.096=9.6\%$, aproximadamente 10 personas.
+
+
+\section{Problemas tipo de distribuciones muestrales}
+
+\begin{myalertblock}{Problemas tipo de distribuciones muestrales}
+
+\vspace{10mm} 
+
+\begin{destacado}
+1-a) Datos: $\bar x;\ n,\ \sigma$; pregunta: IC para $\mu$
+
+$$ \mu \in N \left( \bar x , \dfrac{\sigma}{\sqrt{n}} \right) \quad \longrightarrow \quad \text {al } (1-\alpha)\%: \quad IC(\alpha): \ \ \mu \ \in \ \bar x \pm z_{\alpha/2}. \cdot \dfrac{\sigma}{\sqrt{n}} $$
+
+\begin{center} \vspace{2mm}  \textit{Si se desconoce $\sigma$ se usará $s_{n-1}$ muestral.} \end{center}
+
+\vspace{5mm} 1-b) Datos: $\mu;\ n,\ \sigma$; pregunta: IC para $\bar x$
+
+$$ \bar x \in N \left( \mu , \dfrac{\sigma}{\sqrt{n}} \right) \quad \longrightarrow \quad \text {al } (1-\alpha)\%: \quad IC(\alpha): \ \ \bar x \ \in \ \mu \pm z_{\alpha/2}. \cdot \dfrac{\sigma}{\sqrt{n}} $$
+\end{destacado}
+
+\vspace{10mm} 
+\begin{destacado}
+	2) Datos: $ n,\ \sigma,\ \alpha$ ; pregunta: tamaño de la muestra $n$
+	
+	$$ E= z_{\alpha/2}. \cdot \dfrac{\sigma}{\sqrt{n}} \ \longrightarrow n\ge \left( \dfrac{z_{\alpha/2}\cdot \sigma}{E} \right)^2 $$
+\end{destacado}
+
+\vspace{10mm} 
+\begin{destacado}
+	3) Datos: $ n,\ \sigma,\ E$ ; pregunta: nivel de confianza $(1-\alpha)\%$
+	
+	$$ E= z_{\alpha/2}. \cdot \dfrac{\sigma}{\sqrt{n}} \ \longrightarrow \ z_{\alpha/2}=\dfrac{E\ \sqrt{n}}{\sigma} \ \longrightarrow \  p(z\ge z_{\alpha/2})=\alpha/2 \ \longrightarrow \ \alpha$$	
+\end{destacado}
+
+\vspace{10mm} 
+\begin{destacado}
+	\vspace{5mm} 4-a) Datos: $ n,\ \widehat p;\ \alpha$; pregunta IC para la proporción $\ p$
+	
+	$$IC(\alpha):\qquad p \ \in \  \widehat p \pm z_{\alpha/2} \cdot \sqrt{\dfrac{\widehat p \ \widehat q}{n}}$$
+	
+	\vspace{5mm} \vspace{5mm} 4-b) Datos: $\ n, \ p;\ \alpha$; pregunta IC para la proporción muestral $\widehat p$
+	
+	$$IC(\alpha):\qquad \widehat p \ \in \  p \pm z_{\alpha/2} \cdot \sqrt{\dfrac{ p \  q}{n}}$$
+\end{destacado}
+
+\vspace{3mm}   \textcolor{white}{.}
+
+\end{myalertblock}
+
+
+\section{Ejercicios}
+
+\subsection{Problemas propuestos}
+
+\begin{adjustwidth}{20pt}{10pt}
+\begin{enumerate}[PB. 1. ]	
+	\item 	En un gran supermercado se ha obtenido que el número medio de toneladas descargadas diariamente en los últimos 100 días ha sido igual a 10. Determine el intervalo, con un nivel de confianza del 95\%, en el que estará la media si la desviación típica es igual a 6. 
+			
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{(8.824;11.176)}}}\vspace{1cm}
+		
+	\item 	El peso de los niños varones a las diez semanas de vida se distribuye según una Normal con desviación típica de 87 g. ?`Cuántos datos son suficientes para estimar, con una confianza del 95\%, el peso medio de esa población con un error no superior a 15 g?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{130 niños}}}\vspace{2cm}
+		
+	\item 	En el juzgado de una determinada ciudad se presentaron en el año 2005 un total de 5500 denuncias. Se seleccionó una muestra aleatoria de un 5\% de ellas. Entre las denuncias seleccionadas se determinó que 55 habían sido producidas por violencia doméstica. Determinar, justificando la respuesta:
+	
+a) La estimación puntual que podríamos dar para el porcentaje de denuncias por violencia doméstica en esa ciudad en el año 2005.
+
+b) El error máximo que cometeríamos con dicha estimación puntual con un nivel de confianza del 99\%. 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) $\hat p$=20\%; b) E= 0.062}}}\vspace{1cm}
+		
+	\item 	Se desea determinar el porcentaje de jóvenes entre 14 y 19 años que necesitan llevar gafas en cierto instituto. ?`Qué tamaño de muestra debemos escoger para que, al tomar el porcentaje muestral como aproximación del porcentaje poblacional, cometamos un error máximo del 10\%, con un nivel de confianza del 95\%?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{$n> \hat p (1-\hat p)/0.0026$}}}\vspace{1cm}
+		
+	\item 	Se supone que las alumnas universitarias de una determinada ciudad sigue una determinada distribución Normal de media 1.65 m y desviación típica 10 cm. Se toma una muestra al azar de 100 de esas alumnas y se calcula su media. ?`Cuál es la probabilidad de que esa media sea mayor de 1.66 m?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{0.1587}}}\vspace{1cm}
+		
+	\item 	La duración de las baterías de un determinado modelo de teléfono tiene una distribución normal de media 34.5 horas y desviación típica 6.9 horas. Se toma una muestra aleatoria simple de 36 teléfonos móviles.
+	
+a) ?`Cuál es la probabilidad de que la duración media de las baterías de la muestra esté comprendida entre 32 y 33.5 horas?
+
+b) ?Y de que sea mayor de 38 horas? 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) 0.1772; b) 0.0012}}}\vspace{1cm}
+		
+	\item 	En cierta población humana, la media muestral X de una característica se distribuye mediante una distribución Normal. La probabilidad de que X sea menor o igual que 75 es 0.58 y la de que X sea mayor que 80 es 0.04. Hallar la media y la desviación típica de X . (Tamaño muestral n = 100) 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{Media muestral y poblacional: 74.35; desviación típica muestral: 3.22}}}\vspace{1cm}
+		
+		
+	\item 	Se desea hacer un estudio de mercado para conocer el precio medio de los libros de texto. Para ello se selecciona una muestra aleatoria cogiendo 121 libros de texto, encontrando que tienen un precio medio de 23 euros. Si sabemos que los precios de los libros de texto siguen una distribución Normal con desviación típica de 5 euros, encontrar un intervalo de confianza al 98.8\% para el precio medio de los libros de texto.
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{ (21.86; 24.14) }}}\vspace{1cm}
+		
+	\item 	La duración de la baterías de cierto teléfono móvil se puede aproximar por una distribución Normal con una desviación típica de 5 meses. Se toma una muestra aleatoria simple de 10 baterías y se obtienen las siguientes duraciones (en meses):
+	
+33, 34, 26, 37, 30, 39, 26, 31, 36, 19
+
+Hallar un intervalo de confianza al 95\% para ese modelo de batería. 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{(28,34.2)}}}\vspace{1cm}
+		
+	\item 	En una encuesta se pregunta a 10 000 personas cuántos libros leen al año, obteniéndose una media de 5 libros. Se sabe que la población tiene una distribución normal con desviación típica 2.
+	
+a) Hallar un intervalo de confianza al 80\% para la media poblacional.
+
+b) Para garantizar un error de estimación de la media poblacional no superior a 0.25 con un nivel de confianza del 95\%, ?`a cuántas personas como mínimo sería necesario
+entrevistar?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) (4.97; 5.02) ; b) 246 personas de tamaño muestral }}}\vspace{1cm}
+		
+	\item 	Un fabricante de pilas alcalinas sabe que el tiempo de duración, en horas, de las pilas que fabrica sigue una distribución Normal de media desconocida y varianza 3600. Con una muestra de su producción, elegida al azar, y un nivel de confianza del 95\% ha obtenido para la media el intervalo de confianza (372.6; 392.2).
+	
+a) Calcule el valor que obtuvo para la media de la muestra y el tamaño muestral utilizado.
+
+b) ?`Cuál sería el error de su estimación, si hubiese utilizado una muestra de tamaño 225 y un nivel de confianza del 86.9\%? 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) media  382.4 horas, n=144; b) E=6.04}}}\vspace{1cm}
+		
+		
+	\item 	Se hizo una encuesta aleatoria entre 130 estudiantes universitarios de los cuales 85 eran mujeres, sobre el número de horas que estudian diariamente fuera del aula, obteniéndose una media de 3.4 horas.
+	
+a) Si la desviación típica es de 1.1 horas, obtener un intervalo de confianza, al 98\%, para la media del número de horas que estudian diariamente fuera del aula los estudiantes universitarios.
+
+b) Obtener un intervalo de confianza al 90\% para la proporción de mujeres entre los estudiantes universitarios.
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) (3.175; 3.625) ;  b) proporción mujeres universitarias: (58.49\%, 72.26\%) }}}\vspace{1cm}
+		
+	\item 	A una muestra aleatoria de 300 estudiantes de bachillerato de determinada provincia se les preguntó si utilizaban habitualmente la bicicleta para acudir a su instituto. Sabiendo que se obtuvo 90 respuestas afirmativas, determinar justificando la respuesta:
+
+a) El intervalo de confianza al 95\% para el porcentaje de estudiantes de bachillerato de esa provincia que utilizan habitualmente la bicicleta para acudir al instituto.
+
+b) El error máximo que cometeríamos, con una confianza del 95\%, si estimamos que dicho porcentaje es del 30\%.
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) (0.2481; 0.3518); b) E=0.0518}}}\vspace{1cm}
+		
+	\item 	En una universidad se toma al azar una muestra de 100 alumnos y se encuentra que han suspendido todas las asignaturas 10 alumnos. Se pide hallar:
+	
+a) Con un nivel de confianza del 95\%, un intervalo para estimar el porcentaje de alumnos que aprueba al menos una asignatura.
+
+b) A la vista del resultado anterior, se pretende repetir la experiencia para conseguir una cota de error del 0.03 con el mismo nivel de confianza del 95\%. ?`Cuántos individuos ha de tener la muestra?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) (0.84;0.96) ; b) 385 alumnos}}}\vspace{1cm}
+		
+	\item 	En una muestra de 600 personas de una ciudad se observa que 30 son inmigrantes.
+
+a) Determinar el intervalo de confianza de nivel 0.95 para el porcentaje de inmigrantes en la ciudad.
+
+b) Si se quiere estimar el porcentaje de inmigrantes con un error máximo de 0.02, ?cuál es el tamaño de la muestra que habría que considerar si se usa un nivel de significación del 1\%? 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) (0.0325; 0.0674) ;  b) 788 personas }}}\vspace{1cm}
+		
+		
+	\item 	Se quiere estimar la media del consumo, en litros de leche por persona al mes. Sabiendo que dicho consumo sigue una normal con desviación típica de 6 litros:
+	
+a) ?`Qué tamaño muestral se necesita para estimar el consumo medio con un error menor de 1 litro y con un nivel de confianza del 96\%?
+
+b) Si la media del consumo mensual de leche por persona fuese igual a 21 litros, hallar la probabilidad de que la media de una muestra de 16 personas sea mayor que 22 litros.
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) 5 personas; b) 0.2546}}}\vspace{1cm}
+		
+	\item 	En una población, una variable aleatoria sigue una ley Normal de media desconocida y desviación típica 9. ?`De qué tamaño, como mínimo, debe ser la muestra con la cual se estime la media poblacional con un nivel de confianza del 97\% y un error máximo admisible igual a 3?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{$n \ge 43$}}}\vspace{1cm}
+		
+	\item 	Una compañía aérea sabe que el equipaje de sus pasajeros tiene como media 25 kg. con una desviación típica de 6 kg. Si uno de sus aviones transporta a 50 pasajeros, el peso medio de los equipajes de dicho grupo estará en la distribución muestral de medias, ?`cuál?. Calcula la probabilidad de que el peso medio para estos pasajeros sea superior a 26 kg
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{N (25; 0.84); 11.9\%}}}\vspace{1cm}
+		
+			
+	\item 	La masa de las manzanas de una cosecha se distribuyen normalmente con media 125 g y una desviación típica de 20 g.
+	
+a) ?`Cuál es la probabilidad de que una manzana elegida al azar pese más de 130 g?
+
+b) ?`Cuál es la probabilidad de que el peso medio en una muestra de 25 peras sea mayor de 130 g?
+
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) 0.4013; b) 0.1056}}}\vspace{1cm}
+		
+	\item 	En unas elecciones, el 52\% de la población votó al candidato A. Si antes de las elecciones se hubiese hecho un sondeo en una muestra de 500 habitantes, ?`cuál hubiese sido la probabilidad de obtener menos de un 50\% de votos para ese candidato, suponiendo que se ha mantenido la intención de voto?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{ 0.1814}}}\vspace{1cm}
+		
+	\item 	Al 75\% de los jóvenes de una ciudad les gusta el cine. Si seleccionamos 25 muestra de 100 jóvenes cada una, ?`en cuántas cabe esperar que el porcentaje de jóvenes cinéfilos esté comprendido entre el 70\% y el 80\%? ?`Y si las muestras fueses de 1000 jóvenes?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{19; 25}}}\vspace{1cm}
+		
+			
+	\item 	 El ascensor de cierto edificio puede transportar una carga máxima de 300 kg.
+
+a) Si el peso en kilogramos de los usuarios de ese ascensor tiene distribución N (63, 12), ?`cuáles la probabilidad de que un grupo aleatorio de cuatro de ellos sobrepase el peso límite?
+
+b) Se sabe que el 64.8\% de las veces que el ascensor es usado por un grupo de 4 personas, el peso total de los usuarios no excede cierto peso $x_;$ ?`Cuál es el valor de $x_M$?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) 0.0228; b) 261.12 kg}}}\vspace{1cm}
+		
+	\item 	Sabemos que las bolsas de azúcar producidas en una fábrica tienen una media de 500 gramos de peso y una desviación típica de 35 gramos. Dichas bolsas se empaquetan en cajas de 100 unidades. Calcula la probabilidad de que una caja pese más de 51 kilogramos.
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{ 0.0021}}}\vspace{1cm}
+		
+	\item 	Las especificaciones de un fabricante de botes de pintura dicen que el peso de los botes sigue una distribución normal de media 1 kg de pintura y una desviación estándar de 0.1 kg.
+
+a) ?`Cuál es la media y la desviación estándar de la media muestral de los pesos de una muestra aleatoria simple de 20 botes?
+
+b) Se ha comprado un lote del que se ha tomado una muestra de 20 botes y en el que la media de los pesos obtenidos es de 0.98 kg. Construye un intervalo de confianza del 95\% para la media.
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) N(1; 0.022) ; b) (0.937;1.023)}}}\vspace{1cm}
+		
+			
+	\item 	Se quiere conocer la permanencia media de pacientes en un hospital, con el fin de estudiar una posible ampliación del mismo. Se tienen datos referidos a la estancia, expresada en
+días, de 800 pacientes, obteniéndose los siguientes resultados: $\bar x= 8.1$ días; $s_x = 9$ días. Se pide obtener un intervalo de confianza del 95\% para la estancia media.
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{(7.476; 8.723)}}}\vspace{1cm}
+		
+	\item 	Se hizo una encuesta aleatoria entre 130 estudiantes universitarios, de los cuales 85 eran mujeres, sobre el número de horas que estudian diariamente fuera del aula, obteniéndose una media de 3.4 horas.
+
+a) Si la desviación típica es de 1,1 horas, obtener un intervalo de confianza, al 98\%, para la media del número de horas que estudian diariamente fuera del aula los estudiantes universitarios.
+
+b) Obtener un intervalo de confianza, al 90\%, para la proporción de mujeres entre los estudiantes universitarios.
+
+
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) (3.175; 3.625) ; b) (0.6123; 0.6957) }}}\vspace{1cm}
+		
+	\item 	De una muestra aleatoria de 2100 personas de una población hay 630 que leen un determinado diario. Calcular el intervalo de confianza para la proporción poblacional para un nivel de confianza del 99\%.
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{(0.274, 0.326)}}}\vspace{1cm}
+		
+			
+	\item 	Tomada al azar una muestra de 60 alumnos de la universidad se encontró que un tercio hablaban el idioma inglés. Hallar, con un nivel de confianza del 90\%, un intervalo para estimar la proporción de alumnos que hablan el idioma inglés entre los alumnos de la universidad.  
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{(0.23; 0.43) }}}\vspace{1cm}
+		
+	\item 	Supongamos que queremos estudiar la producción media de leche al día de un determinado tipo de vacas con un error menor que 0.5 litros y un nivel de confianza del 0.95\%. Si de estudios anteriores sabemos que la desviación típica es de 1.5 litros, ?`qué tamaño de muestra debemos tomar?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{n=35}}}\vspace{1cm}
+		
+	\item 	Queremos determinar el porcentaje de estudiantes que necesitan gafas. De un estudio realizado hace tres años sabemos que el 65\% de ellos usaban gafas.
+
+a) ?`Qué tamaño de muestra debemos coger para cometer un error máximo del 5\% con un nivel de riesgo del 5\%?
+
+b) Si no tenemos información previa, ?`qué tamaño de muestra debemos tomar?  
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) n = 350; b) n = 385 }}}\vspace{1cm}
+		
+	\item 	Una máquina fabrica bombillas que tienen una duración media de 700 horas y una desviación típica de 150 horas. ?`Cuál es la probabilidad de que la media de duración en una muestra de 100 bombillas sea menor o igual a 650 horas?
+ 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{0.0004}}}\vspace{1cm}
+		
+	\item 	Una población de un tipo de plantas tiene una talla media de 15 cm y desviación típica de 2.5 cm. Se toma al azar una muestra de 45 plantas. ?`Cuál es la probabilidad de que la media de las tallas de la muestra sea superior a 12.5 cm?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{1}}}\vspace{1cm}
+		
+	\item 	En la elección para formar parte del consejo escolar, un alumno ha recibido el 50\% de los votos favorables. Si se elige una muestra de 40 alumnos que han votado.
+	
+a) ?`Cuál es la distribución que sigue la proporción de votantes que han votado?
+
+b) Halla la probabilidad de que más del 40\% de la muestra le votasen.
+
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) N (0.5; 0.079); b) 0.8980}}}\vspace{1cm}
+		
+	\item 	Los paquetes recibidos en una oficina de correos tienen un peso medio de 20 kg con una desviación típica de 5 kg. Calcula la probabilidad de que el peso de 50 paquetes elegidos al azar supere el límite de seguridad del ascensor, que es de 1000 kg. 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{0.5}}}\vspace{1cm}
+		
+	\item 	Las consultas de un médico de cabecera duran una media de 8 minutos, con una desviación típica de 2.3 minutos. Si una tarde tiene citados 32 pacientes, ?`cuál es la probabilidad de que los atienda en menos de 4 horas?
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{ 0.1093}}}\vspace{1cm}
+		
+	\item 	Uno de los principales fabricantes de televisores compra piezas a dos compañías. Las piezas de la compañía A tienen una vida media de 7.2 años con una desviación típica de 0.8 años, mientras que las de la compañía B tienen una vida media de 6.7 años con una desviación típica de 0.7. Determina la probabilidad de que una muestra aleatoria de 34 piezas de la compañía A tenga una vida media de al menos un año más que la de una muestra aleatoria de 40 piezas de la compañía B.
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{ 0.0023}}}\vspace{1cm}
+		
+	\item 	Tomada al azar una muestra de 500 personas de una determinada comunidad, se encontró que 300 leían la prensa regularmente. Hallar, con una confianza del 90\%, un intervalo para estimar la proporción de lectores ente las personas de esa comunidad.
+
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{(0.564; 0.636) }}}\vspace{1cm}
+		
+	\item 	 En una muestra aleatoria de 600 coches de una ciudad, 120 son de color blanco. Construya un intervalo de confianza de la proporción de coches de color blanco con un nivel de confianza del 98\%.
+
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{(0.162; 0.238)}}}\vspace{1cm}
+		
+	\item 	El peso de los paquetes enviados por una determinada empresa de transportes se distribuye según una normal, con una desviación típica de 0.9 Kg. En un estudio realizado con una muestra aleatoria de 9 paquetes, se obtuvieron los siguientes pesos en kilos: 9.5; 10; 8.5; 10.5; 12.5;  10.5; 12.5; 13; 12.
+	
+a) Halla un intervalo de confianza, al 90\%, para el peso medio de los paquetes enviados por esa empresa.
+
+b) Calcula el tamaño mínimo que debería tener una muestra, en el caso de admitir un error máximo de 0.3 Kg, con un nivel de confianza del    90\%.
+
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) I = (10.23; 11.77); b) n mínimo = 25 }}}\vspace{1cm}
+		
+	\item 	En un país se sabe que la altura de la población se distribuye según una normal cuya desviación típica es igual a 10 centímetros.
+	
+a) Si dicha media fuera de 170 centímetros, calcular la probabilidad de que la media muestral, de una muestra de 64 personas, difiera menos de un centímetro de la media de la población.
+
+b) ?`Cuál es el tamaño muestral que se debe tomar para estimar la media de la altura de la población con un error menor de 2 centímetros y con un nivel de confianza del 95\%
+
+
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{a) p (169<x<171) = 0.5762; b) n mínimo = 97 }}}\vspace{1cm}
+		
+	\item 	Para conocer la audiencia de uno de sus programas (proporción de televidentes que lo prefieren), una cadena de TV ha encuestado a 1000 personas elegidas al azar obteniendo una proporción muestral del 33\% de personas favorables a ese programa. Calcule el error máximo de estimación, por medio de un intervalo de confianza, con un nivel del 92\%.
+
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{E=0.026}}}\vspace{1cm}
+
+	\item 	Se va a tomar una muestra aleatoria de 600 recién nacidos en este año en una ciudad para estimar la proporción de varones entre los recién nacidos de esa ciudad, mediante un intervalo de confianza con un nivel del 95\%. ?`Cuál será el error de estimación a ese nivel si se observan 234 varones en la muestra? 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{E = 0.039}}}\vspace{1cm}
+		
+	\item 	Se sabe que el peso X de la grasa corporal en adultos que no hacen ejercicio sigue una distribución con media de 24.3 kg y desviación típica de 2.4. En cambio, el peso Y de la grasa en adultos que hacen ejercicio regularmente se distribuye con una media de 20.1 kg y desviación típica de 1.7. Si se eligen en ambas poblaciones muestras aleatorias de 50 personas, ?`cuál es la probabilidad de que la diferencia de la grasa corporal medias sea mayor de 3 kg?
+
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{0.9981}}}\vspace{1cm}
+		
+	\item 	 Halla el intervalo de confianza al nivel del 90\% para la diferencia de salarios medios de los trabajadores y las trabajadoras de una gran empresa cuando se ha elegido una muestra de 40 hombres y 35 mujeres, siendo el salario medio de los hombres 1051 euros, y el de las mujeres, 1009 euros, y las desviaciones típicas, de 90 y 78 euros, respectivamente. 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{(10.19; 73.81)}}}\vspace{1cm}
+		
+	\item 	Se va a tomar una muestra aleatoria de 600 recién nacidos en este año en una ciudad para estimar la proporción de varones entre los recién nacidos de esa ciudad, mediante un intervalo de confianza con un nivel del 95\%. ?`Con qué proporción estimada será máxima la amplitud de ese intervalo? ¿Cuál es la amplitud máxima?
+
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{Ayuda: $\dv{E}{\hat p}=0\to \hat p_{max};\quad z_{\alpha/2} \text{ y } n \text{ constantes.}$}}}\vspace{1cm}
+		
+		\vspace{-10mm} %****************
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{$\hat p$= 0,5. Amplitud máxima = 2E = 0.08 }}}\vspace{1cm}
+		
+	\item 	Se desea estimar la proporción de adultos que leen un determinado diario local por medio de un intervalo de confianza. Obtenga el tamaño mínimo de la muestra que garantice, aún en la situación más desfavorable, un error de la estimación inferior a 0.03, con un nivel de confianza del 95\%. 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{Caso más desfavorable para $\hat p$= 0.5 (ver ayuda problema anterior); n = 1068}}}\vspace{1cm}
+		
+	\begin{comment}
+	\item 	problema n 
+		
+		\hspace{-1cm}\rotatebox{180}{\leftline{\textcolor{gris}{sol n}}}\vspace{1cm}	
+	\end{comment}
+
+
+\end{enumerate}
+\end{adjustwidth}
+
+
+%\newpage
+
+\section{Curiosidades}
+\begin{myexampleblock}{Estadística inferencial}
+
+\vspace{2mm} En general, casi nunca se puede tratar con poblaciones al completo. Ya sea porque la población a estudiar es muy grande, ya sea por motivos económicos, de falta de personal cualificado, por que el estudio es destructivo (horas de duración de una bombilla), o para una mayor rapidez en la recogida y presentación de los datos. Lo que se suele hacer es estudiar tan sólo una muestra de la población. 
+
+\vspace{2mm} En consecuencia, deberemos contentarnos con utilizar muestras, que sean capaces de revelarnos algo acerca de la población de las que han sido extraídas. De la forma de elegirlas, y las condiciones que han de verificar forma parte de la ``teoría del muestreo''.
+
+\vspace{2mm} La Estadística inferencial se ocupa de extender o extrapolar a toda una población, informaciones obtenidas de una muestra, así como de la toma de decisiones. 
+
+\vspace{2mm} Al trabajar con muestras, hay que diferenciar los valores observados en la muestra, que llamaremos \textbf{estadísticos}, de los valores reales correspondientes a la población, que llamaremos \textbf{parámetros poblacionales}. 
+
+\vspace{2mm} Observa desde muy de cerca la imagen de la izquierda. Observar esa imagen de esta manera, es equivalente a tomar una muestra de una población. En principio solo tienes en tu mente un conjunto de datos, que no te dicen nada. 
+
+\begin{multicols}{2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.3\textwidth]{imagenes/imagenes05/T05IM05.png}
+	\end{figure}
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.3\textwidth]{imagenes/imagenes05/T05IM06.png}
+	\end{figure}
+\end{multicols}
+
+\vspace{2mm} Sin embargo, si te alejas unos 5 metros y observas de nuevo la imagen, empezarás a extraer más información, y posiblemente adivines que representa esta imagen. Habrás hecho una inferencia de los datos muestrales, para tener una imagen del conjunto. 
+
+
+	
+\vspace{2mm} Esta es en resumidas cuentas el objeto de las técnicas de la estadística inferencial: obtener muestras e inferir datos sobre la población. 
+
+\vspace{2mm} La siguiente image, medio pixelada a la izquierda, pasa desapercibida si te alejas lo suficiente (tu cerebro hace la inferencia).	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{imagenes/imagenes05/T05IM07.png}
+	\caption*{\footnotesize{www.xataka.com.co}}
+	\end{figure}
+\end{myexampleblock}
+
+
+\vspace{2cm}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\textwidth]{imagenes/imagenes05/T05IM10.png}
+	\end{figure}
+	
+\begin{comment}
+	\newpage
+\includepdf[pages=-]{imagenes/imagenes05/res-infer.pdf}
+\end{comment}
+
+
+\newpage
+\begin{myblock}{RESUMEN ``Distribuciones muestrales''} 
+
+$\quad$
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|l|l}
+\multicolumn{1}{c|}{\textbf{POBLACIÓN}} & \multicolumn{1}{c|}{\textbf{}} & \multicolumn{1}{c}{\textbf{MUESTRA - n}} \\
+\multicolumn{1}{c|}{$\mu, \ \sigma; \qquad p$} &  & \multicolumn{1}{c}{$\bar x,\ s_{n-1};\qquad \widehat p$} \\ 
+\multicolumn{1}{c|}{\textbf{ }} & \multicolumn{1}{c|}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} \\
+\cline{1-1} \cline{3-3} 
+ &  &  \\
+\multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}MUESTREO \\ --------------------$\rightarrow$\end{tabular}} &  & \begin{tabular}[c]{@{}l@{}}$\begin{cases}\\ \ \ \textcolor{blue}{\bar x \ \in \ \mu \ \pm \ }\textcolor{red}{ z_{\alpha/2} \cdot,\dfrac{\sigma}{\sqrt{n}}} \\\\  \ \ \textcolor{blue}{\widehat p \ \in \ p \ \pm \ }\textcolor{red}{ z_{\alpha/2} \cdot \sqrt{\dfrac{p\ (1-p)}{n}} }\\ \end{cases}$\end{tabular} \\
+ &  &  \\ \cline{1-1} \cline{3-3} 
+\multicolumn{1}{c|}{\textbf{}} & \multicolumn{1}{c|}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} \\
+\begin{tabular}[c]{@{}l@{}}$\left. \ \begin{matrix} \  \textcolor{blue}{\mu \ \in \ \bar x \ \pm \ }\textcolor{red}{z_{\alpha/2} \cdot 	\dfrac{\sigma \ (s^*)}{\sqrt{n}}} \quad \quad \ \\\\\ \  \textcolor{blue}{p \ \in \ \hat p \ \pm \ }\textcolor{red}{z_{\alpha/2} \cdot \sqrt{\dfrac{\hat p\ (1-\hat p)}{n}} }\end{matrix}\ \ \right\}$\end{tabular} &  & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}INFERENCIA\\ $\leftarrow$-------------------\end{tabular}}
+\end{tabular}
+\end{table}	
+
+\begin{center}
+$\textcolor{red}{s^*}\ $: $\ \ $si $\sigma$ es desconocido usaremos $s$ muestral. 
+
+ En \textcolor{red}{rojo} aparecer el \textcolor{red}{error máximo admisible}.
+ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.7\textwidth]{imagenes/imagenes05/T05IM11.png}
+	\end{figure}	
+	
+\vspace{5mm} $\triangleright \ $ Distribuciones de las sumas de los elementos de una muestral y de las diferencias de las medias de dos muestras:
+ 
+$$\sum x_i \sim N(n\mu,\sigma \sqrt{n});
+\qquad  \qquad 
+\bar x - \bar y \sim N \left( \mu_x - \mu_y , \sqrt{\dfrac{\sigma_x}{n_x}+\dfrac{\sigma_y}{n_y}} \right) $$
+\end{center}
+
+$\quad$
+\end{myblock}
+
+
+
+
+

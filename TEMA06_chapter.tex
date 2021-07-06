@@ -1,0 +1,1064 @@
+\chapter{Contraste de hipótesis}
+
+
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (6.5,.1);
+	\fill [left color=teal!50, right color=green!50] (6.5,0) rectangle (11.5,.1);
+	\end{tikzpicture}
+
+\section{Introducción}
+En el tema anterior hemos visto como estimar la media o proporción de una población mediante un intervalo,  a partir de los datos de una muestra.
+
+
+En este tema abordaremos la toma de decisiones, es decir, plantearemos determinadas hipótesis sobre los parámetros ($\mu,\ p$) de una población y a partir de los datos de una muestra decidiremos si podemos o no aceptar la hipótesis inicial. \footnote{La confección de este tema está basada en los apuntes del profesor Francisco Ocaña Peinado, de la Universidad de Granada y de los profesores Jorge Escribano Colegio e Inmaculada Niña Granada, del colegio Inmaculada niña de Granada.}
+	
+Una hipótesis es, en estadística,  una afirmación acerca de una  población. Su verdad o falsedad podría determinarse con exactitud si tuviésemos la oportunidad de evaluar a todos los individuos que la componen. Como esto es imposible en general, el criterio para aceptar o rechazar una hipótesis estadística se basa en un razonamiento de tipo probabilístico: a través del estudio de una o varias muestras se determina la probabilidad de que los resultados obtenidos sean compatibles con la hipótesis establecida. Si resulta altamente improbable que, de ser cierta la hipótesis, se hayan obtenido dichos resultados la rechazaremos. Si no es así, lo más que podemos decir es que no existen razones para rechazar dicha hipótesis. 
+
+
+\vspace{4mm} \underline{Ejemplos}: 
+
+	\begin{itemize}
+	\item Hace algunos años, la media de estatura de los españoles adultos varones era de 170 cm y su desviación típica 10 cm. Pasado el tiempo, un muestreo realizado a 36 adultos da una medida de 173 cm. ?`Puede afirmarse que esa diferencia de 3 cm es debida al azar o realmente la estatura media ha aumentado?
+
+	\item Supongamos que, respecto a una determinada ley, el 52\% de los ciudadanos está en contra. Pasado el tiempo, una encuesta realizada a 500 personas indica que los ciudadanos en contra han descendido hasta el 48\%.?`Ha cambiado realmente la opinión pública o tal resultado es debido al azar?
+	\end{itemize}
+
+	
+	
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{imagenes/imagenes06/T06IM01.png}
+	\end{figure}
+	
+	
+%\vspace{1cm} %*******************************
+\section{Elementos de un contraste de hipótesis}
+
+%\vspace{1cm} %*******************************
+\subsection{Hipótesis}
+
+%\vspace{1cm} %*******************************
+\begin{definition}
+.	Se llaman \textbf{hipótesis estadísticas} a las conjeturas que se hacen sobre la población.
+
+\vspace{2mm} Un \textbf{test de hipótesis o contraste de hipótesis} es el procedimiento estadístico mediante que investiga la verdad o falsedad de una hipótesis acerca de una población. 
+
+\vspace{2mm} Estas hipótesis se formulan, normalmente, sobre la media poblacional $\mu$ o la proporción poblacional $p$. 
+
+\vspace{2mm} Llamaremos \textbf{hipótesis nula}, $\boldsymbol{H_0}$,  a la hipótesis que se formula y se quiere contrastar para  rechazarla o no hacerlo, es decir, la que mantendremos salvo que los datos muestren de forma evidente su falsedad.
+
+\vspace{2mm} Llamaremos \textbf{hipótesis alternativa}, $\boldsymbol{H_1}$, a cualquier otra hipótesis que sea diferente de la ya formulada y que sea contraria a $H_0$, de forma que el rechazo de $H_0$ suponga la aceptación de $H_1$ y el no rechazo de $H_0$, la no aceptación de $H_1$. 
+\end{definition}
+
+\vspace{15mm} %**********************************
+
+\begin{example}
+
+	$\triangleright\ $ Decidir la inocencia o culpabilidad de una persona en un país en el que se sigue el principio de presunción de inocencia: 
+
+\vspace{2mm} Como se quiere evitar condenar a una persona inocente, sólo se hará cuando haya una fuerte evidencia de su culpabilidad, cuando esté demostrada ésta. En caso de duda, se primará la inocencia frente a la culpabilidad. Por tanto, en la terminología propuesta sería: $\ \  H_0:$ \emph{Inocente}; $\ H_1:$ \emph{Culpable}.
+
+\vspace{5mm} $\triangleright\ $	Decidir si un alumno sabe o no la asignatura de Estadística, y por tanto aprueba o suspende la asignatura: 
+
+\vspace{2mm} Desde el punto de vista del profesorado, un estudiante no sabe la asignatura mientras no demuestre lo contrario; es decir, el examen ha de presentar pruebas suficientes de que conoce la asignatura. En general, en caso de duda o de falta de datos, se primará el suspenso frente al aprobado. Por tanto, en la terminología propuesta sería:	 $\ \ H_0:$ \emph{El estudiante no sabe la asignatura (suspende)}; $\ H_1:$ \emph{El estudiante sí sabe la asignatura (aprueba)}.
+\end{example}
+
+\vspace{15mm} %****************************
+
+\begin{theorem}
+	
+	Observaciones: 
+	
+	\vspace{2mm} Sobre la metodología de los tests de hipótesis hay que tener en cuenta que: 
+
+\vspace{2mm} $\triangleright\ $	No sirven para demostrar $H_0$.
+
+\vspace{2mm} $\triangleright\ $	Sirven para decidir que, a partir de los datos de la muestra, o no puede rechazarse $H_0$, o sí debe rechazarse y aceptar $H_1$.
+\end{theorem}
+
+
+\newpage %*****************************
+\subsection{Errores} 
+
+Con el método del contraste de hipótesis podemos cometer dos tipos de errores:
+
+\vspace{4mm}
+\begin{definition}
+
+	\begin{table}[H]
+\centering
+\begin{tabular}{cc|c}
+ & $\ \ $ Rechazar $H_0\ \ \ $ & $\ \ $ No rechazar $H_0\ \ \ $ \\ \cline{2-3} 
+\multicolumn{1}{c|}{$H_0$ cierta $\ \ $} & \textcolor{blue}{Error de tipo I} & Decisión correcta \\ \hline
+\multicolumn{1}{c|}{$H_1$ cierta $\ \ $} & Decisión correcta &  \textcolor{blue}{Error de tipo II} 
+\end{tabular}
+\end{table}	
+\end{definition}
+
+\vspace{10mm}%*****************
+Siguiendo con los ejemplos anteriores:
+
+\vspace{10mm}%*****************
+\begin{example}
+	
+	$\triangleright\ $	Decidir la inocencia o culpabilidad de una persona en un estado en el que se sigue el principio de presunción de inocencia:  $\ \  H_0:$ \emph{Inocente}; $\ H_1:$ \emph{Culpable}.
+
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{cc|c}
+	 & Rechazar $H_0$  & No rechazar $H_0$ \\ \cline{2-3} 
+	\multicolumn{1}{c|}{$H_0$ cierta} & \begin{tabular}[c]{@{}c@{}}\textcolor{blue}{Error de tipo I}\\  \textcolor{red}{Se condena a un inocente}\end{tabular} & Decisión correcta \\ \hline
+	\multicolumn{1}{c|}{$H_1$ cierta} & Decisión correcta & \begin{tabular}[c]{@{}c@{}}\textcolor{blue}{Error de tipo II}\\  \textcolor{red}{Se absuelve a un culpable}\end{tabular}
+	\end{tabular}
+	\end{table}	
+
+
+	\vspace{4mm}	$\triangleright\ $	Decidir si un alumno sabe o no la asignatura de Estadística, y por tanto aprueba o suspende la asignatura: $\ \ H_0:$ \emph{El estudiante no sabe la asignatura (suspende)}; $\ H_1:$ \emph{El estudiante sí sabe la asignatura (aprueba)}.
+	
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{cc|c}
+	 & Rechazar $H_0$  & No rechazar $H_0$ \\ \cline{2-3} 
+	\multicolumn{1}{c|}{$H_0$ cierta} & \begin{tabular}[c]{@{}c@{}}\textcolor{blue}{Error de tipo I}\\  \textcolor{red}{Se aprueba a quien no sabe}\end{tabular} & Decisión correcta \\ \hline
+	\multicolumn{1}{c|}{$H_1$ cierta} & Decisión correcta & \begin{tabular}[c]{@{}c@{}}\textcolor{blue}{Error de tipo II}\\  \textcolor{red}{Se suspende a quien sí sabe}\end{tabular}
+	\end{tabular}
+	\end{table}		
+	
+\end{example}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{imagenes/imagenes06/T06IM02a.png}
+	\end{figure}
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{imagenes/imagenes06/T06IM02b.png}
+	\end{figure}
+
+\subsection{Nivel de significación y potencia}
+
+\vspace{15mm}%******************************
+\begin{definition}
+
+Llamaremos \textbf{nivel de significación}, $\boldsymbol{\alpha}$ , a la probabilidad de cometer un error de tipo I, es decir, $\alpha= p\ (\text{ Rechazar } H_0 \ | \  H_0 \text{ es cierta } )$ .
+
+\vspace{2mm} Llamaremos \textbf{potencia del contraste} al valor de $\boldsymbol{1 -\beta}$ , siendo $\boldsymbol{\beta}$ la probabilidad de cometer un error de tipo II, es decir, $\beta =  p\ ( \text{ No rechazar }H_0 \ | \  H_0 \text{ es falsa } )$
+\end{definition}
+
+\vspace{20mm}%********************************
+\begin{theorem}
+	
+	Lo ideal sería minimizar $\alpha$ y $\beta$ , pero esto no puede hacerse simultáneamente pues si disminuye uno aumenta el otro y viceversa.
+
+\vspace{2mm}Así, si un examen es muy exigente se disminuye $\alpha$, es decir, la probabilidad de aprobar a un estudiante que no sabe; sin embargo, se aumenta $\beta$, la probabilidad de suspender a un estudiante que sí sabe. Pero si el examen es poco exigente disminuye la probabilidad de suspender a un alumno que si sabe la asignatura ( $\beta$ ), pero aumenta la de aprobar a uno que no sabe lo suficiente ( $\alpha$ ).
+
+\vspace{2mm} La única manera de disminuir los dos tipos de errores a la vez es aumentando el tamaño de la muestra (preguntar muchas cosas, para tener más datos sobre lo que sabe o no el estudiante)
+
+\vspace{2mm} En general, se fija de antemano un \textbf{nivel de confianza} $\boldsymbol{(1-\alpha)}$, que asegure un error de tipo I admisible (haciendo mínima la probabilidad de ``condenar a un inocente'' o ``aprobar a quien no sabe'') y de entre todos los contrastes con dicho nivel de confianza se elige el de mayor potencia. (El estudio de la potencia de un test se escapa al nivel de este curso, así que daremos por hecho que los contrastes de este tema cumplen esa condición).
+\end{theorem}
+
+\newpage %*****************************
+\subsection{Región de aceptación y región crítica}
+
+\begin{definition}
+
+Formuladas ya las hipótesis nula y alternativa, el siguiente paso es un criterio para decidir si rechazamos o no la hipótesis nula (no aceptamos o sí la hipótesis alternativa), es decir, ?`con cuál de las dos hipótesis nos quedamos?
+
+\vspace{2mm} Una vez formulada la hipótesis nula, es necesario que las evidencias sean muy fuertes para rechazarla; es decir, puede que haya cambios debidos al azar, en cuyo caso el cambio no es significativo, y no cambiamos, pero puede que los cambios sean debidos a otras causas. En este último caso es cuando el cambio es significativo y rechazaremos.
+
+\vspace{2mm} Por lo tanto, lo primero que debemos hacer es fijar un cierto intervalo dentro del cual es normal que puedan haber cambios, es decir, una región tal que si el parámetro (en nuestro caso media o proporción) se mantiene en dicho intervalo, \underline{no rechazamos $H_0$}, nos seguimos quedando con $H_0$, pues esas pequeñas variaciones son debidas al azar. Ese intervalo o región se denomina \textbf{región de aceptación}, y será mayor o menor dependiendo del \textbf{nivel de confianza} que precisemos, $\boldsymbol{1-\alpha}$.
+
+\vspace{2mm} La región que quede fuera de la región de aceptación indica que en este caso los cambios no se pueden atribuir al azar, y por tanto hemos de \underline{rechazar $H_0$ y aceptar $H_1$}. Tal región se llama \textbf{región crítica} o de rechazo.
+\end{definition}
+
+\subsection{Tipos de contraste: bilateral o de colas}
+
+\begin{definition}
+
+Distinguiremos entre dos tipos de contraste o test, que determinan la región de aceptación y la región de rechazo:
+
+\begin{itemize}
+\item \textbf{Contraste Bilateral (o de dos colas)}:
+
+En este caso la región de rechazo o región crítica está formada por los dos extremos fuera del intervalo. Dicho caso se presenta cuando la hipótesis nula es del tipo $\ H_0 : \ \mu=k \text{ ó } p=k \ $ y la hipótesis alternativa, por tanto, es del tipo $h_1:\ \mu \neq k \text{ ó }  p\neq k$
+
+\item \textbf{Contraste Unilateral (o de una cola)}:
+
+En este caso la región de rechazo o región crítica está formada por sólo uno de los extremos fuera del intervalo. Dicho caso se presenta cuando la hipótesis nula es del tipo $\ H_0:\ \mu \ge k \text{ ó } p\ge k  \ $ y la hipótesis alternativa, por tanto, es del tipo $\ H_1:\ \mu<k \text{ ó } p<x \ $. (El sentido de las desigualdades pueden cambiar).	
+\end{itemize}
+	
+\end{definition}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{imagenes/imagenes06/T06IM05.png}
+	\end{figure}
+	
+	
+\section{Metodología general de un test de hipótesis}	
+	
+	
+	
+\begin{definition}
+
+\textbf{Algoritmo a seguir en un contraste de hipótesis}:
+
+\begin{enumerate}
+\item  Enunciar la hipótesis nula $H_0$ y la alternativa $H_1$.
+Ambas hipótesis deben ser mutuamente  excluyentes.
+
+\vspace{2mm} Una vez enunciadas, se analizará si el contraste es bilateral (la hipótesis alternativa es del tipo $\neq$ ) o si se trata de un contraste unilateral (la hipótesis alternativa es del tipo $> \text{ ó } <$).
+
+\item Se elige un estadístico cuya distribución muestral es conocida. En nuestro caso será la media o la proporción muestral. Este estadístico se llama estadístico de contraste.
+
+\item Determinar, a partir del nivel de confianza, $1-\alpha$, o del de significación, $\alpha$ , el valor de $<_{\alpha}$ para contrastes bilaterales o el de $z_{\alpha/2}$ para contrastes unilaterales, y con dichos valores se construyen las regiones de aceptación correspondientes:
+
+\begin{center} $(-z_{\alpha/2},z_{\alpha/2}) \ : \  \text{ c. bilaterales}; \qquad (-z_{\alpha},+\infty) \ \text{ o } \ (-\infty,z_\alpha) \ : 	\  \text{ c. unilaterales}$ \end{center}
+
+\item Calcular el valor concreto del estadístico de contraste a partir de la muestra.
+
+\item Aplicar el test, es decir, dependiendo de si el estadístico de contraste cae en la región de aceptación no rechazar la hipótesis nula $H_0$ y, si cae fuera, rechazar $h_0$ y aceptar la hipótesis alternativa $H_1$.
+	
+\end{enumerate}	
+\end{definition}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{imagenes/imagenes06/T06IM03.png}
+	\end{figure}
+
+\vspace{4mm}
+En los siguientes apartados veremos los tipos de test de hipótesis más habituales son el `test para la media de una población',  el `test para la proporción de una población' y, como ampliación, el `test de comparación de medias de dos poblaciones'.
+
+
+\section{Contraste de hipótesis para la media poblacional} ($p$ es la proporción de la población con una característica determinada).
+
+\begin{theorem}
+
+\textbf{Planteamiento para el contraste de hipótesis para la media de una población}.
+\begin{table}[H]
+\centering
+\begin{tabular}{lllll}
+Contraste bilateral & $\quad$ & c. unilateral derecha & $\quad$ & c. unilateral izquierda \\
+ &  &  &  &  \\
+\begin{tabular}[c]{@{}l@{}}$\begin{cases} 	\ H_0:\ \mu=\mu_0 \\ \ H_1:\ \mu \neq \mu_0 \\ \end{cases}$\end{tabular} &  & \begin{tabular}[c]{@{}l@{}}$\begin{cases} 	\ H_0:\ \mu < \mu_0 \\ \ H_1:\ \mu \ge  \mu_0 \end{cases}$\end{tabular} &  & \begin{tabular}[c]{@{}l@{}}$\begin{cases} 	\ H_0:\ \mu > \mu_0 \\ \ H_1:\ \mu \ge \mu_0 \end{cases}$\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{destacado}
+Si la población de partida es normal (o $n\ge 30$), $\ N(\mu, \sigma)$, entonces, la distribución de las medias muestrales  es $N\left( \mu, \dfrac{\sigma}{\sqrt{n}} \right)$	
+\end{destacado}
+
+Si la hipótesis nula es cierta, entonces 
+
+\hspace{2cm} $\bar x \leadsto N(\mu,\sigma/\sqrt{n})$ y, tipifiando, 
+
+\hspace{2cm} $\boldsymbol{z = \dfrac{\bar x - \mu}{\sigma / \sqrt{n}} \leadsto N(0,1)}\ $ (estadístico de contraste).
+
+\vspace{2mm} Si desconocemos la desviación típica de la población, $\sigma$, usaremos la desviación típica de la muestra, $s$ ($n\ge 30$).
+\end{theorem}
+
+\vspace{4mm}
+\begin{example}
+
+	Se cree que el tiempo medio de ocio que dedican al día los estudiantes de Bachillerato sigue una distribución normal de media 350 minutos y desviación típica 60 minutos. Para contrastar esta hipótesis, se toma una muestra aleatoria formada por 100 alumnos, y se observa que el tiempo medio de ocio es de 320 minutos. Con un nivel de significación del 10\%, ?`se contradice la afirmación inicial? 
+	
+	\rule{150pt}{0.1pt}
+	
+\begin{enumerate}[1.- ]
+\item Formulación de hipótesis: $\ H_0:\ \mu=350;\ H_1:\ \mu\neq 350$, bilateral.
+\item Estadístico de contraste (media muestral): $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}} \leadsto N(0,1)$
+\item Región de aceptación: $\ \alpha=10\% \ \to \ z_{\alpha/2}=1.645 \ \Rightarrow \ $; aceptación en $\ (-1.645,1.645)$
+\item Valor del estadístico de contraste para la muestra: $z=\dfrac{320-350}{60/\sqrt{100}}=-5$
+\item Decisión: $\ z=-5 \notin (-1.645,1.646) \ \to \ $ se rechaza la hipótesis nula: \emph{ hay evidencias estadísticas significativas para suponer que el tiempo medio diario de ocio de los alumnos de Bachillerato no es de 350 minutos}.	 
+\end{enumerate}
+\end{example}
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejre}
+
+Una encuesta, realizada a 64 empleados de una fábrica, concluyó que el tiempo medio de duración de un empleo en la misma era de 6.5 años con una desviación típica de 4. ?`Sirve esta afirmación para aceptar, con un nivel de significación del 1\%, que el tiempo medio de empleo en esa fábrica es menor o igual que 6?	
+
+
+	\rule{150pt}{0.1pt}
+	
+\begin{enumerate}[1.- ]
+\item Formulación de hipótesis: $\ H_0:\ \mu\le 6;\ H_1:\ \mu\ge 6$, unilateral derecha.
+\item Estadístico de contraste (media muestral): $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}} \leadsto N(0,1)$
+\item Región de aceptación: $\alpha=0.1=10\% \ \to \ p(z<z_\alpha)=0.9 \ \Rightarrow z_\alpha=1.28 $; aceptación en $\ (-\infty,1.28)$
+\item Valor del estadístico de contraste para la muestra: $z=\dfrac{6.5-6}{4/\sqrt{64}}=1$
+\item Decisión: $\ z=1 \in (-\infty,1.28) \ \to \ $ no se puede rechazar la hipótesis nula: \emph{no hay evidencias estadísticas significativas que indiquen que el tiempo medio de empleo en dicha fábrica no sea inferior a 6 años}.	 
+\end{enumerate}
+\end{ejre}	
+\end{ejemplo}
+
+\vspace{4mm}
+\begin{destacado}
+\text{Observaciones}:
+
+
+\vspace{2mm} $\triangleright\ $ En la práctica, la muestra se toma después de haber formulado las hipótesis, con el fin de que el resultado de la muestra no influya en el planteamiento de éstas.
+
+\vspace{2mm} $\triangleright\ $ Al disminuir el nivel de significación, $\alpha$ , aumenta la región de aceptación y por tanto es posible que una hipótesis que se rechace con un nivel de significación del 10\% no se pueda rechazar a un nivel de significación del 5\%.
+
+\vspace{2mm} $\triangleright\ $ Cuanto más `fuera' de la región de aceptación se encuentre nuestro estadístico de contraste, con mayor confianza podremos rechazar la hipótesis nula y por tanto mayor seguridad tendremos en que nuestra decisión es la correcta. De la misma manera, cuanto más `dentro' de la región de aceptación se encuentre, mayor seguridad tendremos a la hora de no rechazar la hipótesis nula.
+
+\end{destacado}
+
+
+\section{Contraste de hipótesis para la proporción poblacional}
+
+\begin{theorem}
+
+\textbf{Planteamiento para el contraste de hipótesis para la proporción de una población}.
+\begin{table}[H]
+\centering
+\begin{tabular}{lllll}
+Contraste bilateral & $\quad$ & c. unilateral derecha & $\quad$ & c. unilateral izquierda \\
+ &  &  &  &  \\
+\begin{tabular}[c]{@{}l@{}}$\begin{cases} 	\ H_0:\ p=p_0 \\ \ H_1:\ p \neq p_0 \\ \end{cases}$\end{tabular} &  & \begin{tabular}[c]{@{}l@{}}$\begin{cases} 	\ H_0:\ p < p_0 \\ \ H_1:\ p \ge  p_0 \end{cases}$\end{tabular} &  & \begin{tabular}[c]{@{}l@{}}$\begin{cases} 	\ H_0:\ p > p_0 \\ \ H_1:\ p \ge p_0 \end{cases}$\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{destacado}
+Si la población de partida es normal (o $n\ge 30$), la distribución de las proporciones muestrales  es $\widehat p \in N\left( po, \dfrac{p-p_0}{\sqrt{ \dfrac{p_0\ (1-p_0)}{n} }} \right)$	
+\end{destacado}
+
+Si la hipótesis nula es cierta, entonces
+ 
+
+\hspace{2cm} $\widehat p \leadsto N\left( po, \dfrac{p-p_0}{\sqrt{ \dfrac{p_0\ (1-p_0)}{n} }} \right) \ \ $ y, tipifiando, 
+
+\hspace{2cm} $\boldsymbol{z = \dfrac{\widehat p - p_0}{\sqrt{ \dfrac{p_0\ (1-p_0)}{n} }} \leadsto N(0,1)} \ $ (estadístico de contraste). 
+
+\vspace{2mm} Las consideraciones realizadas anteriormente siguen siendo válidas en este caso.
+\end{theorem}
+
+\vspace{4mm}
+\begin{example}
+
+
+El ayuntamiento de una ciudad afirma que el 65\% de los accidentes juveniles de los fines de semana son debidos al alcohol. Un investigador decide contrastar dicha hipótesis, para lo cual toma una muestra formada por 35 accidentes y observa que 24 de ellos han sido debidos al alcohol. Con un nivel de confianza del 99\%, ?`qué podemos decir sobre la afirmación del ayuntamiento?	
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} 1- Hipótesis: $\ H_0:\ p=0.65;\ H_1:\ p\neq 0.65$, bilateral
+
+\vspace{2mm} 2- Estadístico de contraste para la proporción: $\ z = \dfrac{\widehat p - p_0}{\sqrt{ \dfrac{p_0\ (1-p_0)}{n} }}$
+
+\vspace{2mm} 3- Zona de aceptación para la significación requerida: $1-\alpha=0.99 \to z_{\alpha/2}=2.575$, zona de aceptación en $\ (-2.575,2.575)$
+
+\vspace{2mm} 4- Cálculo del estadístico de contraste: a partir de la muestra, $\widehat p=24/35=0.686$
+
+\vspace{2mm} $\ z=\dfrac{0.686-0.65}{\sqrt{\dfrac{0.65\cdot 0.35}{35}}}=0.44$
+
+\vspace{2mm} 5- Decisión: como $ \ z=0.44 \in (-2.575,2.575)$, no podemos rechazar la hipótesis nula, no hay evidencias estadísticas significativas que indiquen que la afirmación del ayuntamiento no sea correcta.
+\end{example}
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejre}
+	Un investigador, utilizando información de anteriores comicios, sostiene que, en una determinada zona, el nivel de abstención en las próximas elecciones es del 40\% como mínimo. Se elige una muestra aleatoria de 200 individuos para los que se concluye que 75 estarían dispuestos a votar.
+
+Determinar, con un nivel de significación del 1\%, si se puede admitir como cierta la afirmación del investigador.
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} 1- Hipótesis: $\ H_0:\ p\ge 0.4;\ H_1:\ p. < 0.4$, unilateral izquierda
+
+\vspace{2mm} 2- Estadístico de contraste para la proporción: $\ z = \dfrac{\widehat p - p_0}{\sqrt{ \dfrac{p_0\ (1-p_0)}{n} }}$
+
+\vspace{2mm} 3- Zona de aceptación para la significación requerida: $\alpha=0.01 \to p(z<z_\alpha)=0.99$, mirando las tablas de la normal típica al revés, $z_\alpha=2.33$, zona de aceptación en $\ (-2.33,\infty)$
+
+\vspace{2mm} 4- Cálculo del estadístico de contraste: a partir de la muestra, $\widehat p=125/200=0.375$. \underline{!`Ojo!}: 75 dispuestos a votar son 125 que se abstendrán.
+
+\vspace{2mm} $\ z=\dfrac{0.625-0.4}{\sqrt{\dfrac{0.4\cdot 0.6}{200}}}=6.5$
+
+\vspace{2mm} 5- Decisión: como $ \ z=6.5 \in (-2.33,\infty)$,  no podemos rechazar la hipótesis nula, es decir, no hay evidencias estadísticas significativas que indiquen que el investigador no tiene razón.
+\end{ejre}	
+\end{ejemplo}
+
+
+\section[Contraste de hipótesis para la diferencia de las medias de dos poblaciones]{C.H. para las medias de dos poblaciones \sectionmark{C.H. para las medias de dos poblaciones} }	
+\sectionmark{C.H. para las medias de dos poblaciones}
+
+\begin{myalertblock}{Contraste de hipótesis para la diferencia de medias}
+
+\begin{theorem}
+	
+\vspace{2mm} Consideramos dos distribuciones normales: $\ N(\mu_x,\sigma_x) \ $ y $\ N(\mu_y,\sigma_y)$
+
+\vspace{2mm} Tenemos que contrastar si las media son iguales (hipótesis nula), $\mu_x = \mu_y$, con lo que el planteamiento es: 
+
+$$H_O:\ \mu_x=\mu_y;\ \ H_1: \ \mu_x \neq \mu_y \qquad \text{contraste bilateral}$$
+
+\vspace{2mm} Para un nivel de confianza $\alpha$, la región de aceptación es $(-z_{\alpha/2},z_{\alpha/2})$
+
+\vspace{2mm} Tomamos una muestra en cada distribución, de tamaños $n_x \text{ en } N(\mu_x,\sigma_x)\ $ y   $\ n_y \text{ en } N(\mu_y,\sigma_y)$ 
+
+\vspace{2mm} Sabemos (tema anterior) que  $\ \bar x - \bar y 	\leadsto N \left( \mu_x-\mu_y \ , \ \sqrt{\dfrac{\sigma^2_x}{n_x}+\dfrac{\sigma_y^2}{n_y}} \right)$
+
+\vspace{2mm} Si $H_0$ se cumple, $\ \bar x - \bar y \in  N \left( 0 \ , \ \sqrt{\dfrac{\sigma^2_x}{n_x}+\dfrac{\sigma_y^2}{n_y}} \right)$ y, al tipificar, obtenemos como \textbf{estadístico de contraste}: $\ z=\dfrac{\bar x - \bar y \textcolor{gris}{- 0}}{\sqrt{\dfrac{\sigma^2_x}{n_x}+\dfrac{\sigma_y^2}{n_y}}} \leadsto N(0,1)$
+
+
+\vspace{4mm} Al igual que pasa con el test de una media, en caso de desconocer las desviaciones típicas de las poblaciones, y si las muestras son suficientemente grandes, se pueden sustituir por las desviaciones típicas muestrales.
+\end{theorem}
+
+\vspace{15mm}
+\begin{example}
+
+A los 100 alumnos de una clase se les separa en dos grupos: aquellos que practican habitualmente un deporte y los que no practican ninguno, formando cada grupo 60 y 40 alumnos, respectivamente. Les medimos la altura, obteniendo para el primer grupo una media de 1.80 m. y una desviación típica 0.08 m., y para el segundo grupo una media de 1.76 m. y una desviación típica de 0.10 m. Suponiendo que la variable aleatoria altura sigue una distribución normal en los dos grupos, ?`es posible afirmar, con un nivel de confianza del 95\%, que hay diferencia de altura entre los alumnos que practican algún deporte y los que no?
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} $N(1.80.0.08) \to n_x=60;\quad N(1.76,0.10) \to n_y=40;\qquad 1-\alpha=95\%;\ \alpha=5\%$
+
+\vspace{2mm} 1- Hipótesis: $\ H_0:\ \mu_x=\mu_y;\ \ H_1:\ \mu_x \neq \mu_y$, contraste bilateral.
+
+\vspace{2mm} 2- Estadístico de contraste: $\ z=\dfrac{\bar x - \bar y}{\sqrt{\dfrac{\sigma^2_x}{n_x}+\dfrac{\sigma_y^2}{n_y}}} \leadsto N(0,1)$
+
+\vspace{2mm} 3- Para $\alpha=0.05 \to z_{\alpha/2}=1.96$; zona de aceptación: $\ (-1.96,1.96)$
+
+\vspace{2mm} 4- Cálculo del estadístico de contraste: $\ z=\dfrac{1.80-1.76}{\sqrt{\dfrac{0.08^2}{60}+\dfrac{0.10^2}{40}}}=2.105$
+
+\vspace{2mm} 5-  Como $\ z=2.105 \notin (-1.96,1.96)\ $ rechazamos la hipótesis nula, es decir, existen diferencias estadísticamente significativas entre la altura media de los chicos que practican deporte y la de los que no.
+\end{example}
+
+	
+	
+\vspace{15mm}	
+\begin{ejemplo}
+\begin{ejre}
+A fin de determinan si existen diferencias significativas entre dos grupos de estudiantes, realizamos el mismo examen a 30 estudiantes del primer grupo y a 35 del segundo, obteniendo media 5.5 y desviación típica 0.5, para el primer grupo, y 5.2 de media y 1 de desviación típica para el segundo grupo.
+
+?`Qué conclusión se obtiene con un nivel de significación del 1\%?	
+
+\rule{150pt}{0.1pt}
+
+\vspace{2mm} $\mu_x=5.5,\ \sigma_x=0.5 \to n_x=30; \quad m_y=5.2,\ \sigma_y=1 \to n_y=35$ , contraste bilateral.
+
+\vspace{2mm} 1- Hipótesis: $\ H_0:\ \mu_x=\mu_y;\ \ H_1:\ \mu_x \neq \mu_y$
+
+\vspace{2mm} 2- Estadístico de contraste: $\ z=\dfrac{\bar x - \bar y }{\sqrt{\dfrac{\sigma^2_x}{n_x}+\dfrac{\sigma_y^2}{n_y}}} \leadsto N(0,1)$
+
+\vspace{2mm} 3- Para $\alpha=0.01 \to z_{\alpha/2}=2.575$; zona de aceptación: $\ (-2.575,2.575)$
+
+\vspace{2mm} 4- Cálculo del estadístico de contraste: $\ z=\dfrac{5.5-5.2}{\sqrt{\dfrac{0.5^2}{30}+\dfrac{1^2}{35}}}=1.56$
+
+\vspace{2mm} 5- Decisión: como $z=1.56 \in  (-2.575,2.575)$, no podemos rechazar la hipótesis nula, es decir, no existen diferencias estadísticamente significativas entre ambos cursos.
+\end{ejre}	
+\end{ejemplo}
+\end{myalertblock}
+	
+
+
+
+
+\section{Ejercicios}
+
+\begin{ejemplo}
+\begin{ejer}
+La altura en $\mathrm{cm}$ de las cañas producidas por una determinada variedad en cada cosecha es una variable aleatoria que sigue una ley normal con desviación típica $\sigma=16\ \mathrm{cm}$ . Para contrastar si la altura media de las cañas de la última cosecha es de $170\ \ \mathrm{cm}$, se ha tomado una muestra aleatoria de $64$ de estas cañas y se han medido sus longitudes, resultando como media muestral $\bar x = 166 \ \mathrm{cm}$.
+
+?`Son suficientes estos datos para rechazar que la altura media de las cañas de la última cosecha es de $170\ \ \mathrm{cm}$, a un nivel de significación $\alpha=0.05$ ?.	
+\end{ejer}	
+\end{ejemplo}
+
+$H_0:\ \mu=170;\ \ H_1:\ \mu \neq 170\ $ Bilateral
+
+$\alpha=0.05;\qquad N(170,16);\qquad n=64;\ \ \ \bar x=166$
+
+\rule{150pt}{0.1pt}
+
+$\alpha=0.05 \to z_{\alpha/2}=1.96\ $ Región de aceptación: $\ (-1.96,1.96)$
+
+Estadístico de contraste: $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}}=\dfrac{166-170}{16/\sqrt{64}}=-2$
+
+Como $-2 \notin (-1.96,1.96)$, rechazamos la hipótesis nula y aceptamos la alternativa. Con lo cual, aceptamos que la altura de las cañas no miden 170 cm, al nivel de significación 0’05 (pudiendo haber cometido un error del tipo I).
+	
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+Un comerciante ha observado durante un largo periodo de tiempo que sus beneficios semanales se distribuyen según una ley normal con una media de 5000 euros y una desviación típica de 520 euros. A finales del año pasado se abrió un supermercado frente a su comercio y él cree que su beneficio semanal medio ha disminuido desde entonces. Para contrastar esta suposición, ha tomado una muestra aleatoria de 16 semanas del año actual y ha encontrado que el beneficio semanal medio de esa muestra es de 4700 euros. ?`Puede afirmarse, a un nivel de significación $\alpha=0.01$, que estos datos avalan la creencia del comerciante?.	
+\end{ejer}	
+\end{ejemplo}
+
+$H_0:\ \mu\ge 500;\ \ H_1:\ \mu <5000\ $ Unilateral derecha.
+
+$\alpha=0.01;\qquad N(5000,520);\qquad n=16;\ \ \ \bar x=4700$
+
+\rule{150pt}{0.1pt}
+
+$\alpha=0.01 \to p(z>-z_\alpha)=p(z<z_\alpha)=1-\alpha=0.99 \to z_\alpha=2.33$, por lo que la región de aceptación es $(-2.33,+\infty)$ 
+
+Estadístico de contraste: $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}}=\dfrac{4700-5000}{520/\sqrt{16}}=-2.30$
+
+
+Como $-2.3 \in (-2.33,+\infty)$, se encuentra en la zona de aceptación. Por lo tanto, no podemos rechazar la hipótesis nula, es decir, no se puede afirmar, al nivel 0.01, que los datos de la muestra apoyen la creencia de que el nuevo supermercado ha disminuido el beneficio semanal medio del comerciante.
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	Sólo el 75\% de los alumnos de un centro de enseñanza realizan correctamente un test psicotécnico que lleva utilizándose mucho tiempo. Para tratar de mejorar este resultado, se modificó la redacción del test, y se propuso a un grupo de 120 alumnos de ese centro, elegidos al azar. De los 120 alumnos a los que se le pasó el nuevo test, lo realizaron correctamente 107. ¿Podemos afirmar que la nueva redacción del test ha aumentado la proporción de respuestas correctas, a un nivel de significación $\alpha =$ 0.025 ?.
+\end{ejer}
+\end{ejemplo}
+
+$H_0:\ p\le 175;\ \ H_1:\ p>0.75\ $ Unilateral izquierdo.
+
+$\alpha=0.025 \qquad p=0.75\qquad n=120>30;\ \ \ \widehat p=107/120$
+
+\rule{150pt}{0.1pt}
+
+$\alpha=0.025 \to z_\alpha:\ / \ p(z<z_\alpha)=1-\alpha=0.975 \Rightarrow z_\alpha=1.96$ y la región de aceptación es $(-\infty, 1.96)$
+
+Estadístico de contraste: $z=\dfrac{\widehat p -p}{\sqrt{\dfrac{p\ (1-p)}{\sqrt{n}}}}=\dfrac{107/120 - 0.75}{\sqrt{0.75 \cdot 0.25/120}}=3.58$
+
+
+Como $3.58 \notin (-\infty,1.96)$, el estadístico de contraste se encuentra en la zona de rechazo o región crítica. Por lo tanto, rechazamos la hipótesis nula y aceptamos la alternativa: podemos afirmar que la nueva redacción del test ha aumentado la proporción de respuestas correctas, a un nivel confianza del 97.5\% (significación de 2.5\%).
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	El peso en vacío de los envases fabricados por una empresa, según su método usual, es una variable aleatoria que sigue una ley normal con media 20 gramos y una desviación típica de 1 gramo.
+	
+Se desea contrastar si un nuevo proceso de fabricación no aumenta dicho peso medio. Para ello, se eligen al azar 25 envases fabricados por la nueva técnica y se encuentra que la media de su peso en vacío es de 20.5 gramos. ?`Se puede afirmar, a un nivel de significación del 2\% , que el nuevo proceso ha aumentado el peso medio de los envases?
+\end{ejer}
+\end{ejemplo}
+
+$H:0:\ \mu \le 20;\ \ H_1:\ \mu>20\ $ Unilateral derecho.
+
+$\alpha=0.02;\qquad N(20,1);\qquad n=25 ;\ \ \ \bar x=20.5$
+
+\rule{150pt}{0.1pt}
+
+$\alpha=0.02 \to p(z>z_\alpha)=1-\alpha=0.98 \to z_\alpha=2.06$, la región de aceptación es $(-\infty, 2.06)$
+
+Estadístico de contraste:  $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}}=\dfrac{20.5-20}{1/\sqrt{25}}=2.5$
+
+Como $2.5 \notin (-\infty,2.06)$, rechazamos la hipótesis nula y aceptamos la alternativa. Por lo tanto, a la vista de los datos obtenidos en la muestra, se puede afirmar, al nivel $\alpha=0.02$, que el nuevo proceso ha aumentado el peso medio de los envases (podemos estar cometiendo un error de tipo II).
+
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	En unas elecciones municipales de una ciudad, el 42\% de los votantes dieron su voto al partido A. En una encuesta realizada un año después a 500 personas con derecho a voto, sólo 184 votarían al partido A. Con estos datos, ?`puede afirmarse que ha disminuido la proporción de votantes a ese partido? Responder a la pregunta anterior con niveles de significación $\alpha$ del 1\%, del 2.5\% y del 0.1\%
+\end{ejer}
+\end{ejemplo}
+
+$H_0:\ p \ge 0.42;\ \ H_1:\ p < 0.42\ $ Contraste unilateral derecho.
+
+$\alpha=0.01;\quad \alpha=0.025;\quad \alpha=0.001 ; \qquad p=0.42 \qquad n=500>30;\ \ \widehat p=184/500$
+
+\rule{150pt}{0.1pt}
+
+$\alpha=0.01 \to z_\alpha / p(z>-z_\alpha)=p(z<z_\alpha)=1-\alpha=0.99 \to z_\alpha=2.33$
+
+$\alpha=0.025 \to z_\alpha / p(z>-z_\alpha)=p(z<z_\alpha)=1-\alpha=0.975 \to z_\alpha=1.96$
+
+$\alpha=0.001 \to z_\alpha / p(z>-z_\alpha)=p(z<z_\alpha)=1-\alpha=0.999 \to z_\alpha=3.09$
+
+Estadístico de contraste: $z=\dfrac{\widehat p -p}{\sqrt{\dfrac{p\ (1-p)}{\sqrt{n}}}}=\dfrac{184/500 - 0.42}{\sqrt{[184/500 \cdot (500-184)/500]/120}}=-2.355$
+
+Decisiones:
+
+$\text{Para } \alpha=0.01 \to -2.355 \notin (-2.33,+\infty)$
+
+$\text{Para } \alpha=0.025 \to -2.355 \notin (-1.96,+\infty)$
+
+$\text{Para } \alpha=0.01 \to -2.355 \in (-3.09,+\infty)$
+
+En el primer y segundo caso ($\alpha=0.01 \ \wedge \alpha=0.025$) rechazamos la hipótesis nula y aceptamos la alternativa, ha disminuido la proporción de votantes. En el tercer caso ($\alpha=0.001$) el estadístico de contraste cae dentro de la región de aceptación y no podemos rechazar la hipótesis nula, no podemos afirmar que haya disminuido la proporción de votantes con una significación del 0.001.
+
+Resumiendo, los datos permiten afirmar que ha disminuido la proporción de votantes al partido A a los niveles 0.025 y 0.01, pero no ha disminuido la proporción al nivel 0.001.
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	Se sabe que la longitud en cm de una determinada especie de coleópteros sigue una distribución normal de varianza 0.25 cm$^2$. Capturados 6 ejemplares de dicha especie, sus longitudes (en cm) fueron: 2.75; 1.72; 2.91; 2.6; 2.64; 3.34
+
+?`Se puede aceptar la hipótesis de que la población tiene una longitud media de 2.656 cm? Usar $\alpha=$ 0.05.
+\end{ejer}
+\end{ejemplo}
+
+$H_0:\ \mu = 2.656 ; \ \  H_1: \ \mu \neq 2.656\ $ Bilateral
+
+$\alpha=0.05;\qquad N(2.656,\sqrt{0.25})=N(2.656,0.5);\qquad n=6;\ \ \bar x=(2.75 + 1.72 + 2.91 + 2.6 + 2.64 + 3.34)/6=2.66$
+
+\rule{150pt}{0.1pt}
+
+$\alpha=0.05 \to z_{\alpha/2}=1.96\ $ Región de aceptación: $\ (-1.96,1.96)$
+
+Estadístico de contraste: $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}}=\dfrac{2.66-2.566}{0.5/\sqrt{6}}=0.019$
+
+Como $0.019 \in (-1.96,1.96)$, el valor observado del estadístico de prueba se encuentra en la región de aceptación. Por lo tanto, no rechazamos la hipótesis nula, la longitud media de los coleópteros es
+de 2.656 al nivel de significación 0’05, pudiendo haber cometido un error del tipo I.
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	El 40\% de los escolares de cierto país suelen perder al menos un día de clase a causa de gripes y catarros. Sin embargo, un estudio sobre 1000 escolares revela que en el último curso hubo 450 en tales circunstancias. Las autoridades defienden que el porcentaje del 40\% para toda la población de escolares se ha mantenido. Contrastar, con un nivel de significación del 5\%, la hipótesis defendida por las autoridades sanitarias frente a que el porcentaje ha aumentado, como parecen indicar los datos, explicando claramente a qué conclusión se llega.
+\end{ejer}
+\end{ejemplo}
+
+$H_0:\ p\le 0.4;\ \ H_1:\ p>0.4\ $ Bilateral derecha.
+
+$\alpha=5\% \qquad p=0.4\qquad n=1000, \ \ \widehat p=450/1000=0.45$
+
+\rule{150pt}{0.1pt}
+
+$\alpha=0.05 \to z_\alpha / p(z>z_\alpha)=1-\alpha=0.95 \Rightarrow z_\alpha=1.645$ con lo que la región de aceptación es $(1.645,+\infty)$.
+
+Estadístico de contraste: $z=\dfrac{\widehat p -p}{\sqrt{\dfrac{p\ (1-p)}{\sqrt{n}}}}=
+\dfrac{0.45 - 0.4}{\sqrt{0.4 \cdot 0.6/1000}}=3.227$
+ 
+ 
+ Como $z=3.227 \notin (-1.96,1.96)$ cae en la zona de rechazo. Por lo tanto, rechazamos la hipótesis nula y aceptamos la alternativa. Con lo cual, con una probabilidad del 5\% de equivocarnos, afirmamos que más del 40\% de los alumnos falta un día a clase por la gripe (podemos estar cometiendo un error del tipo II).
+
+
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	Una de las entradas a cierta ciudad sufría constantemente retenciones de tráfico, de forma que el tiempo de espera en la cola formada por el semáforo allí instalado seguía una distribución Normal de media 10 minutos y desviación típica 4 minutos. Con el fin de descongestionar ese punto y bajar la media de tiempo de espera, se habilitó una vía de acceso auxiliar. Transcurrida una semana se hizo un estudio sobre 36 vehículos y se obtuvo que el tiempo medio de espera en el citado semáforo fue de 8.5 minutos. Las autoridades municipales mostraron su satisfacción y dijeron que la medida había funcionado, pero la opinión pública, sin embargo, defiende que la situación sigue igual. Suponiendo que la desviación típica se ha mantenido:
+	
+a) Plantee un test para contrastar la hipótesis defendida por la opinión pública frente a la de los responsables municipales. Si se concluye que la media de tiempo de espera bajó y realmente no lo hizo, ?`cómo se llama el error cometido?
+
+b) ?`A qué conclusión se llega con un nivel de significación del 5\%?
+
+c) ?`A qué conclusión se llega con un nivel de significación del 1\%?
+\end{ejer}
+\end{ejemplo}
+
+$H_0:\ \mu \ge 10;\ \ H_1:\ \mu<10\ $ unilateral derecho.
+
+$\alpha=5\% \ \wedge \ 1\%;\qquad N(10,4);\qquad n=36,\ \ \ \var x=8.5$
+
+\rule{150pt}{0.1pt}
+
+--- a) Para una significación $\alpha$, buscamos el $z\alpha$ tal que $p(z<-z_\alpha)=p(z>z_\alpha)=1-\alpha$, lo cual determina la región de aceptación de la hipótesis nula: $(-z_\alpha,+\infty)$
+
+Seguidamente calculamos el estadístico de contraste: $z=\dfrac{\bar x-\mu}{\sigma/\sqrt{n}}=\dfrac{8.5-10}{4/\sqrt{36}}=-2.25$
+
+La decisión consite en no rechazar la hipótesis nula si $z\in (-z_\alpha,+\infty)$ (a riesgo de cometer un error de tipo I) o sí rechazar la hipótesis nula y aceptar la hipótesis alternativa si $z\notin (-z_\alpha,+\infty)$ (corremos el riesgo de equivocarnos con esta decisión y cometer un error de tipo II).
+
+--- b) Para $\alpha=0.05 \to z_\alpha=1.645 \Rightarrow z=-2.25 \notin (-1.645,+1.645)$ y rechazamos la hipótesis nula, no podemos asegurar $\mu \ge 10 \ (\mu<10)$, y las autoridades tienen razón (no ha aumentado el tiempo de espera).
+
+--- c) Para $\alpha=0.01 \to z_\alpha=2.32 \Rightarrow z=-2.25 \in (-2.32,+2.32)$ y no rechazamos la hipótesis nula $(\mu \ge 10)$, la opinión pública tiene razón.
+
+Por lo tanto, rechazamos la hipótesis nula al nivel del 5\% y no a rechazamos al nivel del 1\%. Con lo cual, se puede afirmar, al nivel 0.05, que las autoridades llevan razón y el nivel de espera no supera los 10 minutos; sin embargo los conductores llevan razón y tienen que esperara más de 10 minutos al nivel del 1.%.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{imagenes/imagenes06/T06IM06.png}
+	\end{figure}
+	
+	
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	El alcalde de una ciudad prometió, en su programa electoral, oponerse a la construcción de una central de tratamiento de ciertos residuos, puesto que en aquel momento sólo un 10\% de los ciudadanos estaban a favor de la central de tratamiento de residuos. En los últimos días se ha encuestado a 100 personas de las cuales 14 están a favor de la central. El alcalde afirma sin embargo que el porcentaje de ciudadanos a favor sigue siendo del 10\% o incluso ha disminuido. ¿Tiene razón el alcalde con un nivel de significación del 2\%?
+\end{ejer}
+\end{ejemplo}
+
+$H_0:\ p\le 0.1 ;\ \ H_1: \ p>0.1\ $ Unilateral izquierda
+
+$\alpha=0.02;\qquad p=0.1; \qquad n=100,\ \ \ \widehat p=14/100=0.14$
+
+\rule{150pt}{0.1pt}
+
+$\alpha=0.02 \to p(z<z_\alpha)=1-\alpha=0.98 \Rightarrow z_\alpha=2.06$ con lo que la región de aceptación de la hipótesis nula es $(-\infty,2.06)$
+
+Estadístico de contraste: $z=\dfrac{\widehat p -p}{\sqrt{\dfrac{p\ (1-p)}{\sqrt{n}}}}=
+\dfrac{0.14 - 0.1}{\sqrt{0.1 \cdot 0.9/100}}=1.333$
+
+Decisión: como el valor crítico, $z=1.333 \in (-\infty, 2.06)$, se encuentra en la zona de aceptación, no rechazamos la hipótesis nula (no aceptamos la alternativa). Con lo cual, para un nivel de significación 0.02, el alcalde acierta en que el porcentaje de ciudadanos a favor sigue siendo del 10\% o incluso ha disminuido. 
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	Una máquina de envasado automático llena en cada saco una cierta cantidad de determinado producto. Se seleccionan 20 sacos, se pesa su contenido y se obtienen los siguientes resultados (en kilos): 49; 50; 49; 50; 50; 50; 49; 50; 50; 50; 49; 50; 50; 51; 52; 48; 50; 51; 51; 51
+
+A partir de esta información y suponiendo que la variable, peso de cada saco, se distribuye normalmente con desviación típica 1 kg:
+
+a) ?`Se puede admitir que el peso medio de los sacos que llena la máquina es de aproximadamente 51 kg? (Usar $\alpha=$ 0.01)
+
+b) ?`Se puede admitir que el peso medio de los sacos que llena la máquina es menor de 50 kg? (Usar $\alpha=$ 0.05)
+\end{ejer}
+\end{ejemplo}
+
+$n=20;\quad \bar x=50$, calculada de los datos del problema.
+
+Peso de los sacos $	\ N(\mu, 1)$
+
+--- a) $\ H_0: \ \mu=51;\ \ H_1:\ \mu \neq 51;\qquad \alpha=0.01$, bilateral.
+
+Estadístico de contraste: $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}}=\dfrac{50-51}{1/\sqrt{20}}=-4.47$
+
+Zona de aceptación: $\ \alpha=0.01 \to z_{\alpha/2}=2.57 \Rightarrow (-2.57,2.57)$
+
+El valor observado del estadístico de prueba $z=-4'47$ 
+se encuentra en la zona de rechazo ( $z=-4.47 \notin (-2.57,2.57)$ ), 
+por lo tanto, tomamos la decisión de rechazar la hipótesis nula y aceptamos la alternativa, 
+el peso de la máquina de envasado no es de 51 Kg para este nivel de significación.
+
+
+--- b) $\ \mu\ge 50;\ \ H_1:\ \mu < 50; \qquad \alpha=0.05$, unilateral derecho.
+
+Estadístico de contraste: $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}}=\dfrac{50-50}{1/\sqrt{20}}=0$
+
+Zona de aceptación: $\ \alpha=0.05 \to z_\alpha / p(z<-z_\alpha)=p(z>-z_\alpha)=1-\alpha=0.95 \to z_\alpha= 1.645 \Rightarrow (-1.645,1.645)$
+
+El valor observado del estadístico de prueba $z=0$ se encuentra en la zona de aceptación ( $z=0 \notin (-1.645,1.645)$ ), por lo tanto, tomamos la decisión de no rechazar la hipótesis nula, el peso de la máquina de envasado no es menor 50 Kg para este nivel de significación.
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	El consumo de cierto producto sigue una distribución normal con varianza 300. A partir de una muestra de tamaño 25 se ha obtenido una media muestral igual a 180.
+	
+a) Halle un intervalo de confianza al 95\% para la media del consumo.
+
+b) ?`Se podría afirmar que el consumo medio de este producto no llega a 200? (Usar $\alpha=0.05$ )
+\end{ejer}
+\end{ejemplo}
+
+--- a) $\ (1-\alpha)\cdot 100\% =95\% \to z_{|alpha/2}=1.96$
+
+El intervalo característico es: $\ \mu \in \bar x \pm z_{\alpha/2}\cdot \dfrac {\sigma}{\sqrt{n}}=180\pm 1.96 \cdot \dfrac{\sqrt{300}}{\sqrt{25}} \ \Rightarrow \ (173.21 , 186'79 )$
+
+--- b) $\ H_0:\  \mu \ge 200;\ \ \ H1: \mu <200 \ $ Unilateral derecha.
+
+Para $\alpha=0.05,\ z_\alpha=1.64$ y la región de aceptación es $\ (-1.645,+\infty)$ 
+
+El estadístico de contraste es $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}}=\dfrac{180-300}{\sqrt{300}/\sqrt{25}}=-5.773$
+
+Como el estadístico de contraste está fuera de la región de aceptación, está en la región de rechazo o crítica ( $z=-5.773 \notin (-1.645,+\infty)$ ), rechazamos la hipótesis nula y aceptamos la alternativa, con lo que Se podría afirmar que el consumo medio de este producto no llega a 200 (con un nivel de significación del 5\%).
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	Las autoridades educativas publican en un estudio que el 25\% de los estudiantes de Bachillerato de una cierta comunidad autónoma tienen ordenador portátil. A partir de una muestra aleatoria de tamaño 300 se ha obtenido que sólo 70 de ellos tienen ordenador portátil. ?`Se podría asegurar que las autoridades dicen la verdad? (Usar $\alpha = 0.06$)
+\end{ejer}
+\end{ejemplo}
+
+$H_0:\ p=0.25;\ \ H_1:\ p\neq 0.25\ $ Bilateral.
+
+$n=300;\quad \widehat p=70/300=0.233;\qquad \alpha=0,.06$
+
+\rule{150pt}{0.1pt}
+
+Para $\alpha=0.06 \ \to \ p(-z_{\alpha/2}<z<z_{\alpha/2})=1-\alpha=0.94 \ \to \ p(z<z_{\alpha/2})=0.97  \ \Rightarrow \ z_{\alpha/2}=1.88$, con lo que la región de aceptación es: $\ (-1.88,1.88)$
+
+Calculamos, ahora, el estadístico de contraste:
+
+$z=\dfrac{\widehat p -p}{\sqrt{\dfrac{p\ (1-p)}{\sqrt{n}}}}=
+\dfrac{0.233 - 0.25}{\sqrt{0.25 \cdot 0.75/300}}=-0.664$
+
+Decisión: como $z=-0.664 \in (-1.88,1.88)$, estamos en la región de no rechazo, no podemos refutar que el 25\% de los estudiantes tiene un portátil en casa con un nivel de significación 0.06, pudiendo haber cometido un error del tipo I. 
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+Los alumnos de preescolar tienen una estatura que es una variable aleatoria de media desconocida y desviación típica 16 cm. Si seleccionamos una muestra aleatoria de 100 de tales alumnos y obtenemos una estatura media de 95 cm,
+
+a) ?`Se puede afirmar que la estatura media de los alumnos de preescolar es menor de 95 cm? (Usar $\alpha=0.01$).
+
+b) ?`Se puede afirmar que la estatura media de los alumnos de preescolares mayor de 100 cm? (Usar $\alpha=0.05$ )
+\end{ejer}
+\end{ejemplo}
+$N(\mu,16)\qquad n=100 \quad \bar x=95$
+
+--- a) $\ H_0 : \ \mu \ge 95 ; \ \ H_1: \ \mu < 95 \ $ Unilateral derecha.
+
+$\alpha=0.01 \to z_\alpha :\ p(z>-z_\alpha)=p(z<z_\alpha)=1-\alpha=0.99 \to z_\alpha=2.33$, con lo que la zona de aceptación es: $\ (-2.33,+\infty)$
+
+El estadístico de contraste es $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}}=\dfrac{95-95}{16/\sqrt{100}}=0$
+
+Decisión: $z=0\in (-2.33,+\infty)$, no podemos rechazar la hipótesis nula, podemos afirmar al nivel 0.01, que los alumnos miden 95 cm o más.
+
+--- b)  $\ H_0 : \ \mu \le 100 ; \ \ H_1: \ \mu > 100 \ $ Unilateral izquierda.
+
+$\alpha=0.05 \to z_\alpha :\ p(z<z_\alpha)=1-\alpha=0.95 \to z_\alpha=1.645$, con lo que la zona de aceptación es: $\ (-\infty,1.645)$
+
+El estadístico de contraste es $\ z=\dfrac{\bar x - \mu}{\sigma/\sqrt{n}}=\dfrac{95-100}{16/\sqrt{100}}=-3.125$
+
+Decisión: $z=-3.125\in (-\infty,1.645)$, no podemos rechazar la hipótesis nula, con una probabilidad de equivocarnos del 5\%, afirmamos que los estudiantes miden igual o menos de 95 cm.
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejer}
+	La conclusión de un contraste de hipótesis realizado con un nivel de significación igual a 0.1 ha sido ``aceptar la hipótesis nula $H_0$''. ?`Cuál habría sido la conclusión para un nivel de significación igual a 0.05?
+\end{ejer}
+\end{ejemplo}
+
+La conclusión sería seguir aceptando la hipótesis nula, puesto que con el nivel de significación del 0.05, la región de aceptación aumenta y, por tanto, el estadístico seguirá estando en dicha región.
+
+
+
+
+\begin{comment}
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejre}
+	
+\end{ejre}
+\end{ejemplo}
+\end{comment}
+
+
+\rule{300pt}{0.1pt}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{imagenes/imagenes06/T06IM07.png}
+	\end{figure}	
+
+\begin{flushright}\rule{300pt}{0.1pt}\end{flushright}
+
+
+\vspace{4mm}
+\begin{ejemplo}
+\begin{ejre}
+	En un test de hipótesis para estudiar si el cociente intelectual medio de los estudiantes de una universidad es 113, hemos seleccionado una muestra aleatoria de 180 estudiantes, obteniendo una media de 115. La zona de aceptación obtenida ha sido el intervalo (111.98,114.02). Por tanto, hemos rechazado la hipótesis. Si $\ \sigma$ = 7, ?`cuál es la probabilidad de haber rechazado la hipótesis, cuando en realidad era verdadera? ¿Cómo se llama este tipo de error?
+\end{ejre}
+\end{ejemplo}
+
+\begin{multicols}{2}
+	
+La semiamplidud del intervalo es $z_{\alpha/2}\cdot \dfrac{\sigma}{\sqrt{n}}$
+
+$\dfrac{114.02-11.98}{2}=z_{\alpha/2} \cdot \dfrac{7}{\sqrt{180}} \ \to \ 
+z_{\alpha/2}=1.95$
+
+$p(z<1.95)=1-\dfrac \alpha 2=\text{ (tablas) } =0.9774 \ \to \ \alpha=0.0512$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.45\textwidth]{imagenes/imagenes06/T06IM09.png}
+	\end{figure}
+
+\end{multicols}
+El error que consiste en rechazar $H_0$ cuando esta es verdadera se llama error de tipo I. La probabilidad de cometerlo es precisamente $\alpha$, el nivel de significación. En este caso concreto: $\ \alpha=0.0512$
+
+
+
+
+
+
+\subsection{Problemas propuestos}
+
+
+\begin{adjustwidth}{20pt}{10pt}
+\begin{enumerate}[PB. 1. ]	
+	 
+			
+		
+\item En un determinado instituto aseguran que las notas obtenidas por sus alumnos en las pruebas de acceso a la Universidad tienen una media igual o superior a 7 puntos. Pero la media obtenida en una muestra aleatoria de 80 alumnos en los últimos exámenes fue de 6.89 puntos. Si sabemos que la varianza es igual a 4.84, ?`podemos considerar, con un nivel de significación del 1\%, que la afirmación hecha por el instituto es cierta? \hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ no rechazamos $H_0:\ \mu\ge 7$ }}}\vspace{1cm}\item En una determinada región, el número semanal de accidentes de tráfico producido durante el año pasado siguió una distribución normal de media 3.2 y desviación típica 1.3. Se ha llevado a cabo una campaña de prevención contra los accidentes de tráfico y la media semanal de accidentes en las 40 semanas siguientes ha sido de 3.05. Admitiendo que la desviación típica no ha variado, ?`podemos afirmar, con un nivel de significación del 5\%, que la campaña no ha tenido éxito (es decir, que el número de accidentes no ha disminuido con respecto al año anterior)? 
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ no rechazanos $H_0:\ \mu\ge 3.2$ }}}\vspace{1cm}\item Un fabricante garantiza a un laboratorio farmacéutico que sus máquinas producen comprimidos con un diámetro de 25 mm. Una muestra de 100 comprimidos dio como media de los diámetros 25.18 mm. Suponiendo que el diámetro de los comprimidos es una variable aleatoria con distribución normal, de desviación típica 0.89 mm, se desea contrastar, con un nivel de significación del 5\%, si el diámetro medio que afirma el fabricante es correcto. Para ello: 
+
+a) Plantea la hipótesis nula y la hipótesis alternativa del contraste. 
+
+b) Realiza el contraste al nivel de significación indicado. \hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ $a)\ H_0:\ \mu=25;\ H_1:\ \mu neq 25; \ \ b) \ \text{rechazamos } H_0$ }}}\vspace{1cm}\item Un laboratorio ha preparado un elevado número de dosis de cierta vacuna. Se conoce que el peso de dichas dosis se distribuye normalmente, con desviación típica de 0.10 mg. El peso medio de las dosis ha de ser de 0.70 mg. Se requiere la máxima precisión en el peso de las dosis. Por ello, se elige una muestra de 200 dosis y se comprueba su peso medio, que resulta ser de 0.66 mg. Realiza un contraste de hipótesis, con un nivel de significación de 0.05, para decidir si se debe retirar las dosis producidas, o bien la diferencia de peso medio es debida al azar. \hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{rechazamos $H_0$, se deben retirar las dosis producidas.}}}\vspace{1cm}\item El concejal de cultura de una determinada localidad afirma que el tiempo medio dedicado a la lectura por los jóvenes entre 15 y 30 años, residentes en dicha localidad, es, como mucho, de 8 horas semanales. Tomando una muestra aleatoria de 100 jóvenes entre 15 y 30 años, se obtuvo que la media de horas semanales que dedicaban a leer era de 8.3, con una desviación típica igual a 1. Con un nivel de significación del 5\%, ?`podemos aceptar la afirmación del concejal? \hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  rechazamos $H_0$, no podemos dar por cierta la afirmación del concejal }}}\vspace{1cm}\item Se afirma que, en una determinada localidad, el 20\% de las familias tienen dos o más hijos. Tomando una muestra aleatoria de 120 familias, había dos o más hijos en 22 de ellas. A un nivel de significación de 0.1, ?`podemos rechazar la afirmación? \hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ sno rechazanos $H_0,\ p=0.2$ }}}\vspace{1cm}\item El 15\% de los empleados de una gran empresa se declara fumador. Después de llevar a cabo una campaña contra el tabaco durante un año, se quiso comprobar si ésta había sido efectiva. Se hizo una encuesta a 85 empleados elegidos al azar, obteniéndose que 11 de ellos seguían fumando. A un nivel de significación del 0.01, ?`podemos considerar que la proporción de fumadores no ha variado después de la campaña? \hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ no rechazamos $H_0$, no hay suficiente evidencia para aceptar que la proporción haya variado }}}\vspace{1cm}
+\item Hemos realizado 300 lanzamientos con un dado, que sospechamos que está trucado, y hemos obtenido un seis en 71 ocasiones. Con un nivel de significación del 1\%, contrasta la hipótesis de que la probabilidad de obtener seis no es mayor de 1/6. \hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ rechazamos $H_0$, aceptamos $H_1:\ p>1/6$ }}}\vspace{1cm}\item Hace un año, 3 de cada 10 familias de una determinada población realizaba sus compras habituales en hipermercados. En una encuesta realizada este año entre 105 familias de la localidad escogidas al azar, 34 de ellas afirman que compran habitualmente en hipermercados. Con un nivel de significación del 5\%, contrasta la hipótesis de que el porcentaje no ha aumentado (es decir, que permanece igual o menor que el del año anterior). \hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ no rechazamos $H_0,\ p\le 0.3$ }}}\vspace{1cm}\item En las elecciones a la alcaldía de cierta localidad, que se celebraron hace un año, el partido que ganó obtuvo el 57\% de los votos. Recientemente se ha realizado una encuesta, escogiendo al azar a 160 vecinos (mayores de 18 años), 88 de los cuales afirmaban que seguían a favor del alcalde. ?`Podemos considerar, a un nivel de significación de 0.01, que el alcalde no obtendría menor número de votos si se repitieran ahora las elecciones? \hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ no rechazamos $H_0,\ p\ge 0.57$ }}}\vspace{1cm}\item En un contraste de hipótesis para comprobar si la media de edad de los asistentes a una exposición era de 20 años, hemos seleccionado una muestra aleatoria de 100 asistentes, obteniendo una media de 20.5 años. La zona de aceptación obtenida ha sido el intervalo (19.59,20.41) y sabemos que la desviación típica es $\sigma=2.1$. Por tanto, hemos rechazado la hipótesis. 
+?`Cómo se llama la probabilidad de habernos equivocado es la decisión, es decir, de haber rechazado la hipótesis, cuando en realidad era cierta? ?`Influye el tamaño de la muestra en la probabilidad de cometer este tipo de error? 
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ el nivel de significación. No depende del tamaño de la muestra. }}}
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ Error tipo I: rechazar $H_0$ siendo cierta. Probabilidad cometer error tipo I es $\alpha$,  }}}\vspace{1cm}
+
+\item La nota media en unas oposiciones celebradas el año pasado fue de 4.35 con una desviación típica de 2.5 puntos. Este año se han vuelto a convocar unas oposiciones similares. Con un nivel de significación de 0.01, y suponiendo que la desviación típica sigue siendo la misma, queremos contrastar la hipótesis de que la media no ha variado. Para ello, vamos a extraer una muestra aleatoria de 100 exámenes. Así, la zona de aceptación será el intervalo (3.71,4.99). Si al final la media real fuera de 3 puntos y hubiéramos aceptado H0 (siendo falsa), ?`qué tipo de error habríamos cometido? ?`Cómo influye el tamaño de la muestra en la probabilidad de cometer este tipo de error? 
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  A mayor tamaño de la muestra, menor es la probabilidad de cometerlo. }}}
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ Error de tipo II: aceptar $H_0$ siendo falsa. }}}\vspace{1cm}
+
+\item En una autoescuela afirman que el porcentaje de sus alumnas y alumnos que obtienen el permiso de conducir la primera vez que se examinan es del 53\%. Para contrastar esta hipótesis, vamos a seleccionar una muestra aleatoria de 65 alumnas y alumnos de esa autoescuela. La zona de aceptación de la hipótesis que hemos considerado para la proporción es el intervalo (0.41,0,65). Supongamos que hemos obtenido una proporción muestral que cae fuera de la zona de aceptación y que, por tanto, rechazamos la hipótesis. 
+a) ?`Cómo se llama el error que cometeríamos equivocándonos en esta decisión; es decir, rechazando $H_0$, si en realidad fuera cierta? 
+
+b) ?`Influye el tamaño de la muestra en la probabilidad de cometer este tipo de error? 
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ b) No influye el tamaño de la muestra. }}}
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  La probabilidad de cometer este error es $\alpha$, el nivel de significación. }}}
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ a) Si rechazamos $H_0$ siendo cierta cometemos error tipo I. }}} \vspace{1cm}
+
+
+
+
+
+\item A principio de año, un estudio en cierta ciudad indicaba que un 
+15\% de los conductores utilizaba el móvil con el vehículo en marcha.
+Con el fin de investigar la efectividad de las campañas que se han 
+realizado desde entonces para reducir estos hábitos, recientemente se
+ha hecho una encuesta a 120 conductores y 
+12 hacían uso indebido del móvil.
+
+a) Plantea un test para contrastar que las campañas no han cumplido su objetivo, frente a que sí lo han hecho, como parecen indicar los datos. ?`A qué conclusión se llega con un nivel de significación del 4\%?
+
+b) Calcula un intervalo de confianza del 96\% para la proporción de conductores que usan indebidamente el móvil después de las campañas.
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ a) No se rechaza $H_0:\ p \ge 0.15$, b) (0.04,0.16)}}}\vspace{1cm}
+
+\item Un directivo de cierta empresa de material eléctrico afirma que la vida media de cierto tipo de bombillas es de 1500 horas. Otro directivo de la misma empresa afirma que la vida media de dichas bombillas es igual o menor de 1500 horas. Elegida una muestra aleatoria simple de 81 bombillas de dicho tipo, vemos que su vida media ha sido de 1450 horas. Suponiendo que la vida de las bombillas sigue una distribución normal con desviación típica igual a 180 horas:
+
+a) ?`Es compatible la hipótesis $H_0:\ \mu=1500$, frente a la hipótesis $H_1: \ \mu\neq 1500$ con una confianza del 99\%, con el resultado experimental  $\bar x = 1 4 5 0$ ?
+
+b) ?`Es compatible la hipótesis $H_0: \ \mu \le 1500$, frente a la hi- pótesis $H_1:\ \mu > 1500$ con una confianza del 99\%, con el resultado experimental $\bar x = 1 4 5 0$ ?
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  a) Sí, rechazamos $H_0$; b) rechazamos $H_0$ y aceptamos $H_1$ }}}\vspace{1cm}
+
+
+
+\item Una empresa eléctrica fabrica focos que tienen una duración que está distribuida aproximadamente en forma normal con una media de 800 horas y una desviación estándar de 40 horas. Pruebe la hipótesis de que $\mu= 800$ horas en contraposición de la alternativa de que $\mu \neq 800$  horas si una muestra aleatoria de 30 focos tiene una duración promedio de 788 horas. Utilice un nivel de significación de 0.04. 
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  aNo se rechaza $H_0$, es decir, los focos tienen una duración promedio de 800 horas. }}}\vspace{1cm}
+
+\item Un fabricante de cigarros afirma que el contenido promedio de nicotina no excede de 3.5 miligramos,  con una desviación standar de 1.4 milímetros. Para una muestra de 8 cigarros se tiene un contenido promedio de nicotina de 4.2 miligramos .?`Está esto de acuerdo con la afirmación del fabricante ?. Use nivel de significación de 0.05. 
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  Se acepta $H_0$ es decir, es correcta la afirmación del fabricante. }}}\vspace{1cm}
+
+\item Se sabe que la desviación típica de las notas de cierto examen es 2.4. Para una muestra de 36 estudiantes se obtuvo una nota media de 5.6. ?`Sirven estos datos para confirmar la hipótesis de que la nota media del examen fue 6, con un nivel de confianza del 95\%?
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  No se rechaza $H_0$, la nota media del examen fue de 6, con un nivel de confianza del 95\% }}}\vspace{1cm}
+
+\item Debido a la futura fusión de dos entidades de ahorro, un estudio preliminar estima que como máximo un 5\% de los clientes causará baja en la nueva entidad resultante. Un analista de mercados sospecha que la proporción de bajas será mayor y para contrastarlo realiza una encuesta a 400 clientes, elegidos al azar, sobre su intención de seguir operando con la nueva entidad después de la fusión. De ellos 370 contestan que seguirán operando con la nueva entidad.
+
+Formula un test para contrastar la hipótesis de que la proporción es la que se formula en el estudio preliminar frente a la del analista. ?`A qué conclusión se llega con un nivel de significación del 5\%? 
+
+Comenta que son loes errores de tipo I y tipo II en este caso.
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  cuando realmente sí la tiene. }}}
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  Error de tipo II ( no rechazar $H_0$ siendo falsa): afirmar que el analista no tiene razón }}}
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ que causará baja es la que cree el analista, cuando realmente no es cierto }}}
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  Con un riesgo de 5\%, el analista tiene razón. }}}
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  No se rechaza $H_0:\ p\ge 0.05$. }}}\vspace{1cm}
+
+
+
+\item En un hospital se observó que los pacientes abusaban del servicio de urgencias, de forma que un 30\% de las consultas podían perfectamente haber esperado a concertar una cita con el médico de cabecera, porque no eran realmente urgencias. Puesto que esta situación ralentizaba el servicio, se realizó una campaña intensiva de concienciación. Transcurridos unos meses se ha recogido información de 120 consultas al servicio, de las cuales sólo 30 no eran realmente urgencias:
+
+a) Hay personal del hospital que defiende que la campaña no ha mejorado la situación. Plantee un test para contrastar esta hipótesis frente a que sí la mejoró. Si se concluye que la situación no ha mejorado y realmente sí lo hizo, ?`cómo se llama el error cometido?
+
+b) ?`A qué conclusión se llega en el test planteado en el apartado anterior con un nivel de significación del 1\%?
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{  por lo menos el 30\% de los pacientes continúan yendo a urgencias. }}}
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ a) Error tipo II; b) no rechazamos $H_0:\ p\ge 0.30$, }}} \vspace{1cm}
+
+\item En una determinada provincia, la nota media en matemáticas de los alumnos de $2^o$ de Bachillerato del curso pasado fue de 5.8, con una desviación típica de 2.3 puntos.
+
+Con un nivel de significación de 0.05, queremos contrastar la hipótesis de que la media no ha variado. Para ello, vamos a extraer una muestra aleatoria de tamaño 100. Así, la zona de aceptación será el intervalo (5.35,6.25). Si al final la media real fuera de 5 puntos, ?`cuál es la probabilidad de obtener una media muestral que nos lleve a cometer un error de tipo II?
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ zona de aceptación, 0.0643 }}}
+
+\hspace{-15mm}\rotatebox{180}{\leftline{\textcolor{gris}{ Probabilidad cometer error tipo II es la probabilidad de obtener una $\bar x$ que esté en la }}} \vspace{1cm}
+
+
+
+\end{enumerate}
+\end{adjustwidth}
+
+
+
+
+	
+\section{Curiosidades}
+\begin{myexampleblock}{?`Por qué respecto a la hipótesis nula se habla de ``no rechazo'' y no de ``aceptación''?}
+ 
+\vspace{2mm} Esta es una característica general de la búsqueda del conocimiento científico. Ilustraremos la situación con un ejemplo.
+
+\vspace{2mm} En un juego se trata de descubrir un animal oculto y los participantes (los científicos) deben hacer preguntas sobre características de dicho animal con el propósito de descubrirlo. Uno de ellos tiene como hipótesis (nula) que el animal es una paloma y para contrastar su hipótesis pregunta: ?`el animal en cuestión tiene alas? Se le responde que sí, que efectivamente el animal tiene alas.
+
+\vspace{2mm} ?`Qué conclusión puede sacarse hasta el momento? ?`Podría decirse entonces que su hipótesis es cierta y que el animal en cuestión es necesariamente una paloma? Sabemos que la respuesta es no. La evidencia (tener alas) es compatible con su hipótesis, pero ello no significa que sea verdadera, pues existen muchas otras hipótesis que son igualmente compatibles con dicha evidencia, por ejemplo, que el animal sea una mariposa, o que sea un murciélago.
+
+\vspace{2mm} El científico hace una nueva pregunta (observación): ?`el animal es vertebrado? Y como resultado de la observación se le responde que no. ?`Qué pasa con su hipótesis ahora? ?El animal podría ser una paloma? No. Ahora rechazamos la hipótesis de forma contundente para replantearla de tal manera que sea compatible con los nuevos hechos: tiene alas y no es vertebrado. La nueva hipótesis de trabajo puede ser: el animal es un mosquito.
+
+\vspace{2mm} Todas las verdades en la ciencia son de carácter transitorio, de forma que una afirmación sobre la naturaleza es verdadera porque no ha podido demostrarse que es falsa. Sin embargo, pueden existir muchas hipótesis compatibles con los hechos (no solo la nuestra), por esta razón el no rechazo de una hipótesis no implica su veracidad. No ocurre lo mismo cuando los hechos contradicen la hipótesis, así, si el animal no es vertebrado, estamos muy seguros de que no es una paloma.	
+
+\rule{200pt}{0.1pt}
+
+\footnotesize{``55 respuestas a dudas estadísticas''. Roberto Behar Gutiérrez y Pere Grima Cintas. Ediciones Díaz de Santos, S. A., Madrid 2004}\normalsize{.}
+\end{myexampleblock}
+
+\begin{myexampleblock}{Chiste: errores en el contraste de hipótesis}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{imagenes/imagenes06/T06IM04.png}
+	\end{figure}	
+\end{myexampleblock}
+
+%Resumen
+\newpage
+
+$\quad$
+
+$\quad$
+
+
+\begin{myblock}{RESUMEN: Contraste de Hipótesis}
+
+$\triangleright\ $ \textbf{Test para la media}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[H]
+\begin{tabular}{l|c|c|c|c}
+\textbf{Contraste} & $\boldsymbol{H_0}$    & $\boldsymbol{H_1}$    & \textbf{Estadístico de contraste}                                         & \textbf{Región de aceptación}  \\ \hline
+                   & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{}                                                     & \multicolumn{1}{l}{}           \\
+Bilateral          & $\mu = \bar x$        & $\mu \neq \bar x$     & \multirow{5}{*}{$\boldsymbol{z=\dfrac{\bar x - \mu}{\sigma / \sqrt{n}}}$} & $(-z_{\alpha/2},z_{\alpha/2})$ \\ \cline{1-3} \cline{5-5} 
+                   & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} &                                                                           &                                \\
+U. izquierdo       & $\mu \le \bar x$      & $\mu > \bar x$        &                                                                           & $(-\infty,z_\alpha)$           \\ \cline{1-3} \cline{5-5} 
+                   & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} &                                                                           &                                \\
+U. derecho         & $\mu \ge \bar x$      & $\mu < \bar x$        &                                                                           & $(-z_\alpha,+\infty)$          \\ \hline
+\end{tabular}
+\end{table}
+
+\vspace{1cm}
+
+$\triangleright\ $ \textbf{Test para una proporción}
+
+\begin{table}[H]
+\begin{tabular}{l|c|c|c|c}
+\textbf{Contraste} & $\boldsymbol{H_0}$    & $\boldsymbol{H_1}$    & \textbf{Estadístico de contraste}                                                     & \textbf{Región de aceptación}  \\ \hline
+                   & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{}                                                                 & \multicolumn{1}{l}{}           \\
+Bilateral          & $p = \widehat p$      & $p \neq \widehat p$   & \multirow{5}{*}{$\boldsymbol{z=\dfrac{\widehat p - p}{\sqrt{ \dfrac{p (1-p)}{n} }}}$} & $(-z_{\alpha/2},z_{\alpha/2})$ \\ \cline{1-3} \cline{5-5} 
+                   & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} &                                                                                       &                                \\
+U. izquierdo       & $p \le \widehat p$    & $p > \widehat p$      &                                                                                       & $(-\infty,z_\alpha)$           \\ \cline{1-3} \cline{5-5} 
+                   & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} &                                                                                       &                                \\
+U. derecho         & $p \ge \widehat p$    & $p <  \widehat p$     &                                                                                       & $(-z_\alpha,+\infty)$          \\ \hline
+\end{tabular}
+\end{table}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{imagenes/imagenes06/T06IM08.png}
+	\end{figure}
+	
+\vspace{1cm}
+$\triangleright\ $ \textbf{Test para la comparación de medias}
+
+\begin{table}[H]
+\begin{tabular}{l|c|c|l|c}
+\textbf{Contraste} & $\boldsymbol{H_0}$    & $\boldsymbol{H_1}$    & \multicolumn{1}{c|}{\textbf{Estadístico de contraste}}                                               & \textbf{Región de aceptación}  \\ \hline
+                   & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} &                                                                                                      & \multicolumn{1}{l}{}           \\
+Bilateral          & $\bar x = \bar y$     & $\bar x \neq \bar y$  & $\boldsymbol{ z=\dfrac{\bar x - \bar y}{\sqrt{ \dfrac{\sigma_x^2}{n_x}+\dfrac{\sigma_y^2}{n_y} }} }$ & $(-z_{\alpha/2},z_{\alpha/2})$ \\ \hline
+\end{tabular}
+\end{table}
+	
+\end{myblock}
+
+
+
+
