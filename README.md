@@ -19,6 +19,6 @@ __________________
 - 5. Contraste de hipótesis
 #### Apéndices
 
-![](https://github.com/igvaori/estadistica/blob/master/IMPRENTA/como tiene que quedar.jpg)
+![](https://github.com/igvaori/estadistica/blob/master/IMPRENTA/muestra.jpg)
 
 __________________
