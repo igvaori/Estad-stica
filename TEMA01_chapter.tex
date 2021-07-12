@@ -215,7 +215,7 @@ En los análisis estadísticos, es frecuente utilizar representaciones visuales 
 Cuando se muestran los datos estadísticos a través de representaciones gráficas, se ha de adaptar el contenido a la información visual que se pretende transmitir. Para ello, se barajan múltiples formas de representación. Los tipos más frecuentes de representaciones estadísticas son:
 
 \begin{itemize}
-	\item \textbf{Diagramas de barra}s: muestran los valores de las frecuencias absolutas sobre un sistema de ejes cartesianos, cuando el carácter estadístico en estudio es un atributos o  una variable discreta.
+	\item \textbf{Diagramas de barras}: muestran los valores de las frecuencias absolutas sobre un sistema de ejes cartesianos, cuando el carácter estadístico en estudio es un atributos o  una variable discreta.
 	\item \textbf{Histogramas}: formas especiales de diagramas de barras para distribuciones de variable continua.
 	\item \textbf{Polígonos de frecuencias}: formados por líneas poligonales abiertas sobre un sistema de ejes cartesianos.
 	\item \textbf{Gráficos de sectores}: circulares o de tarta, dividen un círculo en porciones proporcionales según el valor de las frecuencias relativas. \textcolor{gris}{Este tipo de diagramas no es nada recomendado.\footnote{Lo veremos más adelante, en su apartado correspondiente.}}
@@ -375,7 +375,7 @@ Tallos & \multicolumn{15}{l}{Hojas} \\ \hline
 
 
 \subsection{Diagrama de cajas y bigotes}
-Veremos este tipo de diagramas al final de la sección parámetros de posición.
+Veremos este tipo de diagramas al final de la sección \ref{paradisper} parámetros de posición.
 
 
 
@@ -694,7 +694,7 @@ Calcular Media, moda y mediana para la siguiente serie estadística.
 \vspace{10mm}%**********************
 \begin{myalertblock}{Ventajas y desventajas de la medidas de tendencia central.}
 
-%\begin{footnotesize}\begin{itemize}\item MEDIA	\begin{itemize}	\item Ventajas 		\begin{itemize}		\item Es la medida de tendencia central más usada.		\item Emplea en su cálculo toda la información disponible.		\item Es un valor único.		\item Se emplea a menudo en cálculos estadísticos posteriores.		\item Tiene un sentido claro como valor de tendencia del agrupamiento de los datos.		\item Es sensible a cualquier cambio en los datos (puede ser usado como un detector de variaciones en los datos).		\item Es útil para llevar a cabo procedimientos estadísticos como la comparación de medias de varios conjuntos de datos.		\item Presenta rigor matemático.		\item En la gráfica de frecuencia representa el centro de gravedad.		\end{itemize}	\item Desventajas		\begin{itemize}		\item Es sensible a los valores extremos.		\item No es recomendable emplearla en distribuciones muy asimétricas.		\item Si se emplean variables discretas, la media aritmética puede no pertenecer al conjunto de valores de la variable.		\item No se puede calcular para datos cualitativos.		\item No se puede calcular para datos que tengan clases de extremo abierto, tanto superior como inferior.		\end{itemize}	\end{itemize}
+%\begin{footnotesize}\begin{itemize}\item MEDIA	\begin{itemize}	\item Ventajas 		\begin{itemize}		\item Es la medida de tendencia central más usada.		\item Emplea en su cálculo toda la información disponible.		\item Es un valor único.		\item Se emplea a menudo en cálculos estadísticos posteriores.		\item Tiene un sentido claro como valor de tendencia del agrupamiento de los datos.		\item Es sensible a cualquier cambio en los datos (puede ser usado como un detector de variaciones en los datos).		\item Es útil para llevar a cabo procedimientos estadísticos como la comparación de medias de varios conjuntos de datos.		\item Presenta rigor matemático.		\item En la gráfica de frecuencia representa el centro de gravedad.		\end{itemize}	\item Desventajas		\begin{itemize}		\item Es sensible a los valores extremos (\emph{outliers}).		\item No es recomendable emplearla en distribuciones muy asimétricas.		\item Si se emplean variables discretas, la media aritmética puede no pertenecer al conjunto de valores de la variable.		\item No se puede calcular para datos cualitativos.		\item No se puede calcular para datos que tengan clases de extremo abierto, tanto superior como inferior.		\end{itemize}	\end{itemize}
 
 \item MEDIANA	\begin{itemize}	\item Ventajas:		\begin{itemize}		\item No se ve influenciada por valores extremos, ya que solo influyen los valores centrales.		\item Fácil de entender.		\item Se puede calcular para cualquier tipo de datos cuantitativos, incluso los datos con clase de extremo abierto.		\item Es la medida de tendencia central más representativa en el caso de variables que solo admiten la escala ordinal.		\end{itemize}	\item Desventajas		\begin{itemize}		\item No utiliza en su cálculo toda la información disponible.		\item No pondera cada valor por el número de veces que se ha repetido.		\item Hay que ordenar los datos antes de determinarla.		\end{itemize}	\end{itemize}\item MODA	\begin{itemize}		\item Ventajas		\begin{itemize}		\item No requiere cálculos.		\item Puede usarse para datos tanto cuantitativos como cualitativos.		\item Fácil de interpretar.		\item No se ve influenciada por valores extremos.		\item Se puede calcular en clases de extremos abiertos.		\end{itemize}	\item Desventajas		\begin{itemize}		\item Solo tiene significado en el caso de una gran cantidad de datos.		\item No utiliza toda la información disponible.		\item Difícil de interpretar si los datos tiene 3 o más modas.		\end{itemize}	\end{itemize}
 \end{itemize}
@@ -1034,7 +1034,7 @@ El intervalo solicitado es $\ [17,27,51.00[$, es el llamado \textbf{intervalo in
 \end{myalertblock}
 
 
-\subsection{Parámetros de dispersión}
+\subsection{Parámetros de dispersión}\label{paradisper}
 	
 	Las medidas de dispersión, o de variabilidad (o propagación), expresan cómo se distribuyen los datos en torno a alguna de las medidas de centralización definidas antes (nos informan sobre cuánto se alejan del centro los valores de la distribución) y son un complemento a estas últimas para describir más fielmente un conjunto de datos.
 	
@@ -1189,7 +1189,7 @@ Se usan para describir numéricamente la forma de la distribución. Miden la \em
 	
 	\vspace{2mm} --- Coeficiente de asimetría de Fisher: $\ As=\dfrac{\displaystyle \sum_{i=1}^n (x_i-\bar x)^3 \ n_i}{N s^3}$
 	
-	\vspace{4mm} Interpretación de los coeficientes: Si $As>0$ la distribución presenta una asimetría positiva, si $As<0$ la asimetría es negativa y si $As\simeq 0$ la distribución es simétrica.
+	\vspace{4mm} Interpretación de los coeficientes: Si $As>0$ la distribución presenta una asimetría (o sesgo) positiva, si $As<0$ la asimetría (o sesgo) es negativa y si $As\simeq 0$ la distribución es simétrica (o insesgada).
 	
 	\begin{figure}[H]
 			\centering
@@ -1254,7 +1254,7 @@ Haciendo uso de las propiedades de las medidas estadísticas, podremos facilitar
 \vspace{2mm} Mención especial merecen dos cambio de variables particular : 
 1.$\ $ \textbf{Diferenciales}: partiendo de la variable inicial $x_i$ (puntuaciones directas), si a todos los valores les restamos la media, obtenemos una nueva variable $y_i=x_i-\var x$ (puntuaciones diferenciales) cuya media es cero (la desviación típica no se modifica). 2.$\ $  \textbf{Tipificadas}: Si a todos los valores de la variable inicial $x_i$ les restamos la media y el resultado lo dividimos por la desviación típica, obtenemos una nueva variable $\boldsymbol{z_i=\frac{x_i-\bar x}{s_x}}$, \emph{puntuaciones típicas o tipificadas} cuya media es cero y cuya  desviación típica es siempre la unidad. 
 
-\vspace{2mm} Este último cambio de variable recibe el nombre de \textbf{TIPIFICACIÓN} y es muy útil a la hora de comparar dos valores de individuos pertenecientes a distribuciones distintas.
+\vspace{2mm} Este último cambio de variable recibe el nombre de \textbf{Tipificación} o \emph{estandarización} y es muy útil a la hora de comparar dos valores de individuos pertenecientes a distribuciones distintas.
 \end{definition}
 
 \vspace{15mm}%**********************
@@ -1657,7 +1657,7 @@ $\bar x_p=\displaystyle \sum_{i=1}^{19} x_i \cdot n_i \ / \  \sum_{i=1}^{19} n_i
 
 \vspace{2mm} Algunos casos de mentiras estadísticas, que rescatan los matemáticos Andrew Gelman y Deborah Nolan en su libro Teaching Statistics: A Bag of Tricks, son:
 \vspace{2mm} \textbf{1. Inventar cifras}
-\vspace{2mm} Según un estudio de la Universidad de Cambridge, un 53,4\% de las estadísticas son inventadas. Suena inteligente,¿`no?. Inventar estadísticas es la forma más directa de engaño de la que hablaremos y es, lamentablemente, más común de lo que se pensaría, gracias al aura de verdad o seriedad que un porcentaje o un grupo de barras puede darle al mensaje que lo acompaña.
+\vspace{2mm} Según un estudio de la Universidad de Cambridge, un 53,4\% de las estadísticas son inventadas. Suena inteligente, ?`no?. Inventar estadísticas es la forma más directa de engaño de la que hablaremos y es, lamentablemente, más común de lo que se pensaría, gracias al aura de verdad o seriedad que un porcentaje o un grupo de barras puede darle al mensaje que lo acompaña.
 \vspace{2mm} Uno de los ejemplos más recientes y notables por su impacto, y que afortunadamente fue desbaratado con rapidez, fue un tuit publicado por el candidato republicano Donald Trump.
 \vspace{2mm} En diciembre del año pasado, Trump retuiteó estadísticas que señalaban, entre otras cosas, que un 81\% de los asesinatos de gente blanca era cometidos por gente negra.
 
@@ -1679,8 +1679,9 @@ $\bar x_p=\displaystyle \sum_{i=1}^{19} x_i \cdot n_i \ / \  \sum_{i=1}^{19} n_i
 \vspace{2mm} La lección es clara y se aplica a todo tipo de información sensible: \emph{hay que revisar la fuente de cualquier estadística que nos presenten}.
 
 \vspace{2mm} \textbf{2. Cortar ejes}
-\vspace{2mm} En el colegio nos enseñan que los ejes, tanto el ``X'' (horizontal) como el ``Y'' (vertical), parte de 0, pero esto no siempre ocurre en los gráficos. No es algo prohibido ni malo necesariamente, pero se presta para exagerar o minimizar deliberadamente comparaciones de cifras.
+\vspace{2mm} En el colegio nos enseñan que los ejes, tanto el ``X'' (horizontal) como el ``Y'' (vertical), parte de 0, pero esto no siempre ocurre en los gráficos. No es algo prohibido ni malo necesariamente, pero se presta para exagerar o minimizar deliberadamente comparaciones de cifras. Por ello, \emph{se aconseja que siempre que se corte un eje se especifique claramente.}
 \vspace{2mm} Existen muchas formas de alterar ejes, pero la más común es la que se aprecia en las siguientes imágenes. Nótese que se trata de exactamente los mismos datos, solo que en el primero buena parte del eje Y (el vertical) fue truncado para hacer, suponemos, leña (;-). Así, la diferencia entre cada barra se ve enorme, cuando al verla en el contexto total (segundo gráfico), la diferencia es mínima.
+
 
 \begin{multicols}{2}
 	\begin{figure}[H]
